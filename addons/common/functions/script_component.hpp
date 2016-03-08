@@ -1,0 +1,1 @@
+#include "\y\bc\addons\common\script_component.hpp"

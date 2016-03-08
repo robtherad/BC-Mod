@@ -1,0 +1,12 @@
+name = "BC Mods";
+picture = "logo_bc.paa";
+actionName = "Website";
+action = "bravoco.us";
+description = "Bravo Company Mods";
+logo = "logo_bc.paa";
+logoOver = "logo_bc.paa";
+tooltip = "BC";
+tooltipOwned = "BC Owned";
+overview = "An addon containing tweaks and fixes for use during Bravo Company Fight Nights.";
+author = "Bravo Company";
+overviewPicture = "logo_bc.paa";
