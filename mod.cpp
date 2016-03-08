@@ -1,4 +1,4 @@
-name = "Bravo Company Mods";
+name = "BC Mods";
 picture = "logo_bc.paa";
 actionName = "Website";
 action = "bravoco.us";
