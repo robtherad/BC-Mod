@@ -58,8 +58,8 @@ if sys.platform == "win32":
     import winreg
 
 ######## GLOBALS #########
-project = "@ace"
-project_version = "3.0.0"
+project = "@bc"
+project_version = "0.1.0"
 arma3tools_path = ""
 work_drive = ""
 module_root = ""
@@ -67,14 +67,14 @@ make_root = ""
 release_dir = ""
 module_root_parent = ""
 optionals_root = ""
-key_name = "ace"
+key_name = "bc"
 key = ""
 dssignfile = ""
-prefix = "ace"
-pbo_name_prefix = "ace_"
-signature_blacklist = ["ace_server.pbo"]
-importantFiles = ["mod.cpp", "README.md", "docs\\README_DE.md", "docs\\README_PL.md", "AUTHORS.txt", "LICENSE", "logo_ace3_ca.paa", "meta.cpp"]
-versionFiles = ["README.md", "docs\\README_DE.md", "docs\\README_PL.md", "mod.cpp"]
+prefix = "bc"
+pbo_name_prefix = "bc_"
+signature_blacklist = []
+importantFiles = ["mod.cpp", "README.md", "ACE_LICENSE", "logo_bc.paa"]
+versionFiles = ["README.md", "mod.cpp"]
 
 ciBuild = False # Used for CI builds
 
