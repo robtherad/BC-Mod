@@ -1,19 +1,19 @@
-## BC Addon (WIP)
+# BC Addon (WIP)
 
 An addon containing small tweaks and fixes for use in Bravo Company's Fight Nights.
 
 
 **** 
 
-#### Current Features
-
+### Current Features
+```
 akm_tracers
 * Fixes RHS 7.62x39 Tracer mag. Actually has a magazine full of tracer rounds now.
 
 common
 * Contains some functions that were part of the mission template in the `misc` folder.
-
-#### Plans
+```
+### Plans
 In no particular order.
 
 * Move common BC functions to addon.
@@ -28,7 +28,7 @@ In no particular order.
 ****
 
 
-#### Credits
+### Credits
 
 * [CBA Team](https://github.com/CBATeam/CBA_A3)
 * [ACE Team](https://github.com/acemod/ACE3)
