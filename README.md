@@ -2,13 +2,8 @@
 
 An addon containing small tweaks and fixes for use in Bravo Company's Fight Nights.
 
-#### Credits
 
-[CBA Team](https://github.com/CBATeam/CBA_A3)
-
-[ACE Team](https://github.com/acemod/ACE3)
-
-The structure and workflow of this addon is heavily based on the ACE 3 addon for Arma 3.
+**** 
 
 #### Current Features
 
@@ -28,3 +23,14 @@ In no particular order.
 * Rewrite Radio system for use in non Fight Night missions as wel.
 * Port spectator script to addon so it's easier to update.
 * Upload mod to workshop after it's more useful?
+
+
+****
+
+
+#### Credits
+
+* [CBA Team](https://github.com/CBATeam/CBA_A3)
+* [ACE Team](https://github.com/acemod/ACE3)
+
+The structure and workflow of this addon is heavily based on the ACE 3 addon for Arma 3.
