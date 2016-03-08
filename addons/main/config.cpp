@@ -1,8 +1,8 @@
 #include "script_component.hpp"
 
 class CfgPatches {
-	class bc_main {
-		requiredVersion = REQUIRED_VERSION;
+    class bc_main {
+        requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             // Vanilla
             "3den",
@@ -565,9 +565,9 @@ class CfgPatches {
             "cba_xeh_a3",
             "cba_jr"
         };
-		author = "Bravo Company";
+        author = "Bravo Company";
         VERSION_CONFIG;
-	};
+    };
 };
 
 class CfgMods {

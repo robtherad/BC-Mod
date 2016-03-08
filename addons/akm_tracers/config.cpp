@@ -1,13 +1,13 @@
 #include "script_component.hpp"
 
 class CfgPatches {
-	class ADDON {
-		requiredVersion = REQUIRED_VERSION;
+    class ADDON {
+        requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"bc_main", "rhs_c_weapons"};
         author = "robtherad";
-		magazines[] = {"rhs_30Rnd_762x39mm_tracer"};
+        magazines[] = {"rhs_30Rnd_762x39mm_tracer"};
         VERSION_CONFIG;
-	};
+    };
 };
 class CfgMagazines {
 
