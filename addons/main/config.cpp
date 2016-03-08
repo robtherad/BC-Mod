@@ -579,6 +579,6 @@ class CfgMods {
         hideName = "true";
         actionName = "Website";
         action = "http://bravoco.us/bc/";
-        description = "Issue Tracker: https://github.com/robtherad/BCArma/";
+        description = "Issue Tracker: https://github.com/robtherad/BC-Mod/";
     };
 };
