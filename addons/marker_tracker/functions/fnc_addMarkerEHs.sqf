@@ -10,9 +10,9 @@ waitUntil {
     };
     !isNull findDisplay _this
 };
-
 findDisplay _this displayAddEventHandler [
-    "KeyDown", {
+    "KeyDown", 
+    {
         if (_this select 1 == 211) then {
             _mrknames = allMapMarkers;
             _mrkdetails = [];
@@ -24,7 +24,7 @@ findDisplay _this displayAddEventHandler [
             0 = [_mrknames, _mrkdetails] spawn {
                 _mrknames = _this select 0;
                 _mrkdetails = _this select 1;
-                GVAR(MrkOpPV) = [
+                MrkOpPV = [
                     "Deleted",
                     name player,
                     getplayerUID player
@@ -32,11 +32,11 @@ findDisplay _this displayAddEventHandler [
                 {
                     _i = _mrknames find _x;
                     if (_i > -1) then {
-                        GVAR(MrkOpPV) pushBack (_mrkdetails select _i);
+                        MrkOpPV pushBack (_mrkdetails select _i);
                     };
                 } forEach (_mrknames - allMapMarkers);
-                if (count GVAR(MrkOpPV) > 3) then {
-                    publicVariableServer QGVAR(MrkOpPV);
+                if (count MrkOpPV > 3) then {
+                    publicVariableServer "MrkOpPV";
                 };
             };
             false
@@ -50,18 +50,18 @@ findDisplay _this displayAddEventHandler [
             ctrlIdd (_this select 1) == 54 && _this select 2 == 1
         ) then {
             0 = all_mrkrs spawn {
-                GVAR(MrkOpPV) = [
+                MrkOpPV = [
                     "Placed",
                     name player,
                     getplayerUID player
                 ];
                 {
-                    GVAR(MrkOpPV) pushBack (
+                    MrkOpPV pushBack (
                         _x call KK_fnc_collectMrkInfo
                     );      
                 } forEach (allMapMarkers - _this);
-                if (count GVAR(MrkOpPV) > 3) then {
-                    publicVariableServer QGVAR(MrkOpPV);
+                if (count MrkOpPV > 3) then {
+                    publicVariableServer "MrkOpPV";
                 };  
             };
         };
