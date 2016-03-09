@@ -1,0 +1,1 @@
+#include "\y\bc\addons\markers\script_component.hpp"
