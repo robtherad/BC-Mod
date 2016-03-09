@@ -1,7 +1,9 @@
 #include "script_component.hpp"
 
 class CfgPatches {
-    class bc_main {
+    class ADDON {
+        units[] = {};
+        weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             // Vanilla
@@ -565,7 +567,8 @@ class CfgPatches {
             "cba_xeh_a3",
             "cba_jr"
         };
-        author = "Bravo Company";
+        author[] = {"Bravo Company"};
+        authorUrl = "http://bravoco.us";
         VERSION_CONFIG;
     };
 };
