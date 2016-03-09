@@ -12,8 +12,8 @@ import timeit
 import time
 
 ######## GLOBALS #########
-MAINPREFIX = "Z"
-PREFIX = "ACE"
+MAINPREFIX = "Y"
+PREFIX = "BC"
 ##########################
 
 def Fract_Sec(s):
