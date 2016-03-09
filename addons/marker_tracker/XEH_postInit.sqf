@@ -1,8 +1,8 @@
 #include "script_component.hpp"
 
-if (isServer) then {[] call FUNC(getMGRSdata);};
+if (isServer) then {[] call FUNC(addPVEH);};
 
 if (hasInterface) then {
-    [12] call FUNC(getMGRSdata);
-    [53] call FUNC(getMGRSdata);
+    0 = 12 spawn FUNC(addMarkerEHs);
+    0 = 53 spawn FUNC(addMarkerEHs);
 };

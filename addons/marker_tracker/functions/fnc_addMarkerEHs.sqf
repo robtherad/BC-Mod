@@ -18,7 +18,7 @@ findDisplay _this displayAddEventHandler [
             _mrkdetails = [];
             {
                 _mrkdetails pushBack (
-                    _x call KK_fnc_collectMrkInfo
+                    _x call FUNC(collectMarkerInfo)
                 );
             } forEach _mrknames;
             0 = [_mrknames, _mrkdetails] spawn {
@@ -36,7 +36,11 @@ findDisplay _this displayAddEventHandler [
                     };
                 } forEach (_mrknames - allMapMarkers);
                 if (count MrkOpPV > 3) then {
-                    publicVariableServer "MrkOpPV";
+                    if (!isServer) then {
+                        publicVariableServer "MrkOpPV";
+                    } else {
+                        MrkOpPV call FUNC(pvehAction);
+                    };
                 };
             };
             false
@@ -57,11 +61,15 @@ findDisplay _this displayAddEventHandler [
                 ];
                 {
                     MrkOpPV pushBack (
-                        _x call KK_fnc_collectMrkInfo
+                        _x call FUNC(collectMarkerInfo)
                     );      
                 } forEach (allMapMarkers - _this);
                 if (count MrkOpPV > 3) then {
-                    publicVariableServer "MrkOpPV";
+                    if (!isServer) then {
+                        publicVariableServer "MrkOpPV";
+                    } else {
+                        MrkOpPV call FUNC(pvehAction);
+                    };
                 };  
             };
         };

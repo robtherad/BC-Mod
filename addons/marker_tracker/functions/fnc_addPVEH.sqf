@@ -1,6 +1,9 @@
 #include "script_component.hpp"
 private["_UIDlist", "_clientID", "_infoArray", "_playerUID", "_str"];
 
+#include "script_component.hpp"
+private["_UIDlist", "_clientID", "_infoArray", "_playerUID", "_str"];
+
 if (!isServer) exitWith {};
 
 "MrkOpPV" addPublicVariableEventHandler {
@@ -11,9 +14,9 @@ if (!isServer) exitWith {};
     
     // Build string
     if (_text isEqualTo "") then {
-        _str = format["(%1) - (%2) a (%3) marker at (%4)",_name,_action,_type,_pos];
+        _str = format["%1 - %2 a %3 marker at %4",_name,_action,_type,_pos];
     } else {
-        _str = format["(%1) - (%2) a (%3) marker at (%4) with text: (%5)",_name,_action,_type,_pos,_text];
+        _str = format["%1 - %2 a %3 marker at %4 with text: %5",_name,_action,_type,_pos,_text];
     };
     
     // Display string to all players
