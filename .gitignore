@@ -1,7 +1,7 @@
 #################
 ## Eclipse
 #################
-
+*.pbo
 *.pydevproject
 .project
 .metadata
