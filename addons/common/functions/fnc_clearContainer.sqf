@@ -6,7 +6,7 @@ Parameters:
     _object - the object <OBJECT>
 Examples:
     (begin example)
-        [_crate] call BC_fnc__clearContainer;
+        [crate] call BC_fnc__clearContainer;
     (end)
 ---------------------------------------------------------------------------- */
 params ["_object"];

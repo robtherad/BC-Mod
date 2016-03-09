@@ -15,7 +15,7 @@ Examples:
         ["You are dead.",45] call BC_fnc__hintThenClear;
         
         // Call a hint from a stored variable and then clear it after 5 seconds.
-        [_str,5] call BC_fnc__hintThenClear;
+        [str,5] call BC_fnc__hintThenClear;
     (end)
 ---------------------------------------------------------------------------- */
 params ["_hintStr","_delay"];
