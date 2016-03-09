@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 class CfgPatches {
-    class bc_main {
+    class ADDON {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             // Vanilla
