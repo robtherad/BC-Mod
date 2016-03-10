@@ -1,0 +1,1 @@
+#include "\y\bc\addons\spectator\script_component.hpp"
