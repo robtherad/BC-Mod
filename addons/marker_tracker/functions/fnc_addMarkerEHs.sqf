@@ -39,6 +39,7 @@ findDisplay _this displayAddEventHandler [
                     if (!isServer) then {
                         publicVariableServer "MrkOpPV";
                     } else {
+                        systemChat format ["%1",MrkOpPV];
                         MrkOpPV call FUNC(pvehAction);
                     };
                 };
@@ -68,6 +69,7 @@ findDisplay _this displayAddEventHandler [
                     if (!isServer) then {
                         publicVariableServer "MrkOpPV";
                     } else {
+                        systemChat format ["%1",MrkOpPV];
                         MrkOpPV call FUNC(pvehAction);
                     };
                 };  
