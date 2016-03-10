@@ -22,7 +22,7 @@ Examples:
                 //Check members in group for GPS and update the marker to the position of the most senior member in the group who has GPS
                 _unit = _x;
                 _senior = _group getVariable [QGVAR(seniorGPS),objNull];
-                if (!("ItemGPS" in (assignedItems _senior)) || (!alive _senior)) then { //Make sure most senior unit still has GPS and is alive
+                if (!("ItemGPS" in (assignedItems _senior)) || (!alive _senior) || !(group _senior isEqualTo _group)) then { //Make sure most senior unit still has GPS and is alive
                     _group setVariable [QGVAR(seniorGPS),objNull];
                     _senior = objNull;
                 };
