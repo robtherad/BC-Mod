@@ -14,7 +14,10 @@ common
 * Contains some functions that were part of the mission template in the `misc` folder.
 
 gpsMarkers
-* Ports gpsmarkers module from BC mission template.
+* A recreation of the gpsmarkers module from BC mission template.
+
+main
+* The root of the addon. Contains macros and other stuff used throughout the rest of the addon.
 
 marker_tracker (WIP)
 * Allows admins to see who is placing and deleting markers during the briefing phase.
@@ -25,7 +28,6 @@ In no particular order.
 * Move common BC functions to addon.
 * Create module system that can be used instead of/alongside `setGroupID`
 * Create nicer looking map markers
-* Rewrite GPS marker system for use in non Fight Night missions as well.
 * Rewrite Radio system for use in non Fight Night missions as well.
 * Port spectator script to addon so it's easier to update.
 * Upload mod to workshop after it's more useful?
