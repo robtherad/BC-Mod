@@ -14,11 +14,12 @@ Examples:
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params ["_object","_sides","_type", "_group"];
-private ["_object","_sides","_type","_group","_markerName","_sizeMarkOptions","_groupSize","_markerPos","_markerSide","_marker","_markerName2","_sizeMarker","_objectSide","_typeNum"];
+private ["_object","_sides","_type","_group","_markerName","_sizeMarkOptions","_groupSize","_markerPos","_markerSide","_marker","_markerName2","_sizeMarker","_objectSide","_typeNum","_markerString"];
 
 // Create an infantry marker
 if (_type == "Man") then {
-    _markerName = "bc_gpsMarker_grp_" + str( count GVAR(trackedGroups) );
+    _markerName = "bc_gpsMarker_inf_" + str( GVAR(gpsIterator) );
+    INC(GVAR(gpsIterator));
     
     _sizeMarkOptions = ["group_0","group_2","group_3","group_4","Empty"];
     _groupSize = _group getVariable ["bc_gps_groupSize",4];
@@ -55,7 +56,8 @@ if (_type == "Man") then {
     GVAR(trackedGroupsList) pushBackUnique _group;
 } else {
 // Create a non-infantry marker
-    _markerName = "bc_gpsMarker_veh_" + str( count GVAR(trackedVehicles) );
+    _markerName = "bc_gpsMarker_veh_" + str( GVAR(gpsIterator) );
+    INC(GVAR(gpsIterator));
     _markerPos = getPos _object;
     
     // Determine which color + icon to use

@@ -11,6 +11,7 @@ Examples:
 
 { //forEach GVAR(trackedGroups)
     _x params ["_group","_markerName","_sides"];
+    private["_group","_markerName","_sides","_lastInside", "_markerName2", "_senior", "_string", "_unit", "_unitInside"];
     _markerName2 = _markerName + "Size";
     if ("ItemGPS" in (assignedItems player)) then { //Check if player has GPS
         if ((side group player) in _sides) then { //Check if player is supposed to be able to see this group

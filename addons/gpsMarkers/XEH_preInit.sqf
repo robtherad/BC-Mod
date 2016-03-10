@@ -6,6 +6,8 @@ ADDON = false;
 
 GVAR(disableGPS) = false;
 
+GVAR(gpsIterator) = 0;
+
 GVAR(trackedVehicles) = [];
 GVAR(trackedVehiclesList) = [];
 

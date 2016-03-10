@@ -18,7 +18,7 @@ if !(time > 0) exitWith {};
 if (!hasInterface) then {[_handle] call CBA_fnc_removePerFrameHandler;};
 
 // Make sure disableGPS is always boolean
-if (GVAR(disableGPS) isEqualType EGVAR(common,BOOL)) then {
+if (IS_BOOL(GVAR(disableGPS))) then {
     // If mission maker sets 'bc_gpsMarkers_disableGPS' to true then exit the PFH.
     if (GVAR(disableGPS)) then {[_handle] call CBA_fnc_removePerFrameHandler;};
 } else {

@@ -8,6 +8,7 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
+private ["_delayedRemove","_removeTime"];
 
 // Get delayedRemove
 _delayedRemove = diag_tickTime + 5;

@@ -15,6 +15,9 @@ Examples:
 params ["_object","_sides"];
 private ["_object","_sides","_type","_group","_errorFound"];
 
+// No need to add markers for non-humans
+if (!hasInterface) exitWith {};
+
 // Get type of object to figure out which marker to create
 _type = false;
 if (_object isKindOf "Man") then {_type = "Man";};
@@ -25,7 +28,7 @@ if (_object isKindOf "Plane") then {_type = "Plane";};
 // Specific stuff for infantry markers
 if (_type isEqualTo "Man") then {
     // Convert _object to _group if necessary
-    if (_object isEqualTo EGVAR(common,GROUP)) then {
+    if (IS_GROUP(_object)) then {
         _group = _object;
         _object = units _group select 0;
     } else {
@@ -38,44 +41,40 @@ if (_type isEqualTo "Man") then {
 
 // Error handling
 _errorFound = false;
-if !((_object isEqualType EGVAR(common,OBJECT)) OR (_object isEqualType EGVAR(common,GROUP))) then {
-    diag_log format["[bc_gpsMarkers_addMarker] _object: Incorrect Type: %1",_object];
+if !((IS_OBJECT(_object)) OR (IS_GROUP(_object))) then {
+    BC_LOGERROR_1("addMarker: Incorrect Type for _object: %1",_object);
     _errorFound = true;
 };
 
-if !((_sides isEqualType EGVAR(common,ARRAY)) OR (_sides isEqualType EGVAR(common,SIDE))) then {
-    diag_log format["[bc_gpsMarkers_addMarker] _sides: Incorrect Type: %1",_sides];
+if !((IS_ARRAY(_sides)) OR (IS_SIDE(_sides))) then {
+    BC_LOGERROR_1("addMarker: Incorrect Type for _sides: %1",_sides);
     _errorFound = true;
 };
-if (_sides isEqualType EGVAR(common,ARRAY)) then {
+if (IS_ARRAY(_sides)) then {
     {
-        if !(_x isEqualType EGVAR(common,SIDE)) then {
-            diag_log format["[bc_gpsMarkers_addMarker] _sides Array: Incorrect Type: %1 ::: %2",_sides, _x];
+        if !(IS_SIDE(_x)) then {
+            BC_LOGERROR_2("addMarker: Incorrect Type in _sides Array: %1 - %2",_sides, _x);
             _errorFound = true;
         };
     } forEach _sides;
 };
 
-if (_type isEqualType EGVAR(common,BOOL)) then {
-    diag_log format["[bc_gpsMarkers_addMarker] _type: Unsupported Type %1",(type _object)];
+if (IS_BOOL(_type)) then {
+    BC_LOGERROR_1("addMarker: Unsupported Type for _type: %1",type _object);
     _errorFound = true; 
 };
 
 // Ensure there are no duplicates
 if ((_type isEqualTo "Man") && (group _object in GVAR(trackedGroupsList))) then {
-    diag_log format["[bc_gpsMarkers_addMarker] Marker already tracked: %1",_object];
+    BC_LOGERROR_1("addMarker: Infantry marker already tracked: %1",_object);
     _errorFound = true;
 };
 
 if (!(_type isEqualTo "Man") && (_object in GVAR(trackedVehiclesList))) then {
-    diag_log format["[bc_gpsMarkers_addMarker] Marker already tracked: %1",_object];
+    BC_LOGERROR_1("addMarker: Vehicle marker already tracked: %1",_object);
     _errorFound = true;
 };
 
-if (!hasInterface) then {
-    diag_log "[bc_gpsMarkers_addMarker] No need to track markers on non-client";
-    _errorFound = true;
-};
 if (_errorFound) exitWith {false};
 
 // Call marker creation function
