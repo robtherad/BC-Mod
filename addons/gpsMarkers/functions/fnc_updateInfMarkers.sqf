@@ -1,7 +1,15 @@
+/* ----------------------------------------------------------------------------
+Function: bc_gpsMarkers_updateInfMarkers
+Description:
+    Internal function. Updates the state of markers attached to infantry.
+Examples:
+    (begin example)
+        call bc_gpsMarkers_updateInfMarkers;
+    (end)
+---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 
 { //forEach GVAR(trackedGroups)
-    diag_log format["[updateInfMarkers] _x - %1",_x];
     _x params ["_group","_markerName","_sides"];
     _markerName2 = _markerName + "Size";
     if ("ItemGPS" in (assignedItems player)) then { //Check if player has GPS

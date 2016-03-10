@@ -1,9 +1,17 @@
+/* ----------------------------------------------------------------------------
+Function: bc_gpsMarkers_updateVehMarkers
+Description:
+    Internal function. Updates the state of markers attached to vehicles.
+Examples:
+    (begin example)
+        call bc_gpsMarkers_updateVehMarkers;
+    (end)
+---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 
-{
+{ //forEach GVAR(trackedVehicles)
     _x params ["_object","_markerName","_sides"];
     private ["_object","_markerName","_sides","_unitInside","_markerText"];
-    diag_log format["[updateVehMarkers] _x - %1",_x];
     if ("ItemGPS" in (assignedItems player)) then {
         _unitInside = _object getVariable [QGVAR(unitInsideVeh),nil];
         //Check to see if any units with markers attached are in a vehicle with a marker. If so attach their name to the vehicle marker.

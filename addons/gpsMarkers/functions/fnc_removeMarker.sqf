@@ -1,77 +1,114 @@
-//_this select 0 params [bc_ignoreMarkerArray];
-//FUNCTIONS
-fn_bc_createVehMarks={
-    private ["_vehArray","_markerName","_markerPos","_markerFaction","_marker","_markerString","_vehSide","_veh","_type"];
-    _vehArray = _this select 0;
-    { //forEach _vehArray
-        _veh = _x select 0;
-        _type = (_x select 1)+1;
-        _markerName = str(_veh) + "_marker";
-        _markerPos = getPos _veh;
-        _vehSide = _veh getVariable ["bc_vehSide",(side player)];
-        _markerFaction = switch (_vehSide) do {
-            case west: { ["ColorBLUFOR","b_armor","b_air","b_plane","b_unknown"] };
-            case east: { ["ColorOPFOR","b_armor","b_air","b_plane","b_unknown"] };
-            case independent: { ["ColorGUER","b_armor","b_air","b_plane","b_unknown"] };
-            default { ["ColorCivilian","c_car","c_air","c_plane","c_unknown"] };
-        };
-        _marker = createMarkerLocal [_markerName,_markerPos];
-        _marker setMarkerShapeLocal "ICON";
-        _marker setMarkerColorLocal (_markerFaction select 0);
-        _marker setMarkerTypeLocal (_markerFaction select _type);
-        _markerString = _veh getVariable "bc_MarkerName";
-        if (!isNil "_markerString") then {
-            _marker setMarkerTextLocal _markerString;
-        } else {
-            _marker setMarkerTextLocal str(_veh);
-            _veh setVariable ["bc_MarkerName",str(_veh)];
-        };
-        _marker setMarkerSizeLocal [.75,.75];
-        _marker setMarkerAlphaLocal 0;
-    } forEach _vehArray;
+/* ----------------------------------------------------------------------------
+Function: bc_gpsMarkers_removeMarker
+Description:
+    Attempts to remove a marker from a unit which is being tracked by the gpsMarkers module.
+Parameters:
+    _object - the unit <OBJECT>
+    _sides - the side(s) the marker will be visible to <SIDE> OR <ARRAY> of <SIDE>s
+Examples:
+    (begin example)
+        [player] call bc_gpsMarkers_removeMarker;
+    (end)
+---------------------------------------------------------------------------- */
+#include "script_component.hpp"
+params ["_object"];
+private ["_object","_type","_group","_errorFound","_indexList","_index"];
+
+// Get type of object to figure out which marker to create
+_type = false;
+if (_object isKindOf "Man") then {_type = "Man";};
+if (_object isKindOf "LandVehicle") then {_type = "LandVehicle";};
+if (_object isKindOf "Helicopter") then {_type = "Helicopter";};
+if (_object isKindOf "Plane") then {_type = "Plane";};
+
+// Specific stuff for infantry markers
+if (_type isEqualTo "Man") then {
+    // Convert _object to _group if necessary
+    if (_object isEqualType EGVAR(common,GROUP)) then {
+        _group = _object;
+        _object = units _group select 0;
+    } else {
+        _group = group _object;
+    };
+} else {
+    // Type of _object is not infantry, no group needed
+    _group = grpNull;
 };
 
-_sizeMarkOptions = ["group_0","group_2","group_3","group_4","Empty"]; //Creates NATO pips above unit markers. If the unit's size isn't set it displays no pip
-bc_gps_iteration = 0;
+// Error handling
+_errorFound = false;
+if !((_object isEqualType EGVAR(common,OBJECT)) OR (_object isEqualType EGVAR(common,GROUP))) then {
+    diag_log format["[bc_gpsMarkers_removeMarker] _object: Incorrect Type: %1",_object];
+    _errorFound = true;
+};
 
-//CREATE NEW MARKERS
-//Infantry
-{ //forEach allGroups
-    if (!((groupID _x) in bc_ignoreMarkerArray)) then {
-        _markerName = str(bc_gps_iteration) + "_marker";
-        _groupSize = _x getVariable ["bc_gps_groupSize",4];
-        _x setVariable ["bc_gps_markerName",_markerName];
-        _markerPos = getPos (leader _x);
-        _markerFaction = switch (side (leader _x)) do {
-            case west: { ["ColorBLUFOR","b_inf","b_hq"] };
-            case east: { ["ColorOPFOR","b_inf","b_hq"] };
-            case independent: { ["ColorGUER","b_inf","b_hq"] };
-            default { ["ColorCivilian","mil_box","mil_triangle"] };
-        };
-        _marker = createMarkerLocal [_markerName,_markerPos];
-        _marker setMarkerShapeLocal "ICON";
-        _marker setMarkerColorLocal (_markerFaction select 0);
-        _marker setMarkerTypeLocal (_markerFaction select 1);
-        //_marker setMarkerTextLocal (groupID _x);
-        _marker setMarkerAlphaLocal 0;
-        _marker setMarkerSizeLocal [.75,.75];
-        _marker setMarkerTextLocal (groupID _x);
-        //Group Size Marker
-        _markerName2 = _markerName + "Size";
-        _sizeMarker = createMarkerLocal [_markerName2,_markerPos];
-        _sizeMarker setMarkerShapeLocal "ICON";
-        _sizeMarker setMarkerTypeLocal (_sizeMarkOptions select _groupSize);
-        _sizeMarker setMarkerSizeLocal [.75,.75];
-        _sizeMarker setMarkerAlphaLocal 0;
+if (_type isEqualType EGVAR(common,BOOL)) then {
+    diag_log format["[bc_gpsMarkers_removeMarker] _type: Unsupported Type %1",(type _object)];
+    _errorFound = true; 
+};
+
+// Ensure the values exist in the marker arrays
+if ((_type isEqualTo "Man") && (group _object in GVAR(trackedGroupsList))) then {
+    diag_log format["[bc_gpsMarkers_removeMarker] Marker not already tracked: %1",_object];
+    _errorFound = true;
+};
+
+if (!(_type isEqualTo "Man") && !(_object in GVAR(trackedVehiclesList))) then {
+    diag_log format["[bc_gpsMarkers_removeMarker] Marker not already tracked: %1",_object];
+    _errorFound = true;
+};
+
+if (!hasInterface) then {
+    diag_log "[bc_gpsMarkers_removeMarker] No need to remove markers on non-client";
+    _errorFound = true;
+};
+if (_errorFound) exitWith {};
+
+// Use find command on List array and then use the same index to get the values out of the other array. If the values in the other array don't match up then send them back and run the find command on that array as well.
+if ((_type isEqualTo "Man") && (group _object in GVAR(trackedGroupsList))) then {
+    _indexList = GVAR(trackedGroupsList) find _object;
+    
+    // Make sure object is the same as the first value and the array sides is the same as the 3rd value
+    if ( ((GVAR(trackedGroups) select _indexList) select 0) isEqualTo _object ) then {
+        GVAR(trackedGroupsList) deleteAt _indexList;
+        GVAR(trackedGroups) deleteAt _indexList;
+        true
+    } else {
+        _index = { // forEach trackedGroups
+            if (_object == _x select 0) exitWith {_forEachIndex};
+        } forEach GVAR(trackedGroups);
         
-        bc_gps_iteration = bc_gps_iteration + 1;
+        if (!isNil "_index") then {
+            GVAR(trackedGroupsList) deleteAt _indexList;
+            GVAR(trackedGroups) deleteAt _index;
+            true
+        } else {
+            diag_log format["[bc_gpsMarkers_removeMarker] Unable to find object in trackedGroups array - %1",_object];
+            false
+        };
     };
-} forEach allGroups;
+};
 
-//Vehicles
-if (!isNil "bc_sideVehArray") then {[bc_sideVehArray] call fn_bc_createVehMarks;};
-//DONE CREATING MARKERS
-
-bc_gps_iteration = nil; //might as well destroy this variable since it's not used again
-
-bc_gpsHandle = [BC_fnc_gps_updateMarks, 2, []] call CBA_fnc_addPerFrameHandler;
+if (!(_type isEqualTo "Man") && !(_object in GVAR(trackedVehiclesList))) then {
+    _indexList = GVAR(trackedVehiclesList) find _object;
+    
+    // Make sure object is the same as the first value and the array sides is the same as the 3rd value
+    if ( ((GVAR(trackedVehicles) select _indexList) select 0) isEqualTo _object ) then {
+        GVAR(trackedVehiclesList) deleteAt _indexList;
+        GVAR(trackedVehicles) deleteAt _indexList;
+        true
+    } else {
+        _index = { // forEach trackedVehicles
+            if (_object == _x select 0) exitWith {_forEachIndex};
+        } forEach GVAR(trackedVehicles);
+        
+        if (!isNil "_index") then {
+            GVAR(trackedVehiclesList) deleteAt _indexList;
+            GVAR(trackedVehicles) deleteAt _index;
+            true
+        } else {
+            diag_log format["[bc_gpsMarkers_removeMarker] Unable to find object in trackedVehicles array - %1",_object];
+            false
+        };
+    };
+};

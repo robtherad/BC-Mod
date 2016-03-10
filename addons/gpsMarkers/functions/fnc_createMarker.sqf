@@ -1,7 +1,21 @@
+/* ----------------------------------------------------------------------------
+Function: bc_gpsMarkers_createMarker
+Description:
+    Internal function. Handles creating a marker for the unit then adds it to the array of tracked units.
+Parameters:
+    _object - the unit <OBJECT>
+    _sides - the side(s) the marker will be visible to <SIDE> OR <ARRAY> of <SIDE>s
+    _type - uses <obj> isKindOf <x>
+    _group - the group of the unit. if the unit is a vehicle, grpNull
+Examples:
+    (begin example)
+        [_object,_sides,_type, _group] call bc_gpsMarkers_createMarker;
+    (end)
+---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-diag_log _this;
 params ["_object","_sides","_type", "_group"];
 private ["_object","_sides","_type","_group","_markerName","_sizeMarkOptions","_groupSize","_markerPos","_markerSide","_marker","_markerName2","_sizeMarker","_objectSide","_typeNum"];
+
 // Create an infantry marker
 if (_type == "Man") then {
     _markerName = "bc_gpsMarker_grp_" + str( count GVAR(trackedGroups) );
@@ -37,8 +51,8 @@ if (_type == "Man") then {
     // Convert _sides to array if it's not already
     if (typeName _sides == "SIDE") then {_sides = [_sides];};
     
-    GVAR(trackedGroups) pushBack [_group,_markerName,_sides];
-    GVAR(trackedGroupsList) pushBack _group;
+    GVAR(trackedGroups) pushBackUnique [_group,_markerName,_sides];
+    GVAR(trackedGroupsList) pushBackUnique _group;
 } else {
 // Create a non-infantry marker
     _markerName = "bc_gpsMarker_veh_" + str( count GVAR(trackedVehicles) );
@@ -82,6 +96,6 @@ if (_type == "Man") then {
     // Convert _sides to array if it's not already
     if (typeName _sides isEqualTo "SIDE") then {_sides = [_sides];};
     
-    GVAR(trackedVehicles) pushBack [_object,_markerName,_sides];
-    GVAR(trackedVehiclesList) pushBack _object;
+    GVAR(trackedVehicles) pushBackUnique [_object,_markerName,_sides];
+    GVAR(trackedVehiclesList) pushBackUnique _object;
 };
