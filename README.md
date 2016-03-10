@@ -12,6 +12,12 @@ akm_tracers
 
 common
 * Contains some functions that were part of the mission template in the `misc` folder.
+
+gpsMarkers
+* Ports gpsmarkers module from BC mission template.
+
+marker_tracker (WIP)
+* Allows admins to see who is placing and deleting markers during the briefing phase.
 ```
 ### Plans
 In no particular order.
@@ -20,7 +26,7 @@ In no particular order.
 * Create module system that can be used instead of/alongside `setGroupID`
 * Create nicer looking map markers
 * Rewrite GPS marker system for use in non Fight Night missions as well.
-* Rewrite Radio system for use in non Fight Night missions as wel.
+* Rewrite Radio system for use in non Fight Night missions as well.
 * Port spectator script to addon so it's easier to update.
 * Upload mod to workshop after it's more useful?
 
