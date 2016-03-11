@@ -29,7 +29,7 @@ Examples:
                 
                 //If _senior isn't group leader make sure group leader has no gps.
                 if (_senior != leader _group) then {
-                    if ("ItemGPS" in (assignedItems (leader _group))) then {
+                    if ( "ItemGPS" in (assignedItems (leader _group)) && (alive (leader _group)) && (group (leader _group)) isEqualTo _group ) then {
                         _senior = leader _group;
                         _group setVariable [QGVAR(seniorGPS),(leader _group)];
                     };
