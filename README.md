@@ -6,25 +6,17 @@ An addon containing small tweaks and fixes for use in Bravo Company's Fight Nigh
 **** 
 
 ### Current Features
-```
-akm_tracers
-* Fixes RHS 7.62x39 Tracer mag. Actually has a magazine full of tracer rounds now.
+|  **MODULE** | **DESCRIPTION** |
+|---|---|
+| **akm_tracers**  | Fixes RHS 7.62x39 AK Tracer mag. It actually has tracers now.  |
+| **common** |  A module which will contain useful general functions for use in BC missions and other modules in the addon. |
+| **gpsMarkers** |  A simple framework for managing markers that follow units and or vehicles. |
+| **main**  |  The root of the addon. Contains macros and other stuff used throughout the rest of the addon. |
+| **marker_tracker** | Shows information about marker creation/deletion during the briefing.  |
+| **spectator** | F3 Spectator in addon form.  |
 
-common
-* Contains some functions that were part of the mission template in the `misc` folder.
+****
 
-gpsMarkers
-* A recreation of the gpsmarkers module from BC mission template. A simple framework for creating markers that follow units and or vehicles.
-
-main
-* The root of the addon. Contains macros and other stuff used throughout the rest of the addon.
-
-marker_tracker (WIP)
-* Allows admins to see who is placing and deleting markers during the briefing phase.
-
-spectator
-* A port of the F3 spectator script. Allows for centralized updates to all missions that utilize it.
-```
 ### Plans
 In no particular order.
 
@@ -43,4 +35,4 @@ In no particular order.
 * [CBA Team](https://github.com/CBATeam/CBA_A3)
 * [ACE Team](https://github.com/acemod/ACE3)
 
-The structure and workflow of this addon is heavily based on the ACE 3 addon for Arma 3.
+The structure and workflow of this addon is heavily based on the [ACE 3](https://github.com/acemod/ACE3) addon for Arma 3.
