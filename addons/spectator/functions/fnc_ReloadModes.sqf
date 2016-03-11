@@ -1,3 +1,4 @@
+private["_curIndex", "_listBox"];
 _listBox = 2101;
 _curIndex = lbCurSel _listBox;
 lbClear _listBox;

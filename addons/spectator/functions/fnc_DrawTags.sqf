@@ -2,6 +2,7 @@
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ==================================================================
 // draw tags
+private ["_color", "_distToCam", "_drawGroup", "_drawUnits", "_icon", "_isPlayerGroup", "_str", "_visPos"];
 if(!bc_spectator_toggleTags || bc_spectator_mapMode == 2 ) exitWith{};
 {
     _drawUnits = [];
@@ -62,59 +63,3 @@ if(!bc_spectator_toggleTags || bc_spectator_mapMode == 2 ) exitWith{};
 
 
 } forEach allGroups;
-
-sectorControl = missionNamespace getVariable "bc_sectorControlActive";
-if (!isNil "sectorControl") then {
-    if (sectorControl) then {
-        _iconSize = 0.5;
-        _textSize = 0.03;
-        { //forEach bc_triggerArray;
-            _distToCam = (call bc_spectator_GetCurrentCam) distance _x;
-            _owner = _x getVariable "bc_sec_lastOwner";
-            _color = switch (_owner) do {
-                case 0: {bc_spectator_blufor_color};
-                case 1: {bc_spectator_opfor_color};
-                case 2: {bc_spectator_gray_color};
-                case 3: {bc_spectator_gray_color};
-                default {bc_spectator_gray_color};
-            };
-            _color set [3,1];
-            iconName = triggerText _x;
-            switch (_owner) do {
-                case 0: {iconName = str(iconName) + " - BLUFOR";};
-                case 1: {iconName = str(iconName) + " - OPFOR";};
-                case 2: {iconName = str(iconName) + " - CONTESTED";};
-                case 3: {iconName = str(iconName) + " - Neutral";};
-                default {iconName = str(iconName) + " - ERROR";};
-            };
-            //SECTOR TAG SCALING - GET BIGGER THE FURTHER AWAY THE CAMERA IS FROM THE TAG
-            _maxDist = 700;
-            _minDist = 200;
-            if (((_distToCam - _minDist)/(_maxDist-_minDist)) >= .5) then {
-                if (((_distToCam - _minDist)/(_maxDist-_minDist)) <= .75) then {
-                    _iconSize = ((_distToCam - _minDist)/(_maxDist-_minDist));
-                } else {
-                    _iconSize = .75;
-                };
-            } else {
-                _iconSize = .5;
-            };
-            if (((_distToCam - _minDist)/(_maxDist-_minDist))*.025 >= .02) then {
-                if (((_distToCam - _minDist)/(_maxDist-_minDist))*.025 <= .025) then {
-                    _textSize = ((_distToCam - _minDist)/(_maxDist-_minDist))*.025;
-                } else {
-                    _textSize = .025;
-                };
-            } else {
-                _textSize = .02;
-            };
-            //hint format ["_distToCam = %3\n_iconSize = %1\n_textSize = %2",_iconSize,_textSize,_distToCam];
-            if (_distToCam > _maxDist) then {
-                drawIcon3D ["\A3\ui_f\data\map\markers\military\flag_ca.paa",_color,getpos _x,.75,.75,0,iconName,2,0.025,"TahomaB"];
-            };
-            if (_distToCam < _maxDist) then {
-                drawIcon3D ["\A3\ui_f\data\map\markers\military\flag_ca.paa",_color,getpos _x ,_iconSize,_iconSize,0,iconName,2,_textSize,"TahomaB"];
-            };
-        } forEach bc_triggerArray;
-    };
-};

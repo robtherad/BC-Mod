@@ -1,3 +1,4 @@
+private["_displayDialog", "_fullmapWindow", "_helpWindow", "_mapWindow"];
 disableSerialization;
 sleep 1;
 if (bc_spectator_forcedExit) ExitWith {};

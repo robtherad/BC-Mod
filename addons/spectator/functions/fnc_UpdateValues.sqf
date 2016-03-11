@@ -1,6 +1,7 @@
 // F3 - Spectator Script
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ==================================================================
+private["_groupArr", "_index", "_listBox", "_tempArr", "_text", "_val"];
 _listBox =  2100;
 // updaes values for the units listbox.
 bc_spectator_checkIndex =

@@ -1,4 +1,4 @@
-private ["_commitTime","_delta","_zLevel","_pos","_visPos","_mode","_currPos","_mX","_mY","_mZ","_accel","_accelshift","_scroll","_rX","_y","_z"];
+private ["_commitTime","_delta","_zLevel","_pos","_visPos","_mode","_currPos","_mX","_mY","_mZ","_accel","_accelshift","_scroll","_y","_z","_height","_newHeight"];
 // F3 - Spectator Script
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================

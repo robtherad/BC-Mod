@@ -1,3 +1,4 @@
+private["_button", "_control"];
 _control = _this select 0;
 _button = _this select 1;
 switch (_button) do {

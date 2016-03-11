@@ -1,3 +1,5 @@
+private ["_var"];
+
 bc_spectator_forcedExit = true;
 closeDialog 1;
 ["bc_spectator_tags","onEachFrame"] call bis_fnc_removeStackedEventHandler;

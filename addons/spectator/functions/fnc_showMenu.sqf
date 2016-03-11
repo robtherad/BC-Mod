@@ -1,3 +1,4 @@
+private["_disp", "_pos", "_show"];
 disableSerialization;
 _show = _this select 0;
 _disp = findDisplay 9228;

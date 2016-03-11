@@ -1,3 +1,4 @@
+private["_chosen", "_dist", "_ents", "_pos", "_y"];
 _pos = (_this select 0) ctrlMapScreenToWorld [(_this select 2), (_this select 3)];
 if(bc_spectator_mapMode == 2) then
 {

@@ -3,6 +3,7 @@
 // ==================================================================
 
 // handles all the events. be afraid.
+private ["_args", "_button", "_displayDialog", "_done", "_fullmapWindow", "_handled", "_index", "_key", "_pos", "_type", "_unit", "_y"];
 _type = _this select 0;
 _args = _this select 1;
 _handled = true;
@@ -311,7 +312,7 @@ case "KeyDown":
 
         case 35: //  H
         {
-            ["Extra Keys\n\nPress 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\n\nTo see who you killed as well as who killed you, press your chat key (default '/') then press 'Page-Up' until you see the information in the chat area.\n\nPress 'F2' to hide this message and others like it.",15] call bc_common_fnc_hintThenClear;
+            ["Extra Keys\n\nPress 'H' or 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\n\nPress 'F2' to hide this message and others like it.",15] call bc_common_fnc_hintThenClear;
             ctrlShow [1315, !ctrlVisible 1315];
             ctrlShow [1310, !ctrlVisible 1310];
             ctrlShow [1300, !ctrlVisible 1300];
@@ -395,7 +396,7 @@ case "KeyDown":
         };
         case 59: // F1
         {
-            ["Extra Keys\n\nPress 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\nPress 'F2' to clear hints.\n",15] call bc_common_fnc_hintThenClear;
+            ["Extra Keys\n\nPress 'H' or 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\n\nPress 'F2' to hide this message and others like it.",15] call bc_common_fnc_hintThenClear;
         };
         case 60: // F2
         {

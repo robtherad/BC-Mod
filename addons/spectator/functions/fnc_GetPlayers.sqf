@@ -2,7 +2,7 @@
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================
 // gets all the player groups and filter out the AI.
-private ["_arr"];
+private ["_ai", "_players"];
 _players = [];
 _ai = [];
 {

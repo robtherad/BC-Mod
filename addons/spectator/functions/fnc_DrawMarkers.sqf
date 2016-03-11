@@ -1,4 +1,5 @@
 if(bc_spectator_mapMode == 0) exitWith {};
+private ["_camera", "_color", "_fullmapWindow", "_icon", "_name", "_newPos", "_pos"];
 disableSerialization;
 _fullmapWindow = _this select 0;
 _camera = ([] call bc_spectator_GetCurrentCam);

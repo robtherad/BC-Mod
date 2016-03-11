@@ -1,4 +1,4 @@
-
+private["_leftButton", "_rightButton", "_y", "_x"];
 _x = bc_spectator_mouseCord select 0;
 _y = bc_spectator_mouseCord select 1;
 _leftButton = bc_spectator_MouseButton select 0;
