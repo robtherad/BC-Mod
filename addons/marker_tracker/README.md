@@ -16,4 +16,4 @@ For now, the module only shows information to specific players who have their UI
 
 The first way, done during a mission, is to edit the global variable `bc_marker_tracker_UIDList` on the server and add or remove whichever UIDs you want. Upon loading another mission the variable will be reset to the version contained within the addon.
 
-The second, and more permanant way, is to edit the file `XEH_postInit.sqf` in the module folder and add or remove any UIDs that you'd like.
+The second, and more permanant way, is to edit the file `XEH_postInit.sqf` in the module folder and edit `GVAR(UIDList)` add or remove any UIDs that you'd like.
