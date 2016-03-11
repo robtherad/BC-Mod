@@ -26,6 +26,7 @@ if (_text isEqualTo "") then {
 };
 
 // Log info in .rpt
+if !(IS_BOOL(GVAR(logMarker))) then {GVAR(logMarker) = true;};
 if (GVAR(logMarker)) then {
     BC_LOGINFO_2('Marker Log',_str,_playerUID);
 };
