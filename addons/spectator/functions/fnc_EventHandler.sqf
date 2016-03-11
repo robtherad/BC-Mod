@@ -30,7 +30,7 @@ case "MouseButtonUp":
     if(_args select 1 == 1 && f_cam_mode != 1) then {
         _button = _args select 1;
         f_cam_MouseButton set [_button,false];
-         [] spawn f_fnc_HandleCamera;
+         [] spawn bc_spectator_fnc_HandleCamera;
     };
     if(_args select 1 == 1) then {
         if(f_cam_mode == 1) then {
@@ -55,7 +55,7 @@ case "MouseMoving":
     _x = _args select 1;
     _y = _args select 2;
     f_cam_mouseCord = [_x,_y];
-    [] spawn f_fnc_HandleCamera;
+    [] spawn bc_spectator_fnc_HandleCamera;
 
 };
 case "MouseZChanged":
@@ -123,7 +123,7 @@ case "LBListSelChanged_modes":
                 camUseNVG false;
                 false setCamUseTi 0;
             };
-            call F_fnc_ReloadModes;
+            call bc_spectator_fnc_ReloadModes;
 
         };
         case f_cam_lb_toggletiBHIndex: // BlackHot
@@ -140,7 +140,7 @@ case "LBListSelChanged_modes":
                 camUseNVG false;
                 false setCamUseTi 0;
             };
-            call F_fnc_ReloadModes;
+            call bc_spectator_fnc_ReloadModes;
 
         };
         case f_cam_lb_toggleNormal:
@@ -150,7 +150,7 @@ case "LBListSelChanged_modes":
                 f_cam_tiWHOn = false;
                 f_cam_tiBHOn = false;
                 f_cam_nvOn = false;
-            call F_fnc_ReloadModes;
+            call bc_spectator_fnc_ReloadModes;
         };
         case f_cam_lb_toggletiNVIndex: // Nightvision
         {
@@ -166,7 +166,7 @@ case "LBListSelChanged_modes":
                 camUseNVG false;
                 false setCamUseTi 0;
             };
-            call F_fnc_ReloadModes;
+            call bc_spectator_fnc_ReloadModes;
 
         };
     };
@@ -201,19 +201,19 @@ case "KeyDown":
                         waitUntil {sleep 0.1;isNull (findDisplay 312)}; // then wait until its not open
                         if(isnil "bis_fnc_moduleRemoteControl_unit") then // check if someone is being remote controled
                         {
-                            [player,player,player,0,true] spawn F_fnc_CamInit; // if not retoggle
+                            [player,player,player,0,true] spawn bc_spectator_fnc_CamInit; // if not retoggle
                             _done = true;
                         }; // restart spectator once exit.
                     };
                 };
                 // force exit
-                [] call F_fnc_ForceExit;
+                [] call bc_spectator_fnc_ForceExit;
 
 
                 // black out the screen
                 ["F_ScreenSetup",false] call BIS_fnc_blackOut;
                 if(isNull (getAssignedCuratorLogic player)) then {
-                    [[player,true,playableUnits],'f_fnc_zeusInit',false] spawn BIS_fnc_MP;
+                    [[player,true,playableUnits],'bc_spectator_fnc_zeusInit',false] spawn BIS_fnc_MP;
                 };
                 [] spawn {
                     waitUntil {!isNull (getAssignedCuratorLogic player)};
@@ -246,7 +246,7 @@ case "KeyDown":
         case 22: // U
         {
             f_cam_hideUI = !f_cam_hideUI;
-            [] spawn f_fnc_ToggleGUI;
+            [] spawn bc_spectator_fnc_ToggleGUI;
             _handled = true;
         };
         // Freecam movement keys
@@ -311,7 +311,7 @@ case "KeyDown":
 
         case 35: //  H
         {
-            ["Extra Keys\n\nPress 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\n\nTo see who you killed as well as who killed you, press your chat key (default '/') then press 'Page-Up' until you see the information in the chat area.\n\nPress 'F2' to hide this message and others like it.",15] call bc_fnc__hintThenClear;
+            ["Extra Keys\n\nPress 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\n\nTo see who you killed as well as who killed you, press your chat key (default '/') then press 'Page-Up' until you see the information in the chat area.\n\nPress 'F2' to hide this message and others like it.",15] call bc_common_fnc_hintThenClear;
             ctrlShow [1315, !ctrlVisible 1315];
             ctrlShow [1310, !ctrlVisible 1310];
             ctrlShow [1300, !ctrlVisible 1300];
@@ -321,7 +321,7 @@ case "KeyDown":
         case 42: // SHIFT
         {
             f_cam_shift_down = true;
-            [] spawn f_fnc_HandleCamera;
+            [] spawn bc_spectator_fnc_HandleCamera;
              _handled = true;
         };
         case 25: // P
@@ -333,7 +333,7 @@ case "KeyDown":
         case 29: // CTRL
         {
             f_cam_ctrl_down = true;
-            [] spawn f_fnc_HandleCamera;
+            [] spawn bc_spectator_fnc_HandleCamera;
              _handled = true;
         };
         case 50: // M
@@ -395,7 +395,7 @@ case "KeyDown":
         };
         case 59: // F1
         {
-            ["Extra Keys\n\nPress 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\nPress 'F2' to clear hints.\n",15] call bc_fnc__hintThenClear;
+            ["Extra Keys\n\nPress 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\nPress 'F2' to clear hints.\n",15] call bc_common_fnc_hintThenClear;
         };
         case 60: // F2
         {

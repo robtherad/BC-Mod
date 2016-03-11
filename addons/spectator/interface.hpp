@@ -625,9 +625,9 @@ class f_spec_dialog {
     fadein = 0;
     fadeout = 0;
     duration = 2147483647;
-    onKeyDown = "[""KeyDown"",_this] call F_fnc_EventHandler";
-    onKeyUp= "[""KeyUp"",_this] call F_fnc_EventHandler";
-    onUnload = "[] spawn f_fnc_OnUnload";
+    onKeyDown = "[""KeyDown"",_this] call bc_spectator_fnc_EventHandler";
+    onKeyUp= "[""KeyUp"",_this] call bc_spectator_fnc_EventHandler";
+    onUnload = "[] spawn bc_spectator_fnc_OnUnload";
     class controlsBackground {
         class mouseHandler: RscSpectControlsGroup {
             class ListScrollBar
@@ -640,10 +640,10 @@ class f_spec_dialog {
                 arrowEmpty = "";
                 border = "";
             };
-            onMouseButtonDown = "[""MouseButtonDown"",_this] call F_fnc_EventHandler";
-            onMouseButtonUp = "[""MouseButtonUp"",_this] call F_fnc_EventHandler";
-            onMouseZChanged = "[""MouseZChanged"",_this] call F_fnc_EventHandler";
-            onMouseMoving = "['MouseMoving',_this] call F_fnc_EventHandler";
+            onMouseButtonDown = "[""MouseButtonDown"",_this] call bc_spectator_fnc_EventHandler";
+            onMouseButtonUp = "[""MouseButtonUp"",_this] call bc_spectator_fnc_EventHandler";
+            onMouseZChanged = "[""MouseZChanged"",_this] call bc_spectator_fnc_EventHandler";
+            onMouseMoving = "['MouseMoving',_this] call bc_spectator_fnc_EventHandler";
             idc = 123;
             x = SafeZoneX; y = SafeZoneY;
             w = SafeZoneW; h = SafeZoneH;
@@ -656,8 +656,8 @@ class f_spec_dialog {
             y = -0.1 * safezoneH + safezoneY;
             w = 0.4 * safezoneW;
             h = 0.2 * safezoneH;
-        //    onMouseEnter = "[true] spawn f_fnc_showMenu;f_cam_menuShownTime=time;";
-           // onMouseExit = "[false] spawn f_fnc_showMenu;";
+        //    onMouseEnter = "[true] spawn bc_spectator_fnc_showMenu;f_cam_menuShownTime=time;";
+           // onMouseExit = "[false] spawn bc_spectator_fnc_showMenu;";
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
             borderSize = 0;
@@ -721,7 +721,7 @@ class f_spec_dialog {
             text = "All units";
             tooltip = "Toggle AI";
             sizeEx = "(         (           (           ((safezoneW / safezoneH) min 0.9) / 1.2) / 25) * 1)";
-            onButtonClick = "[_this select 0,0] call f_fnc_HandleMenu";
+            onButtonClick = "[_this select 0,0] call bc_spectator_fnc_HandleMenu";
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
 
@@ -736,7 +736,7 @@ class f_spec_dialog {
             text = "All Sides";
             tooltip = "Filter by side";
             sizeEx = "(((((safezoneW / safezoneH) min 0.9) / 1.2) / 25) * 1)";
-            onButtonClick = "[_this select 0,1] call f_fnc_HandleMenu";
+            onButtonClick = "[_this select 0,1] call bc_spectator_fnc_HandleMenu";
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
         };
@@ -750,7 +750,7 @@ class f_spec_dialog {
             text = "Tags";
             tooltip = "Toggle tags";
             sizeEx = "(((((safezoneW / safezoneH) min 0.9) / 1.2) / 25) * 1)";
-            onButtonClick = "[_this select 0,2] call f_fnc_HandleMenu";
+            onButtonClick = "[_this select 0,2] call bc_spectator_fnc_HandleMenu";
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
         };
@@ -764,7 +764,7 @@ class f_spec_dialog {
             text = "First Person";
             tooltip = "Switch between First Person or Third person";
             sizeEx = "(((((safezoneW / safezoneH) min 0.9) / 1.2) / 25) * 1)";
-            onButtonClick = "[_this select 0,3] call f_fnc_HandleMenu";
+            onButtonClick = "[_this select 0,3] call bc_spectator_fnc_HandleMenu";
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
         };
@@ -775,7 +775,7 @@ class f_spec_dialog {
             y = 0.03 * safezoneH + safezoneY;
             w = 0.1 * safezoneW;
             h = 0.9 * safezoneH;
-            onLBSelChanged = "[""LBListSelChanged"",_this] call F_fnc_EventHandler";
+            onLBSelChanged = "[""LBListSelChanged"",_this] call bc_spectator_fnc_EventHandler";
         };
         class SpecModes: RscSpectCombo
         {
@@ -785,7 +785,7 @@ class f_spec_dialog {
             w = 0.07 * safezoneW;
             h = 0.02 * safezoneH;
             sizeEx = "(((((safezoneW / safezoneH) min 0.9) / 1.2) / 25) * 1)";
-            onLBSelChanged = "[""LBListSelChanged_modes"",_this] call F_fnc_EventHandler";
+            onLBSelChanged = "[""LBListSelChanged_modes"",_this] call bc_spectator_fnc_EventHandler";
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
         };
@@ -806,9 +806,9 @@ class f_spec_dialog {
             y = 0.772714 * safezoneH + safezoneY;
             w = 0.132213 * safezoneW;
             h = 0.21629 * safezoneH;
-            onMouseZChanged = "[""MapZoom"",_this] call F_fnc_EventHandler;";
-            onMouseButtonClick = "_this call F_fnc_OnMapClick";
-            onDraw = "_this call F_fnc_DrawMarkers";
+            onMouseZChanged = "[""MapZoom"",_this] call bc_spectator_fnc_EventHandler;";
+            onMouseButtonClick = "_this call bc_spectator_fnc_OnMapClick";
+            onDraw = "_this call bc_spectator_fnc_DrawMarkers";
         };
         class FullSpectMap : RscSpectMapControl
         {
@@ -818,8 +818,8 @@ class f_spec_dialog {
             y = 0 * safezoneH + safezoneY;
             w = 1 * safezoneW;
             h = 1 * safezoneH;
-            onDraw = "_this call F_fnc_DrawMarkers";
-            onMouseButtonClick = "_this call F_fnc_OnMapClick";
+            onDraw = "_this call bc_spectator_fnc_DrawMarkers";
+            onMouseButtonClick = "_this call bc_spectator_fnc_OnMapClick";
 
         };
     };

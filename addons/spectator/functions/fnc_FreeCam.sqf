@@ -5,11 +5,11 @@ private ["_commitTime","_delta","_zLevel","_pos","_visPos","_mode","_currPos","_
 // Menu shown/hidden
 if(abs (f_cam_menuShownTime - time) <= 0.1 && !f_cam_menuShown) then // disable due to being a bit wonky
 {
-    [true] spawn f_fnc_showMenu;
+    [true] spawn bc_spectator_fnc_showMenu;
 };
 if(abs (f_cam_menuShownTime - time) >= 1 && f_cam_menuShown) then // disable due to being a bit wonky
 {
-    [false] spawn f_fnc_showMenu;
+    [false] spawn bc_spectator_fnc_showMenu;
 };
 
 

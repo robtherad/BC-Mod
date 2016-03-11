@@ -1,7 +1,7 @@
 // F3 - Spectator Script
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================
-//_this = [this,objNull,0,0,true] execVM "f\spect\fn_CamInit.sqf";
+//[this,objNull,0,0,true] call bc_spectator_fnc_camInit;
 // params
 _this spawn {
 _unit = [_this, 0, player,[objNull]] call BIS_fnc_param;
@@ -145,7 +145,7 @@ f_cam_ToggleFPCamera = {
         f_cam_mode = 0;
         f_cam_camera cameraEffect ["internal", "BACK"];
     };
-    call F_fnc_ReloadModes;
+    call bc_spectator_fnc_ReloadModes;
 };
 f_cam_GetCurrentCam = {
   _camera = f_cam_camera;
@@ -181,7 +181,7 @@ createDialog "f_spec_dialog";
 ((findDisplay 9228) displayCtrl 1360) ctrlShow false;
 ((findDisplay 9228) displayCtrl 1360) mapCenterOnCamera false;
 
-["Extra Keys\n\nPress 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\n\nTo see who you killed as well as who killed you, press your chat key (default '/') then press 'Page-Up' until you see the information in the chat area.\n\nPress 'F2' to hide this message and others like it.",20] call bc_fnc__hintThenClear;
+["Extra Keys\n\nPress 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\n\nTo see who you killed as well as who killed you, press your chat key (default '/') then press 'Page-Up' until you see the information in the chat area.\n\nPress 'F2' to hide this message and others like it.",20] call bc_common_fnc_hintThenClear;
 f_cam_helptext = "<t color='#EAA724'>Press F1 to see more keys.<br />Hold right-click to pan the camera.<br />Use the scroll wheel or numpad+/- to zoom in and out.<br />Use ctrl + rightclick to fov zoom<br />Press H to show and close the help window.<br />Press M to toggle between no map,minimap and full size map.<br />T for switching on tracers on the map<br/>Space to switch to freecam <br/>Use the left and right arrow keys to adjust size of player tags.</t>";
 ((findDisplay 9228) displayCtrl 1310) ctrlSetStructuredText parseText (f_cam_helptext);
 // create the camera and set it up.
@@ -212,10 +212,10 @@ f_cam_fired = [];
 } foreach (allunits + vehicles);
 // ====================================================================================
 // spawn sub scripts
-call f_fnc_ReloadModes;
+call bc_spectator_fnc_ReloadModes;
 lbSetCurSel [2101,0];
-//f_cam_freeCam_script = [] spawn F_fnc_FreeCam;
-f_cam_updatevalues_script = [] spawn F_fnc_UpdateValues;
- ["f_spect_tags", "onEachFrame", {_this call F_fnc_DrawTags}] call BIS_fnc_addStackedEventHandler;
- ["f_spect_cams", "onEachFrame", {_this call F_fnc_FreeCam}] call BIS_fnc_addStackedEventHandler;
+//f_cam_freeCam_script = [] spawn bc_spectator_fnc_FreeCam;
+f_cam_updatevalues_script = [] spawn bc_spectator_fnc_UpdateValues;
+ ["f_spect_tags", "onEachFrame", {_this call bc_spectator_fnc_DrawTags}] call BIS_fnc_addStackedEventHandler;
+ ["f_spect_cams", "onEachFrame", {_this call bc_spectator_fnc_FreeCam}] call BIS_fnc_addStackedEventHandler;
 };

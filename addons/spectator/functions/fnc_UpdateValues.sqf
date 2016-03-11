@@ -32,7 +32,7 @@ while {true} do
     };
     // ====================================================================================
     // fetch units
-    _groupArr = call F_fnc_GetPlayers;
+    _groupArr = call bc_spectator_fnc_GetPlayers;
     f_cam_units = ((_groupArr select 0) + (_groupArr select 1));
     f_cam_players = _groupArr select 0;
     // ====================================================================================
