@@ -18,6 +18,12 @@ private ["_object","_sides","_type","_group","_errorFound"];
 // No need to add markers for non-humans
 if (!hasInterface) exitWith {};
 
+// Make sure object is an object not a group
+if (IS_GROUP(_object)) then {
+    _group = _object;
+    _object = units _group select 0;
+};
+
 // Get type of object to figure out which marker to create
 _type = false;
 if (_object isKindOf "Man") then {_type = "Man";};
@@ -25,13 +31,9 @@ if (_object isKindOf "LandVehicle") then {_type = "LandVehicle";};
 if (_object isKindOf "Helicopter") then {_type = "Helicopter";};
 if (_object isKindOf "Plane") then {_type = "Plane";};
 
-// Specific stuff for infantry markers
+// Define group variable.
 if (_type isEqualTo "Man") then {
-    // Convert _object to _group if necessary
-    if (IS_GROUP(_object)) then {
-        _group = _object;
-        _object = units _group select 0;
-    } else {
+    if (isNil "_group") then {
         _group = group _object;
     };
 } else {
