@@ -11,7 +11,7 @@ Examples:
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params ["_object"];
-private ["_object","_type","_group","_errorFound","_indexList","_index"];
+private ["_object","_type","_group","_errorFound","_indexList","_index","_markerName"];
 
 if (!hasInterface) exitWith {};
 
