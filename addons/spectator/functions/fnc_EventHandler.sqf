@@ -13,40 +13,40 @@ switch (_type) do
 case "MouseButtonDown":
 {
 
-    if(_args select 1 == 1 && f_cam_mode != 1) then {
+    if(_args select 1 == 1 && bc_spectator_mode != 1) then {
         _button = _args select 1;
-        f_cam_MouseButton set [_button,true];
+        bc_spectator_MouseButton set [_button,true];
 
     };
     if(_args select 1 == 1) then {
-        if(f_cam_mode == 1) then {
-            f_cam_ads = true;
-            f_cam_curTarget switchCamera "gunner";
+        if(bc_spectator_mode == 1) then {
+            bc_spectator_ads = true;
+            bc_spectator_curTarget switchCamera "gunner";
         }
     }
 };
 case "MouseButtonUp":
 {
-    if(_args select 1 == 1 && f_cam_mode != 1) then {
+    if(_args select 1 == 1 && bc_spectator_mode != 1) then {
         _button = _args select 1;
-        f_cam_MouseButton set [_button,false];
+        bc_spectator_MouseButton set [_button,false];
          [] spawn bc_spectator_fnc_HandleCamera;
     };
     if(_args select 1 == 1) then {
-        if(f_cam_mode == 1) then {
-            f_cam_ads = false;
-            f_cam_curTarget switchCamera "internal";
+        if(bc_spectator_mode == 1) then {
+            bc_spectator_ads = false;
+            bc_spectator_curTarget switchCamera "internal";
         }
     }
 };
 case "MapZoom":
 {
-    f_cam_map_zoom = f_cam_map_zoom+((_args select 1)*0.05);
-    if(f_cam_map_zoom > 0.5) then {
-        f_cam_map_zoom = 0.5;
+    bc_spectator_map_zoom = bc_spectator_map_zoom+((_args select 1)*0.05);
+    if(bc_spectator_map_zoom > 0.5) then {
+        bc_spectator_map_zoom = 0.5;
     };
-    if(f_cam_map_zoom < 0.05) then {
-        f_cam_map_zoom = 0.05;
+    if(bc_spectator_map_zoom < 0.05) then {
+        bc_spectator_map_zoom = 0.05;
     };
     _handled = true;
 };
@@ -54,26 +54,26 @@ case "MouseMoving":
 {
     _x = _args select 1;
     _y = _args select 2;
-    f_cam_mouseCord = [_x,_y];
+    bc_spectator_mouseCord = [_x,_y];
     [] spawn bc_spectator_fnc_HandleCamera;
 
 };
 case "MouseZChanged":
 {
-    if(!f_cam_ctrl_down) then {
-        switch (f_cam_mode) do {
+    if(!bc_spectator_ctrl_down) then {
+        switch (bc_spectator_mode) do {
             case 0: {
-                f_cam_zoom = ((f_cam_zoom - ((_args select 1)*f_cam_zoom/5)) max 0.1) min 650;
+                bc_spectator_zoom = ((bc_spectator_zoom - ((_args select 1)*bc_spectator_zoom/5)) max 0.1) min 650;
             };
             case 3: {
-                f_cam_scrollHeight = (_args select 1);
+                bc_spectator_scrollHeight = (_args select 1);
             };
         };
 
     }
     else
     {
-        f_cam_fovZoom = ((f_cam_fovZoom - ((_args select 1)*f_cam_fovZoom/5)) max 0.1) min 1;
+        bc_spectator_fovZoom = ((bc_spectator_fovZoom - ((_args select 1)*bc_spectator_fovZoom/5)) max 0.1) min 1;
     };
 
 };
@@ -82,22 +82,22 @@ case "MouseZChanged":
 // handles dropboxes
 case "LBListSelChanged":
 {
-    if(count f_cam_listUnits > (_args select 1)) then {
-        _unit = f_cam_listUnits select (_args select 1);
+    if(count bc_spectator_listUnits > (_args select 1)) then {
+        _unit = bc_spectator_listUnits select (_args select 1);
         if(!isnil "_unit") then {
             if(typeName _unit == "GROUP") then {_unit = leader _unit};
-            if(f_cam_mode == 0 || f_cam_mode == 1) then {
-                f_cam_curTarget = _unit;
-                if(f_cam_toggleCamera) then {
-                  f_cam_curTarget switchCamera "INTERNAL";
+            if(bc_spectator_mode == 0 || bc_spectator_mode == 1) then {
+                bc_spectator_curTarget = _unit;
+                if(bc_spectator_toggleCamera) then {
+                  bc_spectator_curTarget switchCamera "INTERNAL";
                 };
-                ctrlSetText [1000,format ["Spectating:%1", name f_cam_curTarget]];
+                ctrlSetText [1000,format ["Spectating:%1", name bc_spectator_curTarget]];
             };
-            if(f_cam_mode == 3) then {
+            if(bc_spectator_mode == 3) then {
                 _pos = getpos _unit;
                 _x = _pos select 0;
                 _y = _pos select 1;
-                f_cam_freecamera setPosASL [_x,_y,((getposASL f_cam_freecamera) select 2 ) max ((getTerrainHeightASL [_x,_y])+1)];
+                bc_spectator_freecamera setPosASL [_x,_y,((getposASL bc_spectator_freecamera) select 2 ) max ((getTerrainHeightASL [_x,_y])+1)];
             };
         };
     };
@@ -110,12 +110,12 @@ case "LBListSelChanged_modes":
     _index =  (_args select 1);
     switch (_index) do
     {
-        case f_cam_lb_toggletiWHIndex:
+        case bc_spectator_lb_toggletiWHIndex:
         {
-            f_cam_tiWHOn = !f_cam_tiWHOn;
-            if(f_cam_tiWHOn) then {
-                f_cam_tiBHOn = false;
-                f_cam_nvOn = false;
+            bc_spectator_tiWHOn = !bc_spectator_tiWHOn;
+            if(bc_spectator_tiWHOn) then {
+                bc_spectator_tiBHOn = false;
+                bc_spectator_nvOn = false;
                 true setCamUseTi 0;
             }
             else
@@ -126,13 +126,13 @@ case "LBListSelChanged_modes":
             call bc_spectator_fnc_ReloadModes;
 
         };
-        case f_cam_lb_toggletiBHIndex: // BlackHot
+        case bc_spectator_lb_toggletiBHIndex: // BlackHot
         {
-            f_cam_tiBHOn = !f_cam_tiBHOn;
-            if(f_cam_tiBHOn) then {
+            bc_spectator_tiBHOn = !bc_spectator_tiBHOn;
+            if(bc_spectator_tiBHOn) then {
                 camUseNVG false;
-                f_cam_tiWHOn = false;
-                f_cam_nvOn = false;
+                bc_spectator_tiWHOn = false;
+                bc_spectator_nvOn = false;
                 true setCamUseTi 1;
             }
             else
@@ -143,23 +143,23 @@ case "LBListSelChanged_modes":
             call bc_spectator_fnc_ReloadModes;
 
         };
-        case f_cam_lb_toggleNormal:
+        case bc_spectator_lb_toggleNormal:
         {
                 false setCamUseTi 0;
                 camUseNVG false;
-                f_cam_tiWHOn = false;
-                f_cam_tiBHOn = false;
-                f_cam_nvOn = false;
+                bc_spectator_tiWHOn = false;
+                bc_spectator_tiBHOn = false;
+                bc_spectator_nvOn = false;
             call bc_spectator_fnc_ReloadModes;
         };
-        case f_cam_lb_toggletiNVIndex: // Nightvision
+        case bc_spectator_lb_toggletiNVIndex: // Nightvision
         {
-            f_cam_nvOn = !f_cam_nvOn;
-            if(f_cam_nvOn) then {
+            bc_spectator_nvOn = !bc_spectator_nvOn;
+            if(bc_spectator_nvOn) then {
                 false setCamUseTi 0;
                 camUseNVG true;
-                f_cam_tiWHOn = false;
-                f_cam_tiBHOn = false;
+                bc_spectator_tiWHOn = false;
+                bc_spectator_tiBHOn = false;
             }
             else
             {
@@ -182,14 +182,14 @@ case "KeyDown":
     {
         case 78: // numpad +
         {
-            f_cam_zoom = f_cam_zoom - 1;
+            bc_spectator_zoom = bc_spectator_zoom - 1;
             _handled = true;
         };
         case 1:
         {
             _handled = false;
         };
-        case f_cam_zeusKey:
+        case bc_spectator_zeusKey:
         {
             if(serverCommandAvailable "#kick" || !isNull (getAssignedCuratorLogic player) ) then {
                 // handler to check when we can return to the spectator system ( when zeus interface is closed and not remoteing controlling)
@@ -211,13 +211,13 @@ case "KeyDown":
 
 
                 // black out the screen
-                ["F_ScreenSetup",false] call BIS_fnc_blackOut;
+                ["bc_ScreenSetup",false] call BIS_fnc_blackOut;
                 if(isNull (getAssignedCuratorLogic player)) then {
                     [[player,true,playableUnits],'bc_spectator_fnc_zeusInit',false] spawn BIS_fnc_MP;
                 };
                 [] spawn {
                     waitUntil {!isNull (getAssignedCuratorLogic player)};
-                    ["F_ScreenSetup"] call BIS_fnc_blackIn;
+                    ["bc_ScreenSetup"] call BIS_fnc_blackIn;
                     openCuratorInterface;
                 };
                 _handled = true;
@@ -229,14 +229,14 @@ case "KeyDown":
         };
         case 74: // numpad -
         {
-            f_cam_zoom = f_cam_zoom + 1;
-            f_cam_zoom = 0.3 max f_cam_zoom;
+            bc_spectator_zoom = bc_spectator_zoom + 1;
+            bc_spectator_zoom = 0.3 max bc_spectator_zoom;
             _handled = true;
         };
         case 20: // T
         {
-            f_cam_tracerOn = !f_cam_tracerOn;
-            if(f_cam_tracerOn) then {
+            bc_spectator_tracerOn = !bc_spectator_tracerOn;
+            if(bc_spectator_tracerOn) then {
                 systemChat "Tracers on map activated.";
             } else {
                 systemChat "Tracers on map deactivated.";
@@ -245,29 +245,29 @@ case "KeyDown":
         };
         case 22: // U
         {
-            f_cam_hideUI = !f_cam_hideUI;
+            bc_spectator_hideUI = !bc_spectator_hideUI;
             [] spawn bc_spectator_fnc_ToggleGUI;
             _handled = true;
         };
         // Freecam movement keys
         case 17: // W
         {
-            f_cam_freecam_buttons set [0,true];
+            bc_spectator_freecam_buttons set [0,true];
             _handled = true;
         };
         case 31: // S
         {
-            f_cam_freecam_buttons set [1,true];
+            bc_spectator_freecam_buttons set [1,true];
             _handled = true;
         };
         case 30: // A
         {
-            f_cam_freecam_buttons set [2,true];
+            bc_spectator_freecam_buttons set [2,true];
             _handled = true;
         };
         case 32: // D
         {
-            f_cam_freecam_buttons set [3,true];
+            bc_spectator_freecam_buttons set [3,true];
             _handled = true;
         };
         case 49: // N
@@ -279,30 +279,30 @@ case "KeyDown":
         };
         case 16: // Q
         {
-            f_cam_freecam_buttons set [4,true];
+            bc_spectator_freecam_buttons set [4,true];
             _handled = true;
         };
         case 44: // Z
         {
-            f_cam_freecam_buttons set [5,true];
+            bc_spectator_freecam_buttons set [5,true];
             _handled = true;
         };
         case 57: // SPACE
         {
-            f_cam_freecamOn = !f_cam_freecamOn;
-            if(f_cam_freecamOn) then {
-                f_cam_angleY = 10;
-                [f_cam_freecamera,f_cam_angleY,0] call BIS_fnc_setPitchBank;
-                f_cam_freecamera cameraEffect ["internal", "BACK"];
-                f_cam_mode = 3;
-                f_cam_freecamera setPosASL getPosASL f_cam_camera;
+            bc_spectator_freecamOn = !bc_spectator_freecamOn;
+            if(bc_spectator_freecamOn) then {
+                bc_spectator_angleY = 10;
+                [bc_spectator_freecamera,bc_spectator_angleY,0] call BIS_fnc_setPitchBank;
+                bc_spectator_freecamera cameraEffect ["internal", "BACK"];
+                bc_spectator_mode = 3;
+                bc_spectator_freecamera setPosASL getPosASL bc_spectator_camera;
                 cameraEffectEnableHUD true;
                 showCinemaBorder false;
             } else {
-                f_cam_freecamera cameraEffect ["Terminate","BACK"];
-                f_cam_angleY = 45;
-                f_cam_camera cameraEffect ["internal", "BACK"];
-                f_cam_mode = 0;
+                bc_spectator_freecamera cameraEffect ["Terminate","BACK"];
+                bc_spectator_angleY = 45;
+                bc_spectator_camera cameraEffect ["internal", "BACK"];
+                bc_spectator_mode = 0;
                 cameraEffectEnableHUD true;
                 showCinemaBorder false;
             };
@@ -320,29 +320,29 @@ case "KeyDown":
         };
         case 42: // SHIFT
         {
-            f_cam_shift_down = true;
+            bc_spectator_shift_down = true;
             [] spawn bc_spectator_fnc_HandleCamera;
              _handled = true;
         };
         case 25: // P
         {
-            f_cam_muteSpectators = !f_cam_muteSpectators;
-            [player, f_cam_muteSpectators] call TFAR_fnc_forceSpectator;
-            systemChat format ["Spectators Muted = %1",!f_cam_muteSpectators];
+            bc_spectator_muteSpectators = !bc_spectator_muteSpectators;
+            [player, bc_spectator_muteSpectators] call TFAR_fnc_forceSpectator;
+            systemChat format ["Spectators Muted = %1",!bc_spectator_muteSpectators];
         };
         case 29: // CTRL
         {
-            f_cam_ctrl_down = true;
+            bc_spectator_ctrl_down = true;
             [] spawn bc_spectator_fnc_HandleCamera;
              _handled = true;
         };
         case 50: // M
         {
-            f_cam_mapMode = f_cam_mapMode +1;
-            if(f_cam_mapMode > 2) then {
-                f_cam_mapMode = 0;
+            bc_spectator_mapMode = bc_spectator_mapMode +1;
+            if(bc_spectator_mapMode > 2) then {
+                bc_spectator_mapMode = 0;
             };
-            switch (f_cam_mapMode) do
+            switch (bc_spectator_mapMode) do
             {
                 // no maps
                 case 0:
@@ -371,7 +371,7 @@ case "KeyDown":
                     _fullmapWindow = _displayDialog displayCtrl 1360;
                     ctrlMapAnimClear _fullmapWindow;
 
-                    _fullmapWindow ctrlMapAnimAdd [0.001, 0.1,getpos ([] call f_cam_GetCurrentCam)];
+                    _fullmapWindow ctrlMapAnimAdd [0.001, 0.1,getpos ([] call bc_spectator_GetCurrentCam)];
                     ctrlMapAnimCommit _fullmapWindow;
                 };
             };
@@ -379,18 +379,18 @@ case "KeyDown":
         };
         case 205: //RIGHT ARROW KEY
         {
-            if (f_cam_tagTextSize < .05) then {
-                f_cam_tagTextSize = f_cam_tagTextSize + .0005;
+            if (bc_spectator_tagTextSize < .05) then {
+                bc_spectator_tagTextSize = bc_spectator_tagTextSize + .0005;
             } else {
-                f_cam_tagTextSize = .05;
+                bc_spectator_tagTextSize = .05;
             };
         };
         case 203: //LEFT ARROW KEY
         {
-            if (f_cam_tagTextSize >= 0.0005) then {
-                f_cam_tagTextSize = f_cam_tagTextSize - .0005;
+            if (bc_spectator_tagTextSize >= 0.0005) then {
+                bc_spectator_tagTextSize = bc_spectator_tagTextSize - .0005;
             } else {
-                f_cam_tagTextSize = 0;
+                bc_spectator_tagTextSize = 0;
             };
         };
         case 59: // F1
@@ -419,7 +419,7 @@ case "KeyUp":
     {
         case 42:
         {
-            f_cam_shift_down = false;
+            bc_spectator_shift_down = false;
             _handled = true;
         };
         case 1:
@@ -428,7 +428,7 @@ case "KeyUp":
         };
         case 29:
         {
-            f_cam_ctrl_down = false;
+            bc_spectator_ctrl_down = false;
             _handled = true;
         };
         case 203:
@@ -473,32 +473,32 @@ case "KeyUp":
         };
         case 17:
         {
-            f_cam_freecam_buttons set [0,false];
+            bc_spectator_freecam_buttons set [0,false];
             _handled = true;
         };
         case 31:
         {
-            f_cam_freecam_buttons set [1,false];
+            bc_spectator_freecam_buttons set [1,false];
             _handled = true;
         };
         case 30:
         {
-            f_cam_freecam_buttons set [2,false];
+            bc_spectator_freecam_buttons set [2,false];
             _handled = true;
         };
         case 32:
         {
-            f_cam_freecam_buttons set [3,false];
+            bc_spectator_freecam_buttons set [3,false];
             _handled = true;
         };
         case 16:
         {
-            f_cam_freecam_buttons set [4,false];
+            bc_spectator_freecam_buttons set [4,false];
             _handled = true;
         };
         case 44:
         {
-            f_cam_freecam_buttons set [5,false];
+            bc_spectator_freecam_buttons set [5,false];
             _handled = true;
         };
     };

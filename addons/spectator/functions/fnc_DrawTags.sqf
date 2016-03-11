@@ -2,13 +2,13 @@
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ==================================================================
 // draw tags
-if(!f_cam_toggleTags || f_cam_mapMode == 2 ) exitWith{};
+if(!bc_spectator_toggleTags || bc_spectator_mapMode == 2 ) exitWith{};
 {
     _drawUnits = [];
     _drawGroup = false;
     _isPlayerGroup = false;
     {
-        _distToCam = (call f_cam_GetCurrentCam) distance _x;
+        _distToCam = (call bc_spectator_GetCurrentCam) distance _x;
         if(isPlayer _x) then {_isPlayerGroup = true};
         if(_distToCam < 250) then {
             _drawUnits pushBack _x;
@@ -22,11 +22,11 @@ if(!f_cam_toggleTags || f_cam_mapMode == 2 ) exitWith{};
         };
     } foreach units _x;
     _color = switch (side _x) do {
-        case blufor: {f_cam_blufor_color};
-        case opfor: {f_cam_opfor_color};
-        case independent: {f_cam_indep_color};
-        case civilian: {f_cam_civ_color};
-        default {f_cam_empty_color};
+        case blufor: {bc_spectator_blufor_color};
+        case opfor: {bc_spectator_opfor_color};
+        case independent: {bc_spectator_indep_color};
+        case civilian: {bc_spectator_civ_color};
+        default {bc_spectator_empty_color};
     };
     if(_drawGroup) then {
         _visPos = getPosATLVisual leader _x;
@@ -37,10 +37,10 @@ if(!f_cam_toggleTags || f_cam_mapMode == 2 ) exitWith{};
         else {
             _color set [3,0.4];
         };
-        _str = _x getVariable ["f_cam_nicename",""];
+        _str = _x getVariable ["bc_spectator_nicename",""];
         if(_str == "") then {
             _str = (toString(toArray(_x getVariable ["BC_LongName",(groupID _x)]) - [45]));
-            _x setVariable ["f_cam_nicename",_str];
+            _x setVariable ["bc_spectator_nicename",_str];
         };
         drawIcon3D ["\A3\ui_f\data\map\markers\nato\b_inf.paa", _color,[_visPos select 0,_visPos select 1,(_visPos select 2) +30], 1, 1, 0,_str, 2, 0.025, "TahomaB"];
     };
@@ -56,7 +56,7 @@ if(!f_cam_toggleTags || f_cam_mapMode == 2 ) exitWith{};
             {
                 _str = name _x;
             };
-            drawIcon3D [_icon, _color,[_visPos select 0,_visPos select 1,(_visPos select 2) +3],0.7,0.7, 0,_str, 2,f_cam_tagTextSize, "TahomaB"];
+            drawIcon3D [_icon, _color,[_visPos select 0,_visPos select 1,(_visPos select 2) +3],0.7,0.7, 0,_str, 2,bc_spectator_tagTextSize, "TahomaB"];
         };
     } foreach _drawUnits;
 
@@ -69,14 +69,14 @@ if (!isNil "sectorControl") then {
         _iconSize = 0.5;
         _textSize = 0.03;
         { //forEach bc_triggerArray;
-            _distToCam = (call f_cam_GetCurrentCam) distance _x;
+            _distToCam = (call bc_spectator_GetCurrentCam) distance _x;
             _owner = _x getVariable "bc_sec_lastOwner";
             _color = switch (_owner) do {
-                case 0: {f_cam_blufor_color};
-                case 1: {f_cam_opfor_color};
-                case 2: {f_cam_gray_color};
-                case 3: {f_cam_gray_color};
-                default {f_cam_gray_color};
+                case 0: {bc_spectator_blufor_color};
+                case 1: {bc_spectator_opfor_color};
+                case 2: {bc_spectator_gray_color};
+                case 3: {bc_spectator_gray_color};
+                default {bc_spectator_gray_color};
             };
             _color set [3,1];
             iconName = triggerText _x;

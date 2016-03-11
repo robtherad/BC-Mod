@@ -1,8 +1,8 @@
 #include "macros.hpp"
-_forbiddenControls = [F_CAM_MOUSEHANDLER,F_CAM_MINIMAP,F_CAM_FULLMAP,F_CAM_SPECHELP,F_CAM_HELPCANCEL,F_CAM_SPECHELP,F_CAM_HELPFRAME,F_CAM_HELPBACK];
+_forbiddenControls = [BC_SPECTATOR_MOUSEHANDLER,BC_SPECTATOR_MINIMAP,BC_SPECTATOR_FULLMAP,BC_SPECTATOR_SPECHELP,BC_SPECTATOR_HELPCANCEL,BC_SPECTATOR_SPECHELP,BC_SPECTATOR_HELPFRAME,BC_SPECTATOR_HELPBACK];
 {
     if(!(_x in _forbiddenControls)) then
     {
-        ctrlShow [_x,!f_cam_hideUI];
+        ctrlShow [_x,!bc_spectator_hideUI];
     };
-} foreach f_cam_controls;
+} foreach bc_spectator_controls;
