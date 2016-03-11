@@ -15,6 +15,8 @@ An addon containing small tweaks and fixes for use in Bravo Company's Fight Nigh
 | **marker_tracker** | Shows information about marker creation/deletion during the briefing.  |
 | **spectator** | F3 Spectator in addon form.  |
 
+For more information about specific modules go to their folders within the addon folder. If you want more information about a specific function within an addon, take a look at the function's file within the module's functions folder.
+
 ****
 
 ### Plans
