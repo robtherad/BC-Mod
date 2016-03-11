@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BC_fnc__hintThenClear
+Function: bc_common_fnc__hintThenClear
 Description:
      Display a hint then after some delay display another empty hint to clear any existing hint from the player's screen.
 Parameters:
@@ -9,13 +9,13 @@ Optional Parameters:
 Examples:
     (begin example)
         // Call a hint and then clear it after the default 15 seconds.
-        ["BLUFOR are victorious!"] call BC_fnc__hintThenClear;
+        ["BLUFOR are victorious!"] call bc_common_fnc__hintThenClear;
         
         // Call a hint and then clear it after 45 seconds.
-        ["You are dead.",45] call BC_fnc__hintThenClear;
+        ["You are dead.",45] call bc_common_fnc__hintThenClear;
         
         // Call a hint from a stored variable and then clear it after 5 seconds.
-        [str,5] call BC_fnc__hintThenClear;
+        [str,5] call bc_common_fnc__hintThenClear;
     (end)
 ---------------------------------------------------------------------------- */
 params ["_hintStr","_delay"];

@@ -1,12 +1,12 @@
 /* ----------------------------------------------------------------------------
-Function: BC_fnc__clearContainer
+Function: bc_common_fnc_clearContainer
 Description:
     Remotely (from server) remove all items from an object
 Parameters:
     _object - the object <OBJECT>
 Examples:
     (begin example)
-        [crate] call BC_fnc__clearContainer;
+        [crate] call bc_common_fnc_clearContainer;
     (end)
 ---------------------------------------------------------------------------- */
 params ["_object"];

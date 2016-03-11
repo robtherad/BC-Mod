@@ -1,0 +1,15 @@
+PREP(CamInit);
+PREP(OnUnload);
+PREP(DrawTags);
+PREP(EventHandler);
+PREP(FreeCam);
+PREP(GetPlayers);
+PREP(ReloadModes);
+PREP(UpdateValues);
+PREP(HandleCamera);
+PREP(ToggleGUI);
+PREP(OnMapClick);
+PREP(DrawMarkers);
+PREP(ForceExit);
+PREP(HandleMenu);
+PREP(showMenu);
