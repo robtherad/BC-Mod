@@ -21,8 +21,8 @@ TRANSLATIONBODY = """**[ACE3 Translation Guide](http://ace3mod.com/wiki/developm
 {}
 """
 
-REPOUSER = "acemod"
-REPONAME = "ACE3"
+REPOUSER = "robtherad"
+REPONAME = "BC-Mod"
 REPOPATH = "{}/{}".format(REPOUSER,REPONAME)
 
 
