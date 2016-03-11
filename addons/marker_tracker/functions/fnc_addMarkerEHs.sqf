@@ -1,3 +1,8 @@
+/* ----------------------------------------------------------------------------
+Function: bc_marker_tracker_fnc_addMarkerEHs
+Description:
+    Adds event handlers to clients to watch for key presses that correspond with marker placement/deletion.
+---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 private["_i", "_mrkdetails", "_mrknames"];
 

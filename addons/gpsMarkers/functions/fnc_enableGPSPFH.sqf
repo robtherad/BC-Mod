@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: bc_gpsMarkers_enableGPSPFH
+Function: bc_gpsMarkers_fnc_enableGPSPFH
 Description:
     Internal function. Function called every second in a CBA perFrameHandler. Gets added by bc_gpsMarkers_enableGPS
 ---------------------------------------------------------------------------- */

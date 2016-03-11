@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: bc_gpsMarkers_createMarker
+Function: bc_gpsMarkers_fnc_createMarker
 Description:
     Internal function. Handles creating a marker for the unit then adds it to the array of tracked units.
 Parameters:
@@ -9,7 +9,7 @@ Parameters:
     _group - the group of the unit. if the unit is a vehicle, grpNull
 Examples:
     (begin example)
-        [_object,_sides,_type, _group] call bc_gpsMarkers_createMarker;
+        [_object,_sides,_type, _group] call bc_gpsMarkers_fnc_createMarker;
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"

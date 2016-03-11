@@ -1,10 +1,10 @@
 /* ----------------------------------------------------------------------------
-Function: bc_gpsMarkers_updateInfMarkers
+Function: bc_gpsMarkers_fnc_updateInfMarkers
 Description:
     Internal function. Updates the state of markers attached to infantry.
 Examples:
     (begin example)
-        call bc_gpsMarkers_updateInfMarkers;
+        call bc_gpsMarkers_fnc_updateInfMarkers;
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"

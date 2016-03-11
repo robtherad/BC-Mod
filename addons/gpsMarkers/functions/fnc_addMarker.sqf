@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: bc_gpsMarkers_addMarker
+Function: bc_gpsMarkers_fnc_addMarker
 Description:
     Attempts to add a marker to a unit which will be tracked by the gpsMarkers module.
 Parameters:
@@ -7,8 +7,8 @@ Parameters:
     _sides - the side(s) the marker will be visible to <SIDE> OR <ARRAY> of <SIDE>s
 Examples:
     (begin example)
-        [player,west] call bc_gpsMarkers_addMarker;
-        [player,[west,east]] call bc_gpsMarkers_addMarker;
+        [player,west] call bc_gpsMarkers_fnc_addMarker;
+        [player,[west,east]] call bc_gpsMarkers_fnc_addMarker;
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"

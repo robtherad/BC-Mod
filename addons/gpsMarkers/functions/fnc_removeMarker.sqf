@@ -1,12 +1,12 @@
 /* ----------------------------------------------------------------------------
-Function: bc_gpsMarkers_removeMarker
+Function: bc_gpsMarkers_fnc_removeMarker
 Description:
     Attempts to remove a marker from a unit which is being tracked by the gpsMarkers module.
 Parameters:
     _object - the object to stop tracking a marker for <OBJECT>
 Examples:
     (begin example)
-        [player] call bc_gpsMarkers_removeMarker;
+        [player] call bc_gpsMarkers_fnc_removeMarker;
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"

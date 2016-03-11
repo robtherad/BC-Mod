@@ -1,10 +1,10 @@
 /* ----------------------------------------------------------------------------
-Function: bc_gpsMarkers_updatePFH
+Function: bc_gpsMarkers_fnc_updatePFH
 Description:
     Internal function. Function called every 2.5 seconds in a CBA perFrameHandler. Gets added by bc_gpsMarkers_enableGPSPFH at the end of it's PFH
 Examples:
     (begin example)
-        call bc_gpsMarkers_updatePFH;
+        call bc_gpsMarkers_fnc_updatePFH;
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"

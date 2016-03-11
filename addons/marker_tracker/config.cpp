@@ -4,7 +4,7 @@ class CfgPatches {
     class ADDON {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"bc_common"};
-        author[] = {"Bravo Company"};
+        author[] = {"KillzoneKid","Bravo Company"};
         authorUrl = "http://bravoco.us";
         VERSION_CONFIG;
     };
