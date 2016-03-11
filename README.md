@@ -1,9 +1,21 @@
-# BC Addon (WIP)
+<p align="center">
+ <img src="https://raw.githubusercontent.com/robtherad/BC-Mod/master/BC_logo.png" width="256">
+</p>
+<h1 align="center">Bravo Company Mod</h2>
+<p align="center">
+  <a href="https://travis-ci.org/robtherad/BC-Mod">
+    <img src="https://travis-ci.org/robtherad/BC-Mod.svg?branch=master" alt="Build Status">
+  </a>
+  <a href="https://discord.gg/0Z9C1w0hrI8qqYSD">
+    <img src="https://img.shields.io/badge/discord-Bravo%20Company-blue.svg" alt="BC Discord">
+  </a>
+  <a href="https://github.com/robtherad/BCArma">
+    <img src="https://img.shields.io/badge/mission-Template-red.svg" alt="BC Mission Template">
+  </a>
+</p>
 
-An addon containing small tweaks and fixes for use in Bravo Company's Fight Nights. 
 
-[BC Mission Template](https://github.com/robtherad/BCArma)
-
+An addon designed for use during Bravo Company's Fight Nights.
 
 **** 
 
