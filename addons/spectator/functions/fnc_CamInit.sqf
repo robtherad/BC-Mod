@@ -4,6 +4,7 @@
 //[this,objNull,0,0,true] call bc_spectator_fnc_camInit;
 // params
 _this spawn {
+private["_forced", "_oldUnit", "_unit"];
 _unit = [_this, 0, player,[objNull]] call BIS_fnc_param;
 _oldUnit = [_this, 1, objNull,[objNull]] call BIS_fnc_param;
 _forced = [_this, 4, false,[false]] call BIS_fnc_param;
@@ -32,6 +33,7 @@ if(bc_spectator_isJIP) then {
 
 // Create a Virtual Agent to act as our player to make sure we get to keep Draw3D
 if(isNil "bc_spectator_VirtualCreated") then {
+  private ["_newUnit", "_newGrp"];
   createCenter sideLogic;
   _newGrp = createGroup sideLogic;
   _newUnit = _newGrp createUnit ["VirtualCurator_F", [0,0,5], [], 0, "FORM"];
@@ -53,6 +55,7 @@ if(isNull _oldUnit ) then {if(count playableUnits > 0) then {_oldUnit = (playabl
 [player, true] call TFAR_fnc_forceSpectator;
 // ====================================================================================
 
+private ["_listBox"];
 _listBox = 2100;
 lbClear _listBox;
 // set inital values.
@@ -148,6 +151,7 @@ bc_spectator_ToggleFPCamera = {
     call bc_spectator_fnc_ReloadModes;
 };
 bc_spectator_GetCurrentCam = {
+  private ["_camera"];
   _camera = bc_spectator_camera;
   switch(bc_spectator_mode) do
   {
@@ -206,6 +210,7 @@ cameraEffectEnableHUD true;
 showCinemaBorder false;
 bc_spectator_fired = [];
 {
+  private ["_event"];
   _event = _x addEventHandler ["fired",{bc_spectator_fired = bc_spectator_fired - [objNull];bc_spectator_fired pushBack (_this select 6)}];
   _x setVariable ["bc_spectator_fired_eventid",_event];
 
