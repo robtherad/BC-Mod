@@ -2,7 +2,7 @@
 
 An addon containing small tweaks and fixes for use in Bravo Company's Fight Nights. 
 
-(BC Mission Template)[https://github.com/robtherad/BCArma]
+[BC Mission Template](https://github.com/robtherad/BCArma)
 
 
 **** 
