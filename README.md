@@ -1,6 +1,8 @@
 # BC Addon (WIP)
 
-An addon containing small tweaks and fixes for use in Bravo Company's Fight Nights.
+An addon containing small tweaks and fixes for use in Bravo Company's Fight Nights. 
+
+(BC Mission Template)[https://github.com/robtherad/BCArma]
 
 
 **** 
@@ -19,6 +21,16 @@ For more information about specific modules go to their folders within the addon
 
 ****
 
+### Credits
+
+* [CBA Team](https://github.com/CBATeam/CBA_A3)
+* [ACE Team](https://github.com/acemod/ACE3)
+* [F3 Team](https://github.com/ferstaberinde/F3)
+
+The structure and workflow of this addon is heavily based on the [ACE 3](https://github.com/acemod/ACE3) addon for Arma 3.
+
+****
+
 ### Plans
 In no particular order.
 
@@ -26,15 +38,6 @@ In no particular order.
 * Create module system that can be used instead of/alongside `setGroupID`
 * Create nicer looking map markers
 * Rewrite Radio system for use in non Fight Night missions as well?
-* Upload mod to workshop after it's more useful?
+* Upload mod to workshop after it's actually used
 
 
-****
-
-
-### Credits
-
-* [CBA Team](https://github.com/CBATeam/CBA_A3)
-* [ACE Team](https://github.com/acemod/ACE3)
-
-The structure and workflow of this addon is heavily based on the [ACE 3](https://github.com/acemod/ACE3) addon for Arma 3.
