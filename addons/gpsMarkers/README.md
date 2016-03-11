@@ -7,7 +7,7 @@ A simple framework for mission makers to easily manage markers for groups and ve
 ### Usage:
 
 #### - Adding Markers
-Use the function `bc_gpsMarkers_fnc_addMarker` to add a marker for a group or vehicle. Keep in mind, the function takes **groups but NOT groupIDs**.
+Use the function `bc_gpsMarkers_fnc_addMarker` to add a marker for a group or vehicle. Keep in mind, the function takes **groups but NOT groupIDs**. Make sure you have the name setup for your group/vehicle before you add a marker to it or the module will use the ugly default names.
 ```
 Parameters:
     _unit - the unit, group, or vehicle to add a marker to: <OBJECT>  OR  <GROUP>
