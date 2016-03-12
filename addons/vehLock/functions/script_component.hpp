@@ -1,0 +1,1 @@
+#include "\y\bc\addons\vehLock\script_component.hpp"

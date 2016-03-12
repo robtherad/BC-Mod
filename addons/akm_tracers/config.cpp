@@ -2,6 +2,8 @@
 
 class CfgPatches {
     class ADDON {
+        units[] = {};
+        weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"bc_common", "rhs_c_weapons"};
         author[] = {"Bravo Company"};
