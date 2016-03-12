@@ -5,6 +5,7 @@ Description:
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params ["_vehicle","_lockedPositions","_lockedClasses","_lockedSides","_lockedPlayers","_lockedMessage"];
+private ["_getInEHID", "_seatSwitchedEHID"];
 
 if (!hasInterface) exitWith {};
 

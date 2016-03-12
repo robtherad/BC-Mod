@@ -4,7 +4,7 @@ Description:
     Internal Function. Called every time the seatSwitched event happens.
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-
+private["_lckClss", "_lckMsgs", "_lckPlyr", "_lckPosn", "_lckSide", "_pos", "_unit", "_veh"];
 // TODO: Replace cutText display number with cutText layerName - Arma 3 v1.57
 
 if (!hasInterface) exitWith {};

@@ -4,7 +4,7 @@ Description:
     Internal Function. Called every time the getIn event happens.
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-
+private["_lckClss", "_lckMsgs", "_lckPlyr", "_lckPosn", "_lckSide", "_pos", "_unit", "_veh"];
 // TODO: Replace cutText display number with cutText layerName - Arma 3 v1.57
 
 if (!hasInterface) exitWith {};
@@ -21,6 +21,8 @@ if (_unit == player) then {
     _lckPlyr = _veh getVariable [QGVAR(players),[]];
     _lckMsgs = _veh getVariable [QGVAR(message),""]; // string
 
+    BC_LOGDEBUG_7("getIn: _veh: %1 -- _lckPosn: %2 -- _lckSide: %3 -- _lckClss: %4 -- _lckPlyr: %5 -- _lckMsgs: %6",_veh,_lckPosn,_lckSide,_lckClss,_lckPlyr,_lckMsgs);
+    
     if (count _lckSide > 0) then {
         // LOCK BY SIDE
         if !(side _unit in _lckSide) then {

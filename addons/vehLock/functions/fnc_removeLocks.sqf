@@ -11,7 +11,7 @@ Examples:
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params ["_object"];
-private ["_object","_handles","_errorFound"];
+private ["_object","_handles","_errorFound","_id"];
 
 // No need to add markers for non-humans
 if (!hasInterface) exitWith {};
@@ -36,7 +36,7 @@ if !(IS_ARRAY(_handles)) then {
     _errorFound = true;
 } else {
     {
-        if !(IS_INT(_x)) then {
+        if !(IS_INTEGER(_x)) then {
             BC_LOGERROR_3("removeLocks: Bad event handle container: %1 -- %2 -- %3",_x,_handles,_object);
             _errorFound = true;
         };
