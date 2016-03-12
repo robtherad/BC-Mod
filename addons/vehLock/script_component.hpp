@@ -1,4 +1,4 @@
-#define COMPONENT marker_tracker
+#define COMPONENT vehLock
 #include "\y\bc\addons\main\script_mod.hpp"
 
 #define DEBUG_MODE_FULL
