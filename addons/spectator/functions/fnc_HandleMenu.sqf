@@ -1,3 +1,6 @@
+// Modified F3 - Spectator Script
+// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
+// ====================================================================================
 private["_button", "_control"];
 _control = _this select 0;
 _button = _this select 1;

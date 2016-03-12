@@ -1,3 +1,6 @@
+// Modified F3 - Spectator Script
+// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
+// ====================================================================================
 private["_forbiddenControls"];
 #include "macros.hpp"
 _forbiddenControls = [BC_SPECTATOR_MOUSEHANDLER,BC_SPECTATOR_MINIMAP,BC_SPECTATOR_FULLMAP,BC_SPECTATOR_SPECHELP,BC_SPECTATOR_HELPCANCEL,BC_SPECTATOR_SPECHELP,BC_SPECTATOR_HELPFRAME,BC_SPECTATOR_HELPBACK];

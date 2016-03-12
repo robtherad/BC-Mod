@@ -1,3 +1,6 @@
+// Modified F3 - Spectator Script
+// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
+// ====================================================================================
 private["_leftButton", "_rightButton", "_y", "_x"];
 _x = bc_spectator_mouseCord select 0;
 _y = bc_spectator_mouseCord select 1;

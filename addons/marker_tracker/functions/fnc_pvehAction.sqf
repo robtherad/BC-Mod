@@ -2,6 +2,8 @@
 Function: bc_marker_tracker_fnc_pvehAction
 Description:
     Internal function. Function called when clients trigger the public variable event handler.
+Author:
+    KillzoneKid - http://killzonekid.com/arma-scripting-tutorials-whos-placingdeleting-markers/
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 private ["_action","_name", "_markerInfoArray", "_type","_pos","_text", "_str", "_playerUID", "_clientID"];

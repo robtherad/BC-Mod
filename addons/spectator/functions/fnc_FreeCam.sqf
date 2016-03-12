@@ -1,7 +1,7 @@
-private ["_commitTime","_delta","_zLevel","_pos","_visPos","_mode","_currPos","_mX","_mY","_mZ","_accel","_accelshift","_scroll","_y","_z","_height","_newHeight"];
-// F3 - Spectator Script
+// Modified F3 - Spectator Script
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================
+private ["_commitTime","_delta","_zLevel","_pos","_visPos","_mode","_currPos","_mX","_mY","_mZ","_accel","_accelshift","_scroll","_y","_z","_height","_newHeight"];
 // Menu shown/hidden
 if(abs (bc_spectator_menuShownTime - time) <= 0.1 && !bc_spectator_menuShown) then // disable due to being a bit wonky
 {

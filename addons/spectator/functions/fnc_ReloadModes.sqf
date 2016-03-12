@@ -1,3 +1,6 @@
+// Modified F3 - Spectator Script
+// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
+// ====================================================================================
 private["_curIndex", "_listBox"];
 _listBox = 2101;
 _curIndex = lbCurSel _listBox;

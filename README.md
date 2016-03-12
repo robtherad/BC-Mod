@@ -48,9 +48,7 @@ The structure and workflow of this addon is heavily based on the [ACE 3](https:/
 In no particular order.
 
 * Document everything.
-* Create module system that can be used instead of/alongside `setGroupID`
-* Create nicer looking map markers
-* Rewrite Radio system for use in non Fight Night missions as well?
-* Upload mod to workshop after it's actually used
+* Port ORBAT script to addon.
+
 
 

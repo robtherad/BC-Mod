@@ -1,6 +1,6 @@
-// F3 - Spectator Script
+// Modified F3 - Spectator Script
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-// ==================================================================
+// ====================================================================================
 // draw tags
 private ["_color", "_distToCam", "_drawGroup", "_drawUnits", "_icon", "_isPlayerGroup", "_str", "_visPos"];
 if(!bc_spectator_toggleTags || bc_spectator_mapMode == 2 ) exitWith{};

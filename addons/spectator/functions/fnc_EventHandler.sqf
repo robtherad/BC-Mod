@@ -1,6 +1,6 @@
-// F3 - Spectator Script
+// Modified F3 - Spectator Script
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-// ==================================================================
+// ====================================================================================
 
 // handles all the events. be afraid.
 private ["_args", "_button", "_displayDialog", "_done", "_fullmapWindow", "_handled", "_index", "_key", "_pos", "_type", "_unit", "_y"];

@@ -1,3 +1,6 @@
+// Modified F3 - Spectator Script
+// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
+// ====================================================================================
 if(bc_spectator_mapMode == 0) exitWith {};
 private ["_camera", "_color", "_fullmapWindow", "_icon", "_name", "_newPos", "_pos"];
 disableSerialization;

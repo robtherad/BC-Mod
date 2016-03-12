@@ -1,4 +1,4 @@
-// F3 - Spectator Script
+// Modified F3 - Spectator Script
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================
 //[this,objNull,0,0,true] call bc_spectator_fnc_camInit;
