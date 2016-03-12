@@ -6,6 +6,9 @@
   <a href="https://travis-ci.org/robtherad/BC-Mod">
     <img src="https://travis-ci.org/robtherad/BC-Mod.svg?branch=master" alt="Build Status">
   </a>
+  <a href="https://github.com/robtherad/BC-Mod/wiki">
+    <img src="https://img.shields.io/badge/wiki-BC%20Mod-orange.svg" alt="BC Mod Wiki">
+  </a>
   <a href="https://discord.gg/0Z9C1w0hrI8qqYSD">
     <img src="https://img.shields.io/badge/discord-Bravo%20Company-blue.svg" alt="BC Discord">
   </a>
@@ -14,8 +17,15 @@
   </a>
 </p>
 
-
 An addon designed for use during Bravo Company's Fight Nights.
+
+****
+
+### About
+
+This addon was originally created to help centralize aspects of the [Bravo Company Mission Template](https://github.com/robtherad/BCArma) to allow for easier updates to older missions. 
+
+The goal of the addon is to provide tools to mission makers that they can use at their will. Any tools they choose not to use shouldn't hamper their efforts at making quality missions. This means that the modules in this addon should have a minimal or non-existent impact on performance for players in missions where they are not active. Since this addon might be used outside of Bravo Company Fight Nights, modules must also be able to work in both COOP and TVT setups. Additionally, modules should be clearly and simply documented so that mission making is as easy as possible.
 
 **** 
 
@@ -49,6 +59,3 @@ In no particular order.
 
 * Document everything.
 * Port ORBAT script to addon.
-
-
-
