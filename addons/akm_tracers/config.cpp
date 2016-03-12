@@ -6,7 +6,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"bc_common", "rhs_c_weapons"};
-        author[] = {"Bravo Company"};
+        author[] = {"robtherad"};
         authorUrl = "http://bravoco.us";
         magazines[] = {"rhs_30Rnd_762x39mm_tracer"};
         VERSION_CONFIG;
