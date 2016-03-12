@@ -73,8 +73,8 @@ dssignfile = ""
 prefix = "bc"
 pbo_name_prefix = "bc_"
 signature_blacklist = []
-importantFiles = ["mod.cpp", "README.md", "ACE_LICENSE", "logo_bc.paa"]
-versionFiles = ["README.md", "mod.cpp"]
+importantFiles = ["mod.cpp", "README.md", "ACE_LICENSE", "logo_bc.paa", "meta.cpp"]
+versionFiles = []
 
 ciBuild = False # Used for CI builds
 

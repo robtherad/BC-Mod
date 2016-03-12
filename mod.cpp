@@ -1,8 +1,8 @@
-name = "Bravo Company Mods v0.1.0";
+name = "Bravo Company Mods - v0.1.0";
 picture = "logo_bc.paa";
 actionName = "Website";
 action = "bravoco.us";
-description = "Bravo Company Mods";
+description = "Bravo Company Mods - v0.1.0";
 logo = "logo_bc.paa";
 logoOver = "logo_bc.paa";
 tooltip = "BC";
