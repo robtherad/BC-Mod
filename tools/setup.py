@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-
+# Created by ACE 3 team, modified by BC: https://github.com/acemod/ACE3
 #######################
 #  ACE3 Setup Script  #
+#   Modified by BC    #
 #######################
 
 import os
@@ -21,10 +22,12 @@ def main():
     FULLDIR = "{}\\{}".format(MAINDIR,PROJECTDIR)
     print("""
   ######################################
-  # ACE3 Development Environment Setup #
+  #  BC Development Environment Setup  #
   ######################################
-
-  This script will create your ACE3 dev environment for you.
+   
+  This script was created by the ACE 3 team for Arma 3: https://github.com/acemod/ACE3
+  
+  This script will create your dev environment for you.
   
   Before you run this, you should already have:
     - The Arma 3 Tools installed properly via Steam
@@ -32,9 +35,9 @@ def main():
   
   If you have not done those things yet, please abort this script in the next step and do so first.
   
-  This script will create two hard links on your system, both pointing to your ACE3 project folder:
-    [Arma 3 installation directory]\\{} => ACE3 project folder
-    P:\\{}                              => ACE3 project folder
+  This script will create two hard links on your system, both pointing to your project folder:
+    [Arma 3 installation directory]\\{} => Project folder
+    P:\\{}                              => Project folder
   
   It will also copy the required CBA includes to {}, if you do not have the CBA source code already.""".format(FULLDIR,FULLDIR,CBA))
     print("\n") 
@@ -115,7 +118,7 @@ if __name__ == "__main__":
     exitcode = main()
 
     if exitcode > 0:
-        print("\nSomething went wrong during the setup. Make sure you run this script as administrator. If these issues persist, please follow the instructions on the ACE3 wiki to perform the setup manually.")
+        print("\nSomething went wrong during the setup. Make sure you run this script as administrator. If these issues persist, please follow the instructions on the wiki to perform the setup manually.")
     else:
         print("\nSetup successfully completed.")
 

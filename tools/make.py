@@ -3,7 +3,7 @@
 
 # make.py
 # An Arma 3 addon build system
-
+# Created by ACE 3 team, modified by BC: https://github.com/acemod/ACE3
 ###############################################################################
 
 # The MIT License (MIT)
