@@ -5,7 +5,7 @@ Description:
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params ["_name","_sides","_positions","_isInclusive","_allowAirVeh","_allowLandVeh","_customVariables","_customDelay","_customMessage"];
-private["_checkOutEarly", "_playerInBounds"];
+private["_checkOutEarly", "_value", "_playerInBounds"];
 
 // Check to see if player is on correct side
 if !(side group player in _sides) exitWith {
@@ -20,23 +20,26 @@ if ((vehicle player) isKindOf "Air" && _allowAirVeh) exitWith {
     5005 cutText ["","PLAIN",0,true];
 };
 
-// Check custom variables
-{
-    if (isNil "_x") then {
-        _customVariables set [_forEachIndex,true];
-    } else {
-        if !(IS_BOOL(_x)) then {
+// Check custom variables - Each one should be a string
+_checkOutEarly = false;
+if (count  _customVariables > 0) then {
+    {
+        _value = missionNamespace getVariable [_x,true];
+        if !(IS_BOOL(_value)) then {
             _customVariables set [_forEachIndex,true];
         } else {
-            if !(_x) then {
+            if !(_value) then {
                 _checkOutEarly = true;
             };
         };
-    };
-} forEach _customVariables;
+    } forEach _customVariables;
+};
 if (_checkOutEarly) exitWith {
     5005 cutText ["","PLAIN",0,true];
 };
+
+// Make sure player is alive, could have died from other boundary in the same loop through.
+if !(alive player) exitWith{};
 
 // Check area for player
 // TODO: Replace BIS_fnc_inTrigger with inArea? v1.57
@@ -59,5 +62,6 @@ if !(_playerInBounds) then {
     // Player has been warned enough times, kill them
     if (GVAR(playerWarnedCount) > _customDelay) then {
         player setDamage 1;
+        BC_LOGDEBUG_1("singlePosCheck: Player was killed by boundary with settings:: %1",_this);
     };
 };

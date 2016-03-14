@@ -10,22 +10,26 @@ Optional Parameters:
     _isInclusive - if true, players on affected sides cannot leave the boundary. if false, players on affected sides cannot enter it. default true. <BOOLEAN>
     _allowAirVeh - if true, exempt players in land vehicles from being affected by the boundary. if players leave the land vehicle outside of the boundary they will be affected. default false. <BOOLEAN>
     _allowLandVeh - if true, exempt players in land vehicles from being affected by the boundary. if players leave the land vehicle outside of the boundary they will be affected. default false. <BOOLEAN>
-    _customVariables - an array filled with variables. all variables should be boolean. along with passed parameters above, all variables need to be true in order to have player considered out of bounds. If variables are nil they are assumed true. default: [!bc_spectator_VirtualCreated] <ARRAY>
+    _customVariables - an array filled with variable names. variables should be boolean and saved in the missionNamespace. to leave empty set to []. default: [] <ARRAY>
     _customDelay - delay in seconds before killing the player. must be a multiple of 5. if not a multiple of 5, will round up to next nearest multiple of 5. default 25. <SCALAR>
     _customMessage - message that gets displayed when player leaves the boundary. <STRING>
 Examples:
     (begin example)
     (ex1) // Add an area that nobody can leave. Based on a trigger's position and size.
-        ["Area51", [], Area51Trigger] call bc_areaBoundary_fnc_addArea;
+        ["Albany", [], AlbanyTrigger] call bc_areaBoundary_fnc_addArea;
     
     (ex2) // Add an area that nobody can enter based on a marker's position and size. 
-        ["Area51", [], Area51Trigger, false] call bc_areaBoundary_fnc_addArea;
+        ["Area51", [], "area_51", false] call bc_areaBoundary_fnc_addArea;
         
     (ex3) // Add an area that the 3 major teams can't enter on foot or in land vehicles. Based on a marker.
         ["Detroit", [east,west,independent], "Detroit Marker", false, true, false] call bc_areaBoundary_fnc_addArea;
         
     (ex4) // Add an area that OPFOR can't leave based on an array of positions and markers. Remember not to put the positions out of order or the points will be connected in a weird way.
         ["DefensiveZone", east, ["DefensivePoint1", "DefensivePoint2", [0,0,0], [10000,10000,10000], "DefensivePoint3", "DefensivePoint4"]] call bc_areaBoundary_fnc_addArea;
+        
+    (ex5) // Add an area that nobody can leave based on a trigger's position and size. Also use the value of variable playerIsNotAPimp to determine if player should be affected by boundaries.
+        ["Newark", [], NewarkTrigger, true, false, false, ["playerIsNotAPimp"] call bc_areaBoundary_fnc_addArea;
+        // If playerIsNotAPimp is true, allow player to be killed by going out of bounds. If playerIsNotAPimp is false, player cannot be killed by being out of bounds. Useful if you want some custom limitations for your area boundaries.
     (end)
     
 TODO:
@@ -169,15 +173,25 @@ if (!isNil "_allowLandVeh") then {
     // Value not supplied at all, defaulting to true.
     _allowLandVeh = true;
 };
+
 // Check customVariables
 if (!isNil "_customVariables") then {
     if !(IS_ARRAY(_customVariables)) then {
         BC_LOGERROR_2("addArea: _customVariables: Defaulting to true. Supplied value wasn't array: %1 -- %2",_name, _customVariables);
         _customVariables = [!bc_spectator_VirtualCreated];
+    } else {
+        // Make sure it's an array filled with strings
+        {
+            if !(IS_STRING(_x)) then {
+                BC_LOGERROR_2("addArea: Non-string in _customVariables Array, using default empty array: %1 - %2",_sides, _x);
+                _errorFound = true;
+            };
+        } forEach _customVariables;
     };
 } else {
     _customVariables = [!bc_spectator_VirtualCreated];
 };
+if (_errorFound) then {_customVariables = [];};
 
 // Check customDelay
 if (!isNil "_customDelay") then {
@@ -185,12 +199,12 @@ if (!isNil "_customDelay") then {
         BC_LOGERROR_2("addArea: _customDelay: Defaulting to 25 seconds. Supplied value wasn't scalar: %1 -- %2",_name, _customDelay);
         _customDelay = 25;
     };
-    // Ensure delay is multiple of 5
-    _customDelay = ceil(_customDelay/5);
 } else {
     // Value not supplied at all, defaulting to true.
     _customDelay = 25;
 };
+// Ensure delay is multiple of 5
+_customDelay = ceil(_customDelay/5);
 
 // Check customMessage
 if (!isNil "_customMessage") then {
