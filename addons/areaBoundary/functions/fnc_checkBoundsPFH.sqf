@@ -29,7 +29,7 @@ if (IS_BOOL(GVAR(disableBoundaries))) then {
 // Check bounds only if there are boundaries created
 if (count GVAR(areaList) > 0) then {
     {
-        _x params ["_name","_sides","_positions","_isInclusive","_allowAirVeh","_allowLandVeh","_customVariables","_customDelay","_customMessage","_type","_warnCount"];
+        _x params ["_name","_sides","_positions","_isInclusive","_allowAirVeh","_allowLandVeh","_customVariables","_customDelay","_customMessage","_warnCount","_type"];
         switch (_type) do {
             // Trigger
             case 1: {[_name,_sides,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage,_warnCount] call FUNC(singlePosCheck);};
