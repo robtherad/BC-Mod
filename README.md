@@ -33,6 +33,7 @@ The goal of the addon is to provide tools to mission makers that they can use at
 | **MODULE** | **DESCRIPTION** |
 |---|---|
 | **[akm_tracers](https://github.com/robtherad/BC-Mod/tree/master/addons/akm_tracers)** | Fixes RHS 7.62x39 AK Tracer mag. It actually has tracers now. |
+| **[areaBoundary](https://github.com/robtherad/BC-Mod/tree/master/addons/areaBoundary)** | A framework that allows mission makers to limit player movement into or from certain areas. |
 | **[common](https://github.com/robtherad/BC-Mod/tree/master/addons/common)** | A module with functions that are generally useful or common between modules. |
 | **[gpsMarkers](https://github.com/robtherad/BC-Mod/tree/master/addons/gpsMarkers)** | A simple framework for managing markers that follow units and or vehicles. |
 | **[main](https://github.com/robtherad/BC-Mod/tree/master/addons/main)** | The root of the addon. Contains macros and other stuff used throughout the rest of the addon. |
