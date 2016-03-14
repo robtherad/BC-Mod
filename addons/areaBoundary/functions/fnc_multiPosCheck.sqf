@@ -70,6 +70,6 @@ if !(_playerInBounds) then {
     // Player has been warned enough times, kill them
     if (GVAR(playerWarnedCount) > _customDelay) then {
         player setDamage 1;
-        BC_LOGDEBUG_1("multiPosCheck: Player was killed by boundary with settings:: %1",_this);
+        BC_LOGDEBUG_2("multiPosCheck: Player was killed by boundary with settings:: %1 -- %2",_name,_this);
     };
 };
