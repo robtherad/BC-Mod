@@ -16,4 +16,4 @@ if (_type isEqualTo 3) then {
 };
 
 GVAR(areaList) pushBackUnique _name;
-GVAR(areaListFull) pushBackUnique [_name,_sides,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage,_type];
+GVAR(areaListFull) pushBackUnique [_name,_sides,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage,_type,0];

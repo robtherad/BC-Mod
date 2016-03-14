@@ -29,14 +29,14 @@ if (IS_BOOL(GVAR(disableBoundaries))) then {
 // Check bounds only if there are boundaries created
 if (count GVAR(areaList) > 0) then {
     {
-        _x params ["_name","_sides","_positions","_isInclusive","_allowAirVeh","_allowLandVeh","_customVariables","_customDelay","_customMessage","_type"];
+        _x params ["_name","_sides","_positions","_isInclusive","_allowAirVeh","_allowLandVeh","_customVariables","_customDelay","_customMessage","_type","_warnCount"];
         switch (_type) do {
             // Trigger
-            case 1: {[_name,_sides,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage] call FUNC(singlePosCheck);};
+            case 1: {[_name,_sides,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage,_warnCount] call FUNC(singlePosCheck);};
             // Marker
-            case 2: {[_name,_sides,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage] call FUNC(singlePosCheck);};
+            case 2: {[_name,_sides,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage,_warnCount] call FUNC(singlePosCheck);};
             // Position Array
-            case 3: {[_name,_sides,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage] call FUNC(multiPosCheck);};
+            case 3: {[_name,_sides,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage,_warnCount] call FUNC(multiPosCheck);};
         };
     } forEach GVAR(areaListFull);
 };

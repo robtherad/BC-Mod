@@ -24,7 +24,7 @@ if !(IS_STRING(_name)) exitWith {
 _index = GVAR(areaList) find _name;
 
 if (_index isEqualTo -1) exitWith {
-    BC_LOGERROR_1("removeArea: Couldn't find _name in areaList - %1",_name);
+    BC_LOGERROR_2("removeArea: Couldn't find _name in areaList - %1",_name,GVAR(areaList));
 };
 
 if ( ((GVAR(areaListFull) select _index) select 0) isEqualTo _name ) then {

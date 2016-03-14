@@ -7,6 +7,4 @@ ADDON = false;
 GVAR(areaList) = [];
 GVAR(areaListFull) = [];
 
-GVAR(playerWarnedCount) = 0;
-
 ADDON = true;

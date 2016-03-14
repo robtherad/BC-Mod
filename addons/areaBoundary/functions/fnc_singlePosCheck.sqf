@@ -4,20 +4,23 @@ Description:
     Internal function. Gets called by checkBoundsPFH for boundaries where type is 1 or 2.
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-params ["_name","_sides","_positions","_isInclusive","_allowAirVeh","_allowLandVeh","_customVariables","_customDelay","_customMessage"];
+params ["_name","_sides","_positions","_isInclusive","_allowAirVeh","_allowLandVeh","_customVariables","_customDelay","_customMessage","_warnCount"];
 private["_checkOutEarly", "_value", "_playerInBounds"];
 
 // Check to see if player is on correct side
 if !(side group player in _sides) exitWith {
     5005 cutText ["","PLAIN",0,true];
+    if (_warnCount > 0) then {[_name,0] call FUNC(modifyWarnCount);};
 }; 
 
 // Check player type and see if it's not counted
 if ((vehicle player) isKindOf "LandVehicle" && _allowLandVeh) exitWith {
     5005 cutText ["","PLAIN",0,true];
+    if (_warnCount > 0) then {[_name,0] call FUNC(modifyWarnCount);};
 };
 if ((vehicle player) isKindOf "Air" && _allowAirVeh) exitWith {
     5005 cutText ["","PLAIN",0,true];
+    if (_warnCount > 0) then {[_name,0] call FUNC(modifyWarnCount);};
 };
 
 // Check custom variables - Each one should be a string
@@ -36,6 +39,7 @@ if (count  _customVariables > 0) then {
 };
 if (_checkOutEarly) exitWith {
     5005 cutText ["","PLAIN",0,true];
+    if (_warnCount > 0) then {[_name,0] call FUNC(modifyWarnCount);};
 };
 
 // Make sure player is alive, could have died from other boundary in the same loop through.
@@ -50,17 +54,19 @@ if !(_isInclusive) then {
 };
 if (_playerInBounds) exitWith {
     5005 cutText ["","PLAIN",0,true];
+    if (_warnCount > 0) then {[_name,0] call FUNC(modifyWarnCount);};
 };
     
 // Player is not where he's supposed to be
 if !(_playerInBounds) then {
-    INC(GVAR(playerWarnedCount));
     // TODO: Change cutText layer number to layer name. Arma 3 v1.57
     5005 cutText [_customMessage,"PLAIN",0,true];
     5005 cutFadeOut 200;
+    INC(_warnCount);
+    [_name,_warnCount] call FUNC(modifyWarnCount);
     
     // Player has been warned enough times, kill them
-    if (GVAR(playerWarnedCount) > _customDelay) then {
+    if (_warnCount > _customDelay) then {
         player setDamage 1;
         BC_LOGDEBUG_2("multiPosCheck: Player was killed by boundary with settings:: %1 -- %2",_name,_this);
     };
