@@ -1,0 +1,1 @@
+#include "\y\bc\addons\areaBoundary\script_component.hpp"
