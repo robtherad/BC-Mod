@@ -2,14 +2,19 @@
 
 A framework that allows mission makers to limit player movement into or from certain areas.
 
-By default the framework comes with support for allowing exemptions to players in air or land vehicles.
+****
 
+#### Features:
+* Circles and all Polygons for area shapes
+* Easy to toggle exemptions for players in land and/or air vehicles
+* Custom delays after leaving allowed area before death ensues
+* Custom warning messages once players leave their allowed areas
+* Custom conditions available in addition to default conditions.
 
 ##### TODO (A3 v1.57): 
 * Add a debug command to show polygon areas on map.
 * Convert some functions into engine commands.
-* Add 4th positional option with format similar to `[[COORDS],[SIZE X], [SIZE Y]]`
-
+* Add 4th positional option with format similar to `[[COORDS],[SIZE X], [SIZE Y]]`.
 
 ****
 
@@ -64,16 +69,19 @@ To remove an area boundary, call the function `bc_areaBoundary_fnc_removeArea` a
 ["Area51"] call bc_areaBoundary_fnc_removeArea;
 ```
 
-#### - Disabling
+#### - Disabling Module
 By default the module will continuously check to see if there are any markers to update. The performance overhead for this shouldn't be very heavy at all but if you don't intend on using the module in your mission you can disable it by setting the variable `bc_areaBoundary_disableBoundaries` to `true`. Any other value besides `true` and the script will continue to run. 
 
 Keep in mind, this will only disable the module for machines where `bc_areaBoundary_disableBoundaries` is `true`, the effect is not global.
 
 Once you have disabled the module in your mission you will need to follow the steps below to re-enable it.
 
-#### - Re-enabling
+#### - Re-enabling Module
 If you have disabled the module by setting the variable `bc_areaBoundary_disableBoundaries` to `true`, you can only re-enable it by executing the following function on the machines where you want to re-enable it. 
 
 ```call bc_areaBoundary_fnc_enableBoundaries;```
 
 Ten seconds after executing the above function on any machines that you want to re-enable the gpsMarkers module for, the module will restart. During the ten seconds the function will set `bc_areaBoundary_disableBoundaries` to `true` to make sure there are no duplicate loops running.
+
+#### - Custom Conditions
+The areaBoundary module allows for custom conditions to be set in addition to those included in the module by default. Using them is simple. Just provide the script with a variable name that will be set to `true` or `false` by another script. If the script sets the given variable to `false` in the missionNamespace on the client that the module is running, it will not warn or kill the player for leaving the allowed area. If the script sets the given variable to **anything BUT** `false` in the missionNamespace of the client where the module is running then it will be assumed to be `true` and will allow the areaBoundary module to warn and kill the player once they leave the allowed area.
