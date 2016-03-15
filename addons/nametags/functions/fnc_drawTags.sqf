@@ -4,9 +4,11 @@ Description:
     Internal function. Checks conditions for and handles drawing the nametags.
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-params ["_args", "_handle"];
-_args params ["_color"];
-private ["_target","_nameString"];
+params ["_args"];
+_args params ["_nameArray", "_groupArray"];
+_nameArray params ["_colorName", "_fontName", "_sizeName", "_shadowName"];
+_groupArray params ["_colorGroup", "_fontGroup", "_sizeGroup", "_shadowGroup"];
+private ["_target","_textString"];
 
 _target = cursorObject;
 if (!isNull _target) then {
@@ -15,8 +17,8 @@ if (!isNull _target) then {
             if (_target isKindOf "Man") then {
                 if (side group _target isEqualTo side group player)then {
                     if (alive _target) then {
-                        _nameString = format ["<t size='0.375' shadow='2' font='TahomaB' color='%3'>%2<br/><t size='0.5'>%1</t></t>",name _target,groupID (group _target),_color];
-                        [_nameString,0,1,0,0,0,4] spawn bis_fnc_dynamicText;
+                        _textString = format ["<t size='%2' shadow='%3' font='%4' color='%5'>%1<br/></t><t size='%7' shadow='%8' font='%9' color='%10'>%6</t>", groupID (group _target), _sizeGroup, _shadowGroup, _fontGroup, _colorGroup, name _target, _sizeName, _shadowName, _fontName, _colorName];
+                        [_textString,0,1,0,0,0,4] spawn bis_fnc_dynamicText;
                     };
                 };
             };
