@@ -38,6 +38,7 @@ The goal of the addon is to provide tools to mission makers that they can use at
 | **[gpsMarkers](https://github.com/robtherad/BC-Mod/tree/master/addons/gpsMarkers)** | A simple framework for managing markers that follow units and or vehicles. |
 | **[main](https://github.com/robtherad/BC-Mod/tree/master/addons/main)** | The root of the addon. Contains macros and other stuff used throughout the rest of the addon. |
 | **[marker_tracker](https://github.com/robtherad/BC-Mod/tree/master/addons/marker_tracker)** | Shows information about marker creation/deletion during the briefing. |
+| **[nametags](https://github.com/robtherad/BC-Mod/tree/master/addons/nametags)** | Allows mission maker to use BC nametags with their missions with custom color options. |
 | **[spectator](https://github.com/robtherad/BC-Mod/tree/master/addons/spectator)** | F3 Spectator in addon form. |
 | **[vehLock](https://github.com/robtherad/BC-Mod/tree/master/addons/vehLock)** | A framework mission makers can use to control access to vehicles in their missions. |
 
