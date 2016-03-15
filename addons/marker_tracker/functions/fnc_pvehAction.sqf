@@ -35,9 +35,7 @@ if (GVAR(logMarker)) then {
 
 // Turn off logging display once mission starts, but only if it's not forced on
 if !(IS_BOOL(GVAR(forceDisplay))) then {GVAR(forceDisplay) = false;};
-if (!GVAR(forceDisplay)) then {
-    if (time>0) exitWith {};
-};
+if (!GVAR(forceDisplay) && (time>0)) exitWith {};
 
 // Show playerServer the generated string
 systemChat _str;
