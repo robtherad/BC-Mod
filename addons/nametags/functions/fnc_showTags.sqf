@@ -31,14 +31,15 @@ if (isNil "_color") then {
         // Color is a string - Make sure it's a color
         // Colors must have 7 characters, start with #, all hex
         _colorArray = _color splitString "";
-        _hexArray = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","A","B","C","D","E","F"];
+        _hexArray = ["#","0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","A","B","C","D","E","F"];
+        _nonHexFound = false;
         {
             if !(_x in _hexArray) then {
                 _nonHexFound = true;
             };
-        } forEach _colorArray
+        } forEach _colorArray;
         if ( !(count _colorArray isEqualTo 7) || !(_colorArray select 0 isEqualTo "#") ||  (_nonHexFound) ) then {
-            BC_LOGERROR_1("showTags: Given value for _color was not a color, using default color: %1", _color);
+            BC_LOGERROR_4("showTags: Given value for _color was not a color: %1 -- count: %2 -- 1st value: %3 -- nonHex: %4", _color,count _colorArray,_colorArray select 0,_nonHexFound);
             _color = "#ba9d00";
         };
     };
