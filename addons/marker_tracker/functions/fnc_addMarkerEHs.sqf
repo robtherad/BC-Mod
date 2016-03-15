@@ -33,7 +33,7 @@ findDisplay _this displayAddEventHandler [
                 _mrkdetails = _this select 1;
                 GVAR(markerPV) = [
                     "Deleted",
-                    name player,
+                    player,
                     getplayerUID player
                 ];
                 {
@@ -64,7 +64,7 @@ findDisplay _this displayAddEventHandler [
             0 = all_mrkrs spawn {
                 GVAR(markerPV) = [
                     "Placed",
-                    name player,
+                    player,
                     getplayerUID player
                 ];
                 {

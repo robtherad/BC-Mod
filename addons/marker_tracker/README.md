@@ -9,7 +9,10 @@ A module that allows for admins to see who is creating/deleting markers during t
 By default the module will only show information about marker creation and deletion to the admins during the briefing phase. To enable information for admins outside of the briefing phase (during the mission), set the variable `bc_marker_tracker_forceDisplay` to `true`. If you want to turn it off again, set the same variable to `false`.
 
 #### - Disable server logging
-By default the module will log all marker creation and deletion to the server's .rpt file. To disable this behavior, set the variable `bc_marker_tracker_logMarker` to `false` on the server. If you want to turn it off again, set the same variable to `true`.
+By default the module will log all marker creation and deletion to the server's .rpt file. To disable this behavior, set the variable `bc_marker_tracker_logMarker` to `false` on the server. If you want to enable it again, set the same variable to `true`.
+
+#### - Enabling info about other team's markers
+By default, after the briefing, the module will only show admins information about markers created by players on their own team. To disable this behavior, set the variable `bc_marker_tracker_showOtherSide` to true on the server. If you want to enable it again, set the same variable to `true`.
 
 #### - Modifying the admin list
 For now, the module only shows information to specific players who have their UID's set within the module itself. It does not show the information to a player logged in as an admin ingame unless they have their UID in the list in which case they'd be able to see the information without being logged in as admin. There are two ways to modify the admin list. 

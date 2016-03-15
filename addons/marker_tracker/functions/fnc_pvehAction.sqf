@@ -6,8 +6,8 @@ Author:
     KillzoneKid - http://killzonekid.com/arma-scripting-tutorials-whos-placingdeleting-markers/
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-private ["_action","_name", "_markerInfoArray", "_type","_pos","_text", "_str", "_playerUID", "_clientID"];
-params ["_action","_name","_playerUID","_markerInfoArray"];
+private ["_action","_player", "_markerInfoArray", "_type","_pos","_text", "_str", "_playerUID", "_clientID"];
+params ["_action","_player","_playerUID","_markerInfoArray"];
 _markerInfoArray params ["_type","_pos","_text"];
 
 if (!isServer) exitWith {};
@@ -15,15 +15,15 @@ if (!isServer) exitWith {};
 // Build string
 if (_text isEqualTo "") then {
     if (_action isEqualTo "Placed") then {
-        _str = format["%1 - %2 a %3 marker at %4",_name,_action,_type,_pos];
+        _str = format["%1 - %2 a %3 marker at %4",name _player,_action,_type,_pos];
     } else {
-        _str = format["%1 - %2 a %3 marker from %4",_name,_action,_type,_pos];
+        _str = format["%1 - %2 a %3 marker from %4",name _player,_action,_type,_pos];
     };
 } else {
     if (_action isEqualTo "Placed") then {
-        _str = format["%1 - %2 a %3 marker at %4 with text: %5",_name,_action,_type,_pos,_text];
+        _str = format["%1 - %2 a %3 marker at %4 with text: %5",name _player,_action,_type,_pos,_text];
     } else {
-        _str = format["%1 - %2 a %3 marker from %4 with text: %5",_name,_action,_type,_pos,_text];
+        _str = format["%1 - %2 a %3 marker from %4 with text: %5",name _player,_action,_type,_pos,_text];
     };
 };
 
@@ -43,7 +43,9 @@ systemChat _str;
 // Display string to all players
 {
     if ( (getPlayerUID _x) in GVAR(UIDList) ) then {
-        _clientID = owner _x;
-        _str remoteExec ["systemChat",_clientID];
+        if ((side _x) isEqualTo (side _player) || GVAR(showOtherSide) || (time isEqualTo 0)) then {
+            _clientID = owner _x;
+            _str remoteExec ["systemChat",_clientID];
+        };
     };
 } forEach playableUnits;
