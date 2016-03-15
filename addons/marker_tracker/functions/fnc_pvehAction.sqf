@@ -30,14 +30,16 @@ if (_text isEqualTo "") then {
 // Log info in .rpt
 if !(IS_BOOL(GVAR(logMarker))) then {GVAR(logMarker) = true;};
 if (GVAR(logMarker)) then {
-    BC_LOGINFO_2('Marker Log',_str,_playerUID);
+    BC_LOGINFO_2('Marker Log: %1 --- playerUID: %2',_str,_playerUID);
 };
 
 // Turn off logging display once mission starts, but only if it's not forced on
 if !(IS_BOOL(GVAR(forceDisplay))) then {GVAR(forceDisplay) = false;};
-if (!GVAR(forceDisplay)) then {
-    if (time>0) exitWith {};
-};
+if (!GVAR(forceDisplay) && (time>0)) exitWith {};
+
+// Show playerServer the generated string
+systemChat _str;
+
 // Display string to all players
 {
     if ( (getPlayerUID _x) in GVAR(UIDList) ) then {

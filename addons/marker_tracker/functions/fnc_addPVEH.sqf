@@ -9,6 +9,6 @@ Author:
 
 if (!isServer) exitWith {};
 
-"MrkOpPV" addPublicVariableEventHandler {
+QGVAR(markerPV) addPublicVariableEventHandler {
     (_this select 1) spawn FUNC(pvehAction)
 };
