@@ -31,7 +31,7 @@ findDisplay _this displayAddEventHandler [
             0 = [_mrknames, _mrkdetails] spawn {
                 _mrknames = _this select 0;
                 _mrkdetails = _this select 1;
-                MrkOpPV = [
+                GVAR(markerPV) = [
                     "Deleted",
                     name player,
                     getplayerUID player
@@ -39,15 +39,15 @@ findDisplay _this displayAddEventHandler [
                 {
                     _i = _mrknames find _x;
                     if (_i > -1) then {
-                        MrkOpPV pushBack (_mrkdetails select _i);
+                        GVAR(markerPV) pushBack (_mrkdetails select _i);
                     };
                 } forEach (_mrknames - allMapMarkers);
-                if (count MrkOpPV > 3) then {
+                if (count GVAR(markerPV) > 3) then {
                     if (!isServer) then {
-                        publicVariableServer "MrkOpPV";
+                        publicVariableServer QGVAR(markerPV);
                     } else {
-                        systemChat format ["%1",MrkOpPV];
-                        MrkOpPV call FUNC(pvehAction);
+                        // Player is server
+                        GVAR(markerPV) call FUNC(pvehAction);
                     };
                 };
             };
@@ -62,22 +62,22 @@ findDisplay _this displayAddEventHandler [
             ctrlIdd (_this select 1) == 54 && _this select 2 == 1
         ) then {
             0 = all_mrkrs spawn {
-                MrkOpPV = [
+                GVAR(markerPV) = [
                     "Placed",
                     name player,
                     getplayerUID player
                 ];
                 {
-                    MrkOpPV pushBack (
+                    GVAR(markerPV) pushBack (
                         _x call FUNC(collectMarkerInfo)
                     );      
                 } forEach (allMapMarkers - _this);
-                if (count MrkOpPV > 3) then {
+                if (count GVAR(markerPV) > 3) then {
                     if (!isServer) then {
-                        publicVariableServer "MrkOpPV";
+                        publicVariableServer QGVAR(markerPV);
                     } else {
-                        systemChat format ["%1",MrkOpPV];
-                        MrkOpPV call FUNC(pvehAction);
+                        // Player is server
+                        GVAR(markerPV) call FUNC(pvehAction);
                     };
                 };  
             };
