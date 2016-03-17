@@ -10,11 +10,12 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-params ["_object"];
+params [["_object", nil, [objNull]];
 private ["_object","_handles","_errorFound","_id"];
 
 // No need to add markers for non-humans
 if (!hasInterface) exitWith {};
+if (isNil "_object") exitWith {};
 
 _errorFound = false;
 

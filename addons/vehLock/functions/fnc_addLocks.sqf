@@ -23,11 +23,20 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-params ["_vehicle","_positions","_sides","_classes","_units","_message"];
+params [
+    ["_vehicle", nil, [objNull]],
+    ["_positions", [1,1,1,0], [[]], [4]],
+    ["_sides", [], [[], sideUnknown], []],
+    ["_classes", [], [[]], []],
+    ["_units", [], [[]], []],
+    ["_message", "Your class/side isn't able to access this vehicle/role.", [""]]
+];
 private ["_vehicle","_positions","_sides","_classes","_units","_message","_errorFound"];
 
 // No need to add markers for non-humans
 if (!hasInterface) exitWith {};
+
+if (isNil "_vehicle") exitWith {};
 
 _errorFound = false;
 

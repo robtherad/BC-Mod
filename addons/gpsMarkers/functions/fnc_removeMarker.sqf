@@ -10,10 +10,11 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-params ["_object"];
+params [["_object", nil, [objNull,grpNull]]];
 private ["_object","_type","_group","_errorFound","_indexList","_index","_markerName"];
 
 if (!hasInterface) exitWith {};
+if (isNil "_object") exitWith {};
 
 // Get type of object to figure out which marker to create
 _type = false;

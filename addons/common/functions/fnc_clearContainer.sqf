@@ -9,7 +9,7 @@ Examples:
         [crate] call bc_common_fnc_clearContainer;
     (end)
 ---------------------------------------------------------------------------- */
-params ["_object"];
+params [ ["_object", objNull, [objNull]] ];
 if (!isServer) exitWith {};
 
 clearWeaponCargoGlobal _object;

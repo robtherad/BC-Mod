@@ -3,7 +3,7 @@ Function: bc_gpsMarkers_fnc_addMarker
 Description:
     Attempts to add a marker to a unit which will be tracked by the gpsMarkers module.
 Parameters:
-    _object - the unit <OBJECT>
+    _object - the unit or group <OBJECT> or <GROUP>
     _sides - the side(s) the marker will be visible to <SIDE> OR <ARRAY> of <SIDE>s
 Examples:
     (begin example)
@@ -12,11 +12,17 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-params ["_object","_sides"];
+params [
+    ["_object", nil, [objNull, grpNull]]
+    ["_sides", nil, [sideUnknown, []], []]
+];
 private ["_object","_sides","_type","_group","_errorFound"];
 
 // No need to add markers for non-humans
 if (!hasInterface) exitWith {};
+
+if (isNil "_object") exitWith {};
+if (isNil "_sides") exitWith {};
 
 // Make sure object is an object not a group
 if (IS_GROUP(_object)) then {

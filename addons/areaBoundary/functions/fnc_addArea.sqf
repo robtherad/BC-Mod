@@ -36,7 +36,17 @@ TODO:
     Add a debug function that can be run to show polygon areas on the ingame map. A3 v1.57
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-params ["_name","_sides","_positions","_isInclusive","_allowAirVeh","_allowLandVeh","_customVariables","_customDelay","_customMessage"];
+params [
+    ["_name", nil, [""]],
+    ["_sides", nil, [sideUnknown, [], []],
+    ["_positions", nil],
+    ["_isInclusive", true, [true]],
+    ["_allowAirVeh", false, [true]],
+    ["_allowLandVeh", false, [true]],
+    ["_customVariables", [], [[]], []],
+    ["_customDelay", 25],
+    ["_customMessage", "WARNING!\n\nYou are outside of your allowed area. Return immediately or YOU WILL BE KILLED!", [""]]
+];
 private["_errorFound", "_posSub", "_type"];
 
 // No need to add boundary for non-humans
@@ -45,18 +55,11 @@ if (!hasInterface) exitWith {};
 _errorFound = false;
 
 // Check name
-if !(IS_STRING(_name)) exitWith {
-    BC_LOGERROR_1("addArea: _name not string: %1",_name);
-};
 if (_name in GVAR(areaList)) exitWith {
     BC_LOGERROR_1("addArea: _name already used: %1",_name);
 };
 
 // Check sides
-if !((IS_ARRAY(_sides)) OR (IS_SIDE(_sides))) then {
-    BC_LOGERROR_1("addArea: Incorrect Type for _sides: %1",_sides);
-    _errorFound = true;
-};
 if (IS_ARRAY(_sides)) then {
     {
         if !(IS_SIDE(_x)) then {
@@ -65,10 +68,10 @@ if (IS_ARRAY(_sides)) then {
         };
     } forEach _sides;
 };
-
 if (_errorFound) exitWith {};
 
 // Check positions
+if (isNil "_positions") exitWith {BC_LOGERROR_1("addArea: _positions is nil: %1",_name);};
 if (IS_ARRAY(_positions)) then {
     _type = 3;
     if (count _positions >= 3) then {
@@ -178,7 +181,7 @@ if (!isNil "_allowLandVeh") then {
 if (!isNil "_customVariables") then {
     if !(IS_ARRAY(_customVariables)) then {
         BC_LOGERROR_2("addArea: _customVariables: Defaulting to true. Supplied value wasn't array: %1 -- %2",_name, _customVariables);
-        _customVariables = [!bc_spectator_VirtualCreated];
+        _customVariables = [];
     } else {
         // Make sure it's an array filled with strings
         {
@@ -189,7 +192,7 @@ if (!isNil "_customVariables") then {
         } forEach _customVariables;
     };
 } else {
-    _customVariables = [!bc_spectator_VirtualCreated];
+    _customVariables = [];
 };
 if (_errorFound) then {_customVariables = [];};
 

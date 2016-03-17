@@ -10,7 +10,9 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-params ["_name"];
+params [
+    ["_name", nil, [""]]
+];
 private["_index", "_indexFull"];
 
 if (!hasInterface) exitWith {};

@@ -18,7 +18,10 @@ Examples:
         [str,5] call bc_common_fnc_hintThenClear;
     (end)
 ---------------------------------------------------------------------------- */
-params ["_hintStr","_delay"];
+params [
+    ["_hintStr", "", [""]],
+    ["_delay", 15, [15]]
+];
 hint _hintStr;
 if (isNil "_delay") then {
     _delay = 15;

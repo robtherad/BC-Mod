@@ -24,9 +24,26 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-params ["_nameArray", "_groupArray"];
-_nameArray params ["_colorName", "_fontName", "_sizeName", "_shadowName"];
-_groupArray params ["_colorGroup", "_fontGroup", "_sizeGroup", "_shadowGroup"];
+params [
+    ["_nameArray", ["#ba9d00","TahomaB",0.5,2], [[]], [4]],
+    ["_groupArray", ["#ba9d00","TahomaB",0.375,2], [[]], [4]]
+];
+_nameArray params [
+    ["_colorName", "#ba9d00", [""]],
+    ["_fontName", "TahomaB", [""]], 
+    ["_sizeName", 0.5, [0]], 
+    ["_shadowName", 2, [0]]
+];
+_groupArray params [
+    ["_colorGroup", "#ba9d00", [""]],
+    ["_fontGroup", "TahomaB", [""]], 
+    ["_sizeGroup", 0.375, [0]], 
+    ["_shadowGroup", 2, [0]]
+];
+
+
+
+
 private ["_hexArray", "_nonHexFound", "_colorGroupArray", "_colorNameArray", "_fontConfig", "_shadowArray", "_nameArray", "_groupArray", "_colorName", "_fontName", "_sizeName", "_shadowName", "_colorGroup", "_fontGroup", "_sizeGroup", "_shadowGroup"];
 if (!hasInterface) exitWith {};
 
