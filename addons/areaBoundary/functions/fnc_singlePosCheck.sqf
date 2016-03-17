@@ -48,7 +48,6 @@ if !(alive player) exitWith{};
 // Check area for player
 // TODO: Replace BIS_fnc_inTrigger with inArea? v1.57
 _playerInBounds = [_positions, player] call BIS_fnc_inTrigger;
-BC_LOGERROR_1("addMarker: bounds = %1",_playerInBounds);
 if !(_isInclusive) then {
     // If player is supposed to be outside of the trigger, invert the BOOL result of BIS_fnc_inTrigger
     _playerInBounds = !_playerInBounds;
