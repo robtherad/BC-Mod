@@ -38,7 +38,7 @@ TODO:
 #include "script_component.hpp"
 params [
     ["_name", nil, [""]],
-    ["_sides", nil, [sideUnknown, [], []],
+    ["_sides", [], [sideUnknown, []], []],
     ["_positions", nil],
     ["_isInclusive", true, [true]],
     ["_allowAirVeh", false, [true]],

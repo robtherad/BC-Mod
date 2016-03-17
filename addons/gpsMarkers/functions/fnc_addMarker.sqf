@@ -13,7 +13,7 @@ Examples:
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params [
-    ["_object", nil, [objNull, grpNull]]
+    ["_object", nil, [objNull, grpNull]],
     ["_sides", nil, [sideUnknown, []], []]
 ];
 private ["_object","_sides","_type","_group","_errorFound"];
@@ -21,8 +21,8 @@ private ["_object","_sides","_type","_group","_errorFound"];
 // No need to add markers for non-humans
 if (!hasInterface) exitWith {};
 
-if (isNil "_object") exitWith {};
-if (isNil "_sides") exitWith {};
+if (isNil "_object") exitWith {BC_LOGERROR("addMarker: nil Object");};
+if (isNil "_sides") exitWith {BC_LOGERROR("addMarker: nil sides");};
 
 // Make sure object is an object not a group
 if (IS_GROUP(_object)) then {
