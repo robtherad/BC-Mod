@@ -8,7 +8,7 @@ params ["_name","_sides","_positions","_isInclusive","_allowAirVeh","_allowLandV
 private["_checkOutEarly", "_value", "_playerInBounds"];
 
 // Check to see if player is on correct side
-if !(side group player in _sides) exitWith {
+if (!((side group player) in _sides) && !(_sides isEqualTo [])) exitWith {
     5005 cutText ["","PLAIN",0,true];
     if (_warnCount > 0) then {[_name,0] call FUNC(modifyWarnCount);};
 }; 
@@ -48,6 +48,7 @@ if !(alive player) exitWith{};
 // Check area for player
 // TODO: Replace BIS_fnc_inTrigger with inArea? v1.57
 _playerInBounds = [_positions, player] call BIS_fnc_inTrigger;
+BC_LOGERROR_1("addMarker: bounds = %1",_playerInBounds);
 if !(_isInclusive) then {
     // If player is supposed to be outside of the trigger, invert the BOOL result of BIS_fnc_inTrigger
     _playerInBounds = !_playerInBounds;
