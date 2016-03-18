@@ -26,10 +26,10 @@ Examples:
 ```    
     
 #### - Removing Markers
-Use the function `bc_gpsMarkers_fnc_removeMarker` to remove a tracked marker from a group or vehicle. 
+Use the function `bc_gpsMarkers_fnc_removeMarker` to remove a tracked marker from a group or vehicle. If you can avoid it, try not to use groupID to remove markers as it's significantly slower than other options.
 ```
 Parameters:
-    _unit - the unit, group, or vehicle to add remove marker from: <OBJECT>  OR  <GROUP>
+    _unit - the unit, group, groupID or vehicle to add remove marker from: <OBJECT>  OR  <GROUP>  OR  <STRING>
 Examples:
     (begin example)
     (ex1)

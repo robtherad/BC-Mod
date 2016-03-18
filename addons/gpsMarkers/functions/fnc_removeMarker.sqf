@@ -10,11 +10,31 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-params [["_object", nil, [objNull,grpNull]]];
-private ["_object","_type","_group","_errorFound","_indexList","_index","_markerName"];
+params [["_object", nil, [objNull, grpNull, ""]]];
+private ["_object","_type","_group","_errorFound","_indexList","_index","_markerName", "_groupID"];
 
 if (!hasInterface) exitWith {};
 if (isNil "_object") exitWith {};
+
+if (IS_GROUP(_object)) then {
+    _group = _object;
+    _object = units _group select 0;
+};
+if (IS_STRING(_object)) then {
+    // groupID
+    _groupID = _object;
+    _object = nil;
+    {
+        if (groupID _x isEqualTo _groupID) then {
+            _group = _x;
+            _object = units _group select 0;
+        };
+        if (!isNil "_group") exitWith {};
+    } forEach allGroups;
+};
+if (isNil "_object") exitWith {
+    BC_LOGERROR_1("removeMarker: Unable to find supplied groupID: %1",_groupID);
+};
 
 // Get type of object to figure out which marker to create
 _type = false;
