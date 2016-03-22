@@ -9,6 +9,7 @@ closeDialog 1;
 ["bc_spectator_cams","onEachFrame"] call bis_fnc_removeStackedEventHandler;
 terminate bc_spectator_updatevalues_script;
 (call bc_spectator_GetCurrentCam) cameraEffect ["terminate","back"];
+bc_spectator_isSpectator = nil;
 hintSilent "Spectator system has been forcefully closed";
 {
     _var = _x getVariable ["bc_spectator_fired_eventid",nil];

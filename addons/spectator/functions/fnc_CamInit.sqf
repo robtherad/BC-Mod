@@ -3,6 +3,12 @@
 // ====================================================================================
 //[this,objNull,0,0,true] call bc_spectator_fnc_camInit;
 // params
+
+if (!isNil "bc_spectator_isSpectator") exitWith {diag_log "fn_CamInit: Already ran, exiting early."};
+if (isNil "bc_spectator_isSpectator") then {
+    bc_spectator_isSpectator = true;
+};
+
 _this spawn {
 private["_forced", "_oldUnit", "_unit"];
 _unit = [_this, 0, player,[objNull]] call BIS_fnc_param;
@@ -24,7 +30,7 @@ if(!isnil "BIS_fnc_feedback_allowPP") then {
   BIS_fnc_feedback_allowPP = false;
 };
 
-if(bc_spectator_isJIP) then {
+if(bc_spectator_isJIP || _forced) then {
   ["bc_ScreenSetup",false] call BIS_fnc_blackOut;
   systemChat "Initializing Spectator Script";
   uiSleep 3;
@@ -47,8 +53,16 @@ if(isNil "bc_spectator_VirtualCreated") then {
   bc_spectator_VirtualCreated = true;
 };
 
+private ["_oldUnit"];
 if(isNull _oldUnit ) then {if(count playableUnits > 0) then {_oldUnit = (playableUnits select 0)} else {_oldUnit = (allUnits select 0)};};
-
+if (isNil "_oldUnit") then {
+    createCenter civilian;
+    _grp = createGroup civilian;
+    _oldUnit = _grp createUnit ["C_man_1", [0,0,5], [], 0, "FORM"];
+    //_oldUnit enableSimulationGlobal false;
+    _oldUnit disableAI "MOVE";
+    _oldUnit allowDamage false;
+};
 // ====================================================================================
 
 // Set spectator mode for whichever radio system is in use
