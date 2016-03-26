@@ -2,6 +2,9 @@
 PREP(addMarker);
 PREP(removeMarker);
 PREP(enableGPS);
+PREP(syncAllMarkerTexts);
+PREP(syncMarkerText);
+
 
 // Internal functions
 PREP(createMarker);

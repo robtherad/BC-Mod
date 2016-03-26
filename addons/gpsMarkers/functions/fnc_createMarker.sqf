@@ -63,6 +63,8 @@ if (_type == "Man") then {
     // Convert _sides to array if it's not already
     if (typeName _sides == "SIDE") then {_sides = [_sides];};
     
+    _group setVariable [QGVAR(markerName), _markerName];
+    
     GVAR(trackedGroups) pushBackUnique [_group,_markerName,_sides];
     GVAR(trackedGroupsList) pushBackUnique _group;
 } else {
@@ -108,6 +110,8 @@ if (_type == "Man") then {
     
     // Convert _sides to array if it's not already
     if (typeName _sides isEqualTo "SIDE") then {_sides = [_sides];};
+    
+    _object setVariable [QGVAR(markerName), _markerName];
     
     GVAR(trackedVehicles) pushBackUnique [_object,_markerName,_sides];
     GVAR(trackedVehiclesList) pushBackUnique _object;
