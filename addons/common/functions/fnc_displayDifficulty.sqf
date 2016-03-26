@@ -16,6 +16,9 @@ if (!isServer) exitWith {};
 [{
     params ["_args", "_handle"];
     private ["_diff", "_diffStr"];
+    if (!GVAR(displayDifficulty)) then {
+        [_handle] call CBA_fnc_removePerFrameHandler;
+    };
     if (time > 1) then {
         _diff = "Undefined";
         switch(difficulty) do {
