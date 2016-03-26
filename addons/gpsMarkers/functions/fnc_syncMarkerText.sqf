@@ -3,10 +3,7 @@ Function: bc_gpsMarkers_fnc_syncMarkerText
 Description:
     Updates the marker text for groups or vehicles from their attached variables after the markers have already been created.
 Parameters:
-    _object - a unit or a group or array of units and/or groups <OBJECT> or <GROUP> or <ARRAY>
-    _sides - the side(s) the marker will be visible to <SIDE> OR <ARRAY> of <SIDE>s
-Optional Parameters:
-    _name - the name used for the group's gps marker on the map <STRING>
+    _object - a unit, group, or array containing units and/or groups whose marker text's should be updated to refelect their new values <OBJECT> or <GROUP> or <ARRAY>
 Examples:
     (begin example)
         [player] call bc_gpsMarkers_fnc_syncMarkerText;
@@ -15,7 +12,7 @@ Examples:
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params [
-    ["_object", nil, [objNull, grpNull, []], []],
+    ["_object", nil, [objNull, grpNull, []], []]
 ];
 private ["_marker", "_markerText", "_objectArray"];
 
@@ -27,7 +24,7 @@ if (IS_ARRAY(_object)) then {
     _objectArray = [_object];
 };
 
-{   
+fnc_setMarkerText = {
     if (IS_GROUP(_x)) then {
         _marker = _x getVariable [QGVAR(markerName), nil];
         if (!isNil "_marker") then {
@@ -49,5 +46,15 @@ if (IS_ARRAY(_object)) then {
                 _marker setMarkerTextLocal _markerText;
             };
         };
+    };
+};
+
+{   
+    if (IS_GROUP(_x)) then {
+        {
+            _x call fnc_setMarkerText;
+        } forEach _x;
+    } else {
+        _x call fnc_setMarkerText;
     };
 } forEach _objectArray;
