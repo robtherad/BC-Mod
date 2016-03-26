@@ -1,3 +1,5 @@
 #include "script_component.hpp"
 
-call bc_common_fnc_displayDifficulty;
+if (GVAR(displayDifficulty)) then {
+    call bc_common_fnc_displayDifficulty;
+};
