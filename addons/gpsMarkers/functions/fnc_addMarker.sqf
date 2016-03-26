@@ -1,20 +1,24 @@
 /* ----------------------------------------------------------------------------
 Function: bc_gpsMarkers_fnc_addMarker
 Description:
-    Attempts to add a marker to a unit which will be tracked by the gpsMarkers module.
+    Attempts to add a marker to a group which will be tracked by the gpsMarkers module.
 Parameters:
-    _object - the unit or group <OBJECT> or <GROUP>
+    _object - a unit or a group <OBJECT> or <GROUP>
     _sides - the side(s) the marker will be visible to <SIDE> OR <ARRAY> of <SIDE>s
+Optional Parameters:
+    _name - the name used for the group's gps marker on the map <STRING>
 Examples:
     (begin example)
         [player,west] call bc_gpsMarkers_fnc_addMarker;
-        [player,[west,east]] call bc_gpsMarkers_fnc_addMarker;
+        [group player,[west,east]] call bc_gpsMarkers_fnc_addMarker;
+        [player, west, "A1"] call bc_gpsMarkers_fnc_addMarker;
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params [
     ["_object", nil, [objNull, grpNull]],
-    ["_sides", nil, [sideUnknown, []], []]
+    ["_sides", nil, [sideUnknown, []], []],
+    ["_name", nil, [""]]
 ];
 private ["_object","_sides","_type","_group","_errorFound"];
 
@@ -86,5 +90,5 @@ if (!(_type isEqualTo "Man") && (_object in GVAR(trackedVehiclesList))) then {
 if (_errorFound) exitWith {false};
 
 // Call marker creation function
-[_object,_sides,_type, _group] call FUNC(createMarker);
+[_object,_sides,_type, _group, _name] call FUNC(createMarker);
 true

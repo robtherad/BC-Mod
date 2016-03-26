@@ -13,8 +13,8 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
-params ["_object","_sides","_type", "_group"];
-private ["_object","_sides","_type","_group","_markerName","_sizeMarkOptions","_groupSize","_markerPos","_markerSide","_marker","_markerName2","_sizeMarker","_objectSide","_typeNum","_markerString"];
+params ["_object","_sides","_type", "_group", "_name"];
+private ["_object","_sides","_type","_group","_markerName","_sizeMarkOptions","_groupSize","_markerPos","_markerSide","_marker","_markerName2","_sizeMarker","_objectSide","_typeNum","_markerString", "_markerText"];
 
 // Create an infantry marker
 if (_type == "Man") then {
@@ -31,6 +31,17 @@ if (_type == "Man") then {
         case civilian: { ["ColorCivilian","b_inf"] };
         default { ["ColorUNKNOWN","b_inf"] };
     };
+    if (!isNil "_name") then {
+        _markerText = _name;
+        _group setVariable [QGVAR(markerText), _markerText];
+    } else {
+        _markerText = _group getVariable [QGVAR(markerText), nil];
+        if (isNil "_markerText") then {
+            _markerText = (groupID _group);
+            _group setVariable [QGVAR(markerText), _markerText];
+        };
+    };
+    
     
     // Main Marker
     _marker = createMarkerLocal [_markerName,_markerPos];
@@ -38,7 +49,7 @@ if (_type == "Man") then {
     _marker setMarkerColorLocal (_markerSide select 0);
     _marker setMarkerTypeLocal (_markerSide select 1);
     _marker setMarkerSizeLocal [.75,.75];
-    _marker setMarkerTextLocal (groupID _group);
+    _marker setMarkerTextLocal _markerText;
     _marker setMarkerAlphaLocal 0;
     
     // NATO Pip Marker
