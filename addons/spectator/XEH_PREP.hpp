@@ -13,3 +13,9 @@ PREP(DrawMarkers);
 PREP(ForceExit);
 PREP(HandleMenu);
 PREP(showMenu);
+
+PREP(changeDefaultSpectator);
+PREP(changeSpectator);
+PREP(createFlexiMenu);
+PREP(enterSpectator);
+PREP(exitSpectator);

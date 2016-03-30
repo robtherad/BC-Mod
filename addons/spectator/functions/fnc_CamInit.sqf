@@ -3,11 +3,7 @@
 // ====================================================================================
 //[this,objNull,0,0,true] call bc_spectator_fnc_camInit;
 // params
-
-if (!isNil "bc_spectator_isSpectator") exitWith {diag_log "fn_CamInit: Already ran, exiting early."};
-if (isNil "bc_spectator_isSpectator") then {
-    bc_spectator_isSpectator = true;
-};
+#include "script_component.hpp"
 
 _this spawn {
 private["_forced", "_oldUnit", "_unit"];
@@ -22,6 +18,8 @@ if (typeof _unit != "seagull" && !_forced || !hasInterface) ExitWith {};
 // disable this to instantly switch to the spectator script.
 waituntil {missionnamespace getvariable ["BIS_fnc_feedback_allowDeathScreen",true] || isNull (_oldUnit) || bc_spectator_isJIP || _forced };
 
+
+GVAR(currentSpectateMode) = 0;
 
 // ====================================================================================
 

@@ -10,7 +10,7 @@ closeDialog 1;
 terminate bc_spectator_updatevalues_script;
 (call bc_spectator_GetCurrentCam) cameraEffect ["terminate","back"];
 bc_spectator_isSpectator = nil;
-hintSilent "Spectator system has been forcefully closed";
+systemChat "F3 Spectator system has been forcefully closed!";
 {
     _var = _x getVariable ["bc_spectator_fired_eventid",nil];
     if(!isNil "_var") then {
