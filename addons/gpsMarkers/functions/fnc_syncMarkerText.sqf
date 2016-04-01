@@ -15,7 +15,7 @@ Examples:
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params [
-    ["_object", nil, [objNull, grpNull, []], []],
+    ["_object", nil, [objNull, grpNull, []], []]
 ];
 private ["_marker", "_markerText", "_objectArray"];
 
