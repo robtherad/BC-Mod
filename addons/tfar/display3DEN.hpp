@@ -14,7 +14,7 @@ class display3DEN
 				{
 					text = "TMF ACRE2 Settings";
 					action = "edit3DENMissionAttributes 'TMF_MissionAcre2Attributes';";
-					//picture = "\x\tmf\addons\common\UI\icon_gear_ca";
+					//picture = "\y\bc\addons\common\UI\icon_gear_ca";
 				};
 			};
 		};

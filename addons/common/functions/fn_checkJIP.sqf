@@ -10,7 +10,7 @@
  * Description:
  * Checks if a unit JIPs into a non AI slot and kills them. Only run on the server.
  */
-#include "\x\tmf\addons\common\script_component.hpp"
+#include "\y\bc\addons\common\script_component.hpp"
 
 if (!isServer) exitWith {};
 if (!isTMF) exitWith {};

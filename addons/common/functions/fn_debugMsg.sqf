@@ -11,7 +11,7 @@
  * Description:
  * Should only be used via the DEBUG_MSG() macro!
  */
-#include "\x\tmf\addons\common\script_component.hpp"
+#include "\y\bc\addons\common\script_component.hpp"
 params [
 	["_component","",["a"]],
 	["_text","",["a"]]

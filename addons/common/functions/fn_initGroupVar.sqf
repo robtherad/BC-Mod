@@ -1,4 +1,4 @@
-#include "\x\tmf\addons\common\script_component.hpp"
+#include "\y\bc\addons\common\script_component.hpp"
 
 // Setting a group variable to true on init doesn't syncrhonize in MP. Here we delay by a frame.
 

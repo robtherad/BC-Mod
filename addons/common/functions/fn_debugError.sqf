@@ -11,7 +11,7 @@
  * Description:
  * Should only be used via the DEBUG_ERR() macro!
  */
-#include "\x\tmf\addons\common\script_component.hpp"
+#include "\y\bc\addons\common\script_component.hpp"
 params [
 	["_file","",["a"]],
 	["_line",0,[0]],
@@ -19,7 +19,7 @@ params [
 ];
 if ((!is3DEN) && {!(getMissionConfigValue "tmf_debug_enabled")}) exitWith {};
 
-// Remove x\tmf\addons from __FILENAME__
+// Remove y\bc\addons from __FILENAME__
 _file = _file splitString "\";
 _file = _file select [3,count _file - 3];
 _file = _file joinString "\";

@@ -11,7 +11,7 @@
  * Description:
  * Reads config entries for the framework. First tries missionConfigFile, then configFile
  */
-#include "\x\tmf\addons\common\script_component.hpp"
+#include "\y\bc\addons\common\script_component.hpp"
 
 if !(_this isEqualType []) exitWith {
 	DEBUG_ERR_1("Argument must be type ARRAY, not %1",(typeName _this));

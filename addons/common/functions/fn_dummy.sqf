@@ -11,7 +11,7 @@
  * Description:
  * None
  */
-#include "\x\tmf\addons\common\script_component.hpp"
+#include "\y\bc\addons\common\script_component.hpp"
 
 DEBUG_LOG("dummy");
 DEBUG_ERR("dummy");

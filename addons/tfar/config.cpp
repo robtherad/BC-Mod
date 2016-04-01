@@ -7,7 +7,7 @@ class cfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 1.54;
-		requiredAddons[] = {"bc_common"};
+		requiredAddons[] = {"bc_common", "task_force_radio_items", "task_force_radio"};
 		author[] = {"Snippers"};
 		authorURL = "http://www.teamonetactical.com";
 		version = "0.0.1";

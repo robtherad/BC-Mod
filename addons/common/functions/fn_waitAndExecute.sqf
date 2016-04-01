@@ -13,7 +13,7 @@
  * Description:
  * Use this to delay code execution in the unscheluled code envinorment.
  */
-#include "\x\tmf\addons\common\script_component.hpp"
+#include "\y\bc\addons\common\script_component.hpp"
 
 params [["_code",{}],["_params",[]],["_delay",0]];
 

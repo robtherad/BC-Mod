@@ -16,7 +16,7 @@ Examples:
 Author:
     joko // Jonas, donated from ACE3
 ---------------------------------------------------------------------------- */
-#include "\x\tmf\addons\common\script_component.hpp"
+#include "\y\bc\addons\common\script_component.hpp"
 
 params [["_conditionFunction", {}, [{}]], ["_statementFunction", {}, [{}]], ["_args", []]];
 
