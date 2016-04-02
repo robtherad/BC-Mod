@@ -1,0 +1,1 @@
+#include "\y\bc\addons\objectives\script_component.hpp"
