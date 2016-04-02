@@ -14,5 +14,5 @@ if (diag_tickTime > (_startingTime + _missionDuration)) then {
     
     _str = _logic getVariable "Execution";
     _code = compile _str;
-    call _code;
+    [_missionDuration] call _code;
 };

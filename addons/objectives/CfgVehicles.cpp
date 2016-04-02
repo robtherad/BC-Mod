@@ -1,5 +1,5 @@
-class CfgVehicles
-{
+// TODO: Add some easier to use options besides code execution on module completion? Select ending maybe with code execution as an option?
+class CfgVehicles {
 	class Logic;
 	class Module_F: Logic {
 		class ArgumentsBaseUnits {
@@ -20,7 +20,7 @@ class CfgVehicles
 		functionPriority = 1; // Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
 		isGlobal = 0; // 0 for server only execution, 1 for global execution, 2 for persistent global execution
 		isTriggerActivated = 0; // 1 for module waiting until all synced triggers are activated
-		isDisposable = 1; // 1 if modules is to be disabled once it's activated (i.e., repeated trigger activation won't work)
+		isDisposable = 0; // 1 if modules is to be disabled once it's activated (i.e., repeated trigger activation won't work)
 
 		// Module arguments
 		class Arguments: ArgumentsBaseUnits {
@@ -33,7 +33,7 @@ class CfgVehicles
 			};
             class Execution {
                 displayName = "Ending Code Execution";
-                description = "Code to call once the mission duration has been reached.";
+                description = "Code to call once the mission duration has been reached. Code runs only on the server.";
                 typeName = "STRING";
                 defaultValue = "";
             };
@@ -55,7 +55,7 @@ class CfgVehicles
 		functionPriority = 1; // Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
 		isGlobal = 0; // 0 for server only execution, 1 for global execution, 2 for persistent global execution
 		isTriggerActivated = 0; // 1 for module waiting until all synced triggers are activated
-		isDisposable = 1; // 1 if modules is to be disabled once it's activated (i.e., repeated trigger activation won't work)
+		isDisposable = 0; // 1 if modules is to be disabled once it's activated (i.e., repeated trigger activation won't work)
 
 		// Module arguments
 		class Arguments: ArgumentsBaseUnits {
@@ -66,6 +66,12 @@ class CfgVehicles
 				typeName = "STRING"; // Value type, can be "NUMBER", "STRING" or "BOOL"
 				defaultValue = "";
 			};
+            class showObjectPosition {
+                displayName = "Show objective position";
+                description = "Should the module create a task at the location of the synced object? Warning: If you move the object after the module executes the task marker may not be synced until 5 seconds after the mission starts. The module will not have the task marker follow the object as it moves during the mission.";
+                typeName = "BOOL";
+                defaultValue = "false";
+            };
             class bluforStatus {
                 displayName = "Assign Objective to BLUFOR";
                 description = "";
@@ -104,7 +110,7 @@ class CfgVehicles
             };
             class execution {
                 displayName = "Ending Code Execution";
-                description = "Code to call once the objective has been destroyed.";
+                description = "Code to call once the objective has been destroyed. Code runs only on the server.";
                 typeName = "STRING";
                 defaultValue = "";
             };

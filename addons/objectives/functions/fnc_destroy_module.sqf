@@ -12,6 +12,7 @@ params [
 
 if (!isServer) exitWith {};
 
+// TODO: Add support for syncing multiple objects to the module to use them all as 1 objective.
 if (_activated && {count _units isEqualTo 1}) then {
     _name = _logic getVariable "objectiveName";
     _blufor = _logic getVariable "bluforStatus";
@@ -19,30 +20,29 @@ if (_activated && {count _units isEqualTo 1}) then {
     _indfor = _logic getVariable "indforStatus";
     _teamArray = [[_blufor, west], [_opfor, east], [_indfor, independent]];
     _createDefenderTasks = _logic getVariable "defenderTasks";
+    _showPosition = _logic getVariable "showObjectPosition";
     
+    // Add variables to unit so the EH can extract them later.
+    (_units select 0) setVariable ["teamArray", _teamArray];
+    (_units select 0) setVariable ["defenderTasks",_createDefenderTasks];
+
     // Create tasks and markers, etc.
     { // forEach _teamArray
-        // Add tasks and stuff, 
-        
+        if ((_x select 0) isEqualTo 1) then {
+            _shortString = "Destroy";
+            _longString = format["Destroy %1"];
+            [(_units select 0), _shortString, _longString, _name, _showPosition] remoteExec [QFUNC(createTask), (_x select 1)];
+        } else {
+            if (_createDefenderTasks) then {
+                // Create matching tasks for defenders
+                _shortString = "Defend";
+                _longString = format["Defend %1 from being destroyed",_name];
+                [(_units select 0), _shortString, _longString, _name, _showPosition] remoteExec [QFUNC(createTask), (_x select 1)];
+            };
+        };
     } forEach _teamArray;
     
     
-    // Add event for object destruction - Sets tasks to complete/failed
-    _id = [QGVAR(destroyed), {
-        params ["_eventName"];
-        
-        
-        // Remove event
-        [_eventName] call CBA_fnc_removeEventHandler;
-    }] call CBA_fnc_addEventHandler;
-    
-    
-    // Initialize server status check loop
-    if (isNil QGVAR(destroy_checkList)) then {
-        GVAR(destroy_checkList) = [];
-        [FUNC(destroy_checkStatus), 5, []] call CBA_fnc_addPerFrameHandler;
-    };
-    
-    // Add synced object to list of objectives to check status of
-    GVAR(destroy_checkList) pushBack _units;
+    // Add EH
+    (_units select 0) addEventHandler ["Killed", {_this call FUNC(destroy_reportStatus)}];
 };
