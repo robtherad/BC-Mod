@@ -25,13 +25,13 @@ class CfgVehicles {
 		// Module arguments
 		class Arguments: ArgumentsBaseUnits {
 			// Module specific arguments
-			class Duration {
+			class duration {
 				displayName = "Mission Duration (seconds)"; // Argument label
 				description = "The time in seconds that the mission will last."; // Tooltip description
 				typeName = "NUMBER"; // Value type, can be "NUMBER", "STRING" or "BOOL"
 				defaultValue = "2700";
 			};
-            class Execution {
+            class execution {
                 displayName = "Ending Code Execution";
                 description = "Code to call once the mission duration has been reached. Code runs only on the server.";
                 typeName = "STRING";
