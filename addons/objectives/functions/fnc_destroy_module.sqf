@@ -21,10 +21,12 @@ if (_activated && {count _units isEqualTo 1}) then {
     _teamArray = [[_blufor, west], [_opfor, east], [_indfor, independent]];
     _createDefenderTasks = _logic getVariable "defenderTasks";
     _showPosition = _logic getVariable "showObjectPosition";
+    _str = _logic getVariable "execution";
     
     // Add variables to unit so the EH can extract them later.
-    (_units select 0) setVariable ["teamArray", _teamArray];
-    (_units select 0) setVariable ["defenderTasks",_createDefenderTasks];
+    (_units select 0) setVariable [QGVAR(teamArray), _teamArray];
+    (_units select 0) setVariable [QGVAR(defenderTasks),_createDefenderTasks];
+    (_units select 0) setVariable [QGVAR(execution),_str];
 
     // Create tasks and markers, etc.
     { // forEach _teamArray
@@ -44,5 +46,6 @@ if (_activated && {count _units isEqualTo 1}) then {
     
     
     // Add EH
-    (_units select 0) addEventHandler ["Killed", {_this call FUNC(destroy_reportStatus)}];
+    _ehID = (_units select 0) addEventHandler ["Killed", {_this call FUNC(destroy_killedEH);}];
+    (_units select 0) setVariable [QGVAR(killedEHID), _ehID];
 };

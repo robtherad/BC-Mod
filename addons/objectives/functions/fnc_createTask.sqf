@@ -6,13 +6,11 @@ Description:
 #include "script_component.hpp"
 params ["_unit", "_shortString", "_longString", "_name", "_showPosition"];
 
-diag_log _this;
-
 if (!hasInterface) exitWith {};
 
 _taskVar = player createSimpleTask [format["%1 %2",_shortString,_name]];
 _taskVar setSimpleTaskDescription [_longString, _shortString, _shortString];
-if (_showPosition isEqualTo 1) then {
+if (_showPosition) then {
     _taskVar setSimpleTaskDestination (getPos _unit);
     // TODO: Add a waitUntilAndExecute for (time < 5 seconds) to make sure the object position is still correct?
 };
