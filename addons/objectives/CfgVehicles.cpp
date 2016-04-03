@@ -33,7 +33,7 @@ class CfgVehicles {
 			};
             class execution {
                 displayName = "Ending Code Execution";
-                description = "Code to call once the mission duration has been reached. Code runs only on the server.";
+                description = "Code to call once the mission duration has been reached. Code runs only on the server. Passed parameters: [_missionDuration]";
                 typeName = "STRING";
                 defaultValue = "";
             };
@@ -110,7 +110,7 @@ class CfgVehicles {
             };
             class execution {
                 displayName = "Ending Code Execution";
-                description = "Code to call once the objective has been destroyed. Code runs only on the server.";
+                description = "Code to call once the objective has been destroyed. Code runs only on the server. Passed parameters: [_unit, _killer, _name]. _name is the Objective Name set in the module.";
                 typeName = "STRING";
                 defaultValue = "";
             };
