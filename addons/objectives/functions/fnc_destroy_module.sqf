@@ -1,6 +1,7 @@
 /* ----------------------------------------------------------------------------
 Function: bc_objectives_fnc_destroy_module
 Description:
+    Activated by the Objective - Destroy module ingame. Adds a killed EH to the synced object and creates tasks for specified teams.
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params [

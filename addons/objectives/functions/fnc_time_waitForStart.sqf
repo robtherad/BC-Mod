@@ -1,9 +1,7 @@
 /* ----------------------------------------------------------------------------
-Function: bc_objectives_fnc_timeLimit
+Function: bc_objectives_fnc_time_waitForStart
 Description:
-    Function for BC time limit module. Runs given code after the mission has been running for the given time. 
-    
-    Adds a self-removing CBA PFH that waits until the mission starts. Once mission starts adds another CBA PFH that waits until the mission has been running for the given amount of time, then excutes the given code.
+    Waits for mission start then adds a CBA PFH that executes bc_objectives_fnc_time_checkLimit
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params ["_args", "_handle"];
