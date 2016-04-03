@@ -10,7 +10,7 @@ _args params ["_logic", "_startingTime", "_missionDuration"];
 if (diag_tickTime > (_startingTime + _missionDuration)) then {
     [_handle] call CBA_fnc_removePerFrameHandler;
     
-    _str = _logic getVariable "execution";
-    _code = compile _str;
+    private _str = _logic getVariable "execution";
+    private _code = compile _str;
     [_missionDuration] call _code;
 };

@@ -8,5 +8,5 @@ params ["_unit", "_status"];
 
 if (!hasInterface) exitWith {};
 
-_taskVar = _unit getVariable QGVAR(taskID);
+private _taskVar = _unit getVariable QGVAR(taskID);
 _taskVar setTaskState _status;

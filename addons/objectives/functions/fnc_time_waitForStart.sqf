@@ -10,8 +10,8 @@ _args params ["_logic"];
 if (time > 0) then {
     [_handle] call CBA_fnc_removePerFrameHandler;
     
-    _missionDuration = _logic getVariable "duration";
-    _startingTime = diag_tickTime;
+    private _missionDuration = _logic getVariable "duration";
+    private _startingTime = diag_tickTime;
     
     [FUNC(time_checkLimit), 5, [_logic, _startingTime,_missionDuration]] call CBA_fnc_addPerFrameHandler;
 };

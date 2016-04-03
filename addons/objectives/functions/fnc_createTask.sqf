@@ -8,7 +8,7 @@ params ["_unit", "_shortString", "_longString", "_name", "_showPosition"];
 
 if (!hasInterface) exitWith {};
 
-_taskVar = player createSimpleTask [format["%1 %2",_shortString,_name]];
+private _taskVar = player createSimpleTask [format["%1 %2",_shortString,_name]];
 _taskVar setSimpleTaskDescription [_longString, _shortString, _shortString];
 if (_showPosition) then {
     _taskVar setSimpleTaskDestination (getPos _unit);

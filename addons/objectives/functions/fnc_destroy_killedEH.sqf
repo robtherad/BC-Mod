@@ -7,8 +7,8 @@ Description:
 params ["_unit", "_killer"];
 
 // Change status of objectives to destroyed/failed depending on team
-_teamArray = _unit getVariable QGVAR(teamArray);
-_defenderTasks = _unit getVariable QGVAR(defenderTasks);
+private _teamArray = _unit getVariable QGVAR(teamArray);
+private _defenderTasks = _unit getVariable QGVAR(defenderTasks);
 
 {
     if ((_x select 0) isEqualTo 1) then {
@@ -21,6 +21,6 @@ _defenderTasks = _unit getVariable QGVAR(defenderTasks);
 } forEach _teamArray;
 
 // Run module's custom execution code
-_str = _unit getVariable QGVAR(execution);
-_code = compile _str;
+private _str = _unit getVariable QGVAR(execution);
+private _code = compile _str;
 [_unit, _killer, _name] call _code;
