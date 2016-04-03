@@ -1,7 +1,6 @@
 /* ----------------------------------------------------------------------------
-Function: bc_objectives_fnc_destroy
+Function: bc_objectives_fnc_destroy_module
 Description:
-    Activated by the Mission Time Limit module ingame. Runs on the server and makes sure the mission doesn't last any longer than the given time limit.
 ---------------------------------------------------------------------------- */
 #include "script_component.hpp"
 params [
@@ -35,7 +34,7 @@ if (_activated && {count _units isEqualTo 1}) then {
             _longString = format["Destroy %1"];
             [(_units select 0), _shortString, _longString, _name, _showPosition] remoteExec [QFUNC(createTask), (_x select 1)];
         } else {
-            if (_createDefenderTasks) then {
+            if (_createDefenderTasks && {(_x select 0) isEqualTo 2}) then {
                 // Create matching tasks for defenders
                 _shortString = "Defend";
                 _longString = format["Defend %1 from being destroyed",_name];
