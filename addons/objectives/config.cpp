@@ -2,7 +2,7 @@
 
 class CfgPatches {
     class ADDON {
-        units[] = {QGVAR(timeLimit), QGVAR(destroy)};
+        units[] = {QGVAR(timeLimit), QGVAR(destroy), QGVAR(escape)};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"bc_common"};

@@ -23,6 +23,11 @@ if (_activated && {count _units isEqualTo 1}) then {
     private _showPosition = _logic getVariable "showObjectPosition";
     private _str = _logic getVariable "execution";
     
+    private ["_position"];
+    if (_showPosition) then {
+        _position = getPos (_units select 0);
+    };
+    
     // Add variables to unit so the EH can extract them later.
     (_units select 0) setVariable [QGVAR(teamArray), _teamArray];
     (_units select 0) setVariable [QGVAR(defenderTasks),_createDefenderTasks];
@@ -34,7 +39,7 @@ if (_activated && {count _units isEqualTo 1}) then {
         if ((_x select 0) isEqualTo 1) then {
             _shortString = "Destroy";
             _longString = format["Destroy %1"];
-            [(_units select 0), _shortString, _longString, _name, _showPosition] remoteExec [QFUNC(createTask), (_x select 1)];
+            [(_units select 0), _shortString, _longString, _position] remoteExec [QFUNC(createTask), (_x select 1)];
         } else {
             if (_createDefenderTasks && {(_x select 0) isEqualTo 2}) then {
                 // Create matching tasks for defenders
@@ -44,7 +49,7 @@ if (_activated && {count _units isEqualTo 1}) then {
                 } else {
                     _longString = format["Defend %1 from being destroyed.",_name];
                 };
-                [(_units select 0), _shortString, _longString, _name, _showPosition] remoteExec [QFUNC(createTask), (_x select 1)];
+                [(_units select 0), _shortString, _longString, _position] remoteExec [QFUNC(createTask), (_x select 1)];
             };
         };
     } forEach _teamArray;

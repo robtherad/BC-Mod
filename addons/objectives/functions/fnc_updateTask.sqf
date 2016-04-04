@@ -9,4 +9,7 @@ params ["_unit", "_status"];
 if (!hasInterface) exitWith {};
 
 private _taskVar = _unit getVariable QGVAR(taskID);
+
+if (isNil "_taskVar") exitWith {};
+
 _taskVar setTaskState _status;

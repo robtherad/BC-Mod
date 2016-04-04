@@ -8,3 +8,6 @@ PREP(time_waitForStart);
 PREP(destroy_module);
 PREP(destroy_killedEH);
 
+PREP(escape_module);
+PREP(escape_fromPFH);
+PREP(escape_toPFH);
