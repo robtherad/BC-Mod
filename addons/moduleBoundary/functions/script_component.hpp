@@ -1,0 +1,1 @@
+#include "\y\bc\addons\moduleBoundary\script_component.hpp"
