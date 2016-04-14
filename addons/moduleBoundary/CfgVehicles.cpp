@@ -34,7 +34,7 @@ class CfgVehicles {
             };
             class condition {
                 displayName = "Additional Conditions"; // Argument label
-                description = "Additional conditions that must be true, along with the unit being out of bounds, for the code in the module's execution box to be called."; // Tooltip description
+                description = "Additional variables that must be true, along with the unit being out of bounds, for the code in the module's execution box to be called. Separate the variables by commas."; // Tooltip description
                 typeName = "STRING"; // Value type, can be "NUMBER", "STRING" or "BOOL"
                 defaultValue = "";
             };

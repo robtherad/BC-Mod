@@ -1,4 +1,5 @@
 PREP(moduleInit);
+PREP(clientInit);
 
 // Public
 PREP(addArea);
