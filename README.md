@@ -32,13 +32,13 @@ The goal of the addon is to provide tools to mission makers that they can use at
 ### Current Features
 | **MODULE** | **DESCRIPTION** |
 |---|---|
-| **[rhs_akm_tracers](https://github.com/robtherad/BC-Mod/tree/master/addons/akm_tracers)** | Fixes RHS 7.62x39 AK Tracer mag. It actually has tracers now. |
 | **[areaBoundary](https://github.com/robtherad/BC-Mod/tree/master/addons/areaBoundary)** | Allows mission makers to limit player movement into or from certain areas. |
 | **[common](https://github.com/robtherad/BC-Mod/tree/master/addons/common)** | A module with functions that are generally useful or common between modules. |
 | **[gpsMarkers](https://github.com/robtherad/BC-Mod/tree/master/addons/gpsMarkers)** | A simple framework for managing markers that follow units and or vehicles. |
 | **[main](https://github.com/robtherad/BC-Mod/tree/master/addons/main)** | The root of the addon. Contains macros and other stuff used throughout the rest of the addon. |
 | **[marker_tracker](https://github.com/robtherad/BC-Mod/tree/master/addons/marker_tracker)** | Shows BC admins information about marker creation/deletion during the briefing. |
 | **[nametags](https://github.com/robtherad/BC-Mod/tree/master/addons/nametags)** | Allows mission maker to easily use nametags with their missions. |
+| **[rhs_akm_tracers](https://github.com/robtherad/BC-Mod/tree/master/addons/rhs_akm_tracers)** | Fixes RHS 7.62x39 AK Tracer mag. It actually has tracers now. |
 | **[spectator](https://github.com/robtherad/BC-Mod/tree/master/addons/spectator)** | F3 Spectator in addon form. |
 | **[vehLock](https://github.com/robtherad/BC-Mod/tree/master/addons/vehLock)** | Allows mission makers to control access to vehicles in their missions. |
 
