@@ -17,9 +17,11 @@ if (_searchCount isEqualTo 2 || _searchCount isEqualTo 3 && {_logic in _searchLi
         _logic setVariable [QGVAR(boundaryComplete), true];
     } else {
         // BC_LOGDEBUG("searchConnections - Count equal to 2");
+        private _pushedBack = false;
         {
-            if (!(_x in _logicList) && {_x isKindOf "LocationArea_F"}) then {
+            if (!(_x in _logicList) && {_x isKindOf "LocationArea_F"} && {!_pushedBack}) then {
                 _logicList pushBack _x;
+                _pushedBack = true;
             };
         } forEach _searchList;
         if ((count _logicList) isEqualTo _count) then {
