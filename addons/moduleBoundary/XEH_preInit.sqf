@@ -4,6 +4,6 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-GVAR(aaa) = [];
+GVAR(markerArray) = [];
 
 ADDON = true;

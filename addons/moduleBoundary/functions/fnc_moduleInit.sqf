@@ -16,6 +16,7 @@ if (!isServer) exitWith {};
 // Make sure module is synced correctly
 private _triggerList = [];
 private _logicList = [];
+private _usingTrigger = true;
 {
     if (_x isKindOf "EmptyDetector") then {
         _triggerList pushBack _x;
@@ -33,6 +34,7 @@ private _logicListError = false;
 if (_count > 0) then {
     [_logic, _logicList] call FUNC(searchConnections);
     _logicList = _logic getVariable [QGVAR(logicList),[]];
+    _usingTrigger = false;
     if (count _logicList < 3) then {_logicListError = true};
 };
 
@@ -75,17 +77,20 @@ switch (_logic getVariable ["TMFUnits",-1]) do {
 if (count _units < 1) exitWith {BC_LOGERROR("moduleInit: No synced units - Exiting.");};
 
 if (_activated) then {
-    _locations = [];
-    {
-        _locations pushBack (getPos _x);
-    } forEach _logicList;
+    private _locations = [];
+    if (_usingTrigger) then {
+        _locations = _triggerList;
+    } else {
+        {
+            _locations pushBack (getPos _x);
+        } forEach _logicList;
+    };
     
     // Evaluate Conditions to make sure it's correct
     private _conditions = _logic getVariable ["condition",[]];
     
     if !(count _conditions isEqualTo 0) then {
         _conditions = _conditions splitString ",";
-        BC_LOGDEBUG_1("moduleInit: _conditions: %1",_conditions);
         // Check conditions input
         private _characterList = "_,abcdefghijklmnopqrstuvwxyz1234567890";
         _characterList = toArray _characterList; // 32 is a space
@@ -96,8 +101,6 @@ if (_activated) then {
             private _stringArray = toArray _string;
             private _newStringArray = [];
             private _safeDropCharacters = toArray " "; // Characters that might appear at the start/end of condition inputs that should be able to be safely dropped
-            BC_LOGDEBUG_1("moduleInit: _string: %1",_string);
-            BC_LOGDEBUG_1("moduleInit: _stringArray: %1",_stringArray);
             
             { // forEach _stringArray
                 private _throwAway = false;
@@ -134,7 +137,6 @@ if (_activated) then {
         } forEach _conditions;
         
         _conditions = _newConditions;
-        BC_LOGDEBUG_1("moduleInit: _newConditions: %1",_newConditions);
     };
     
     private _inclusive = _logic getVariable "isInclusive";
@@ -143,7 +145,7 @@ if (_activated) then {
     private _customDelay = _logic getVariable "delay";
     private _customMessage = _logic getVariable "message";
     private _execution = _logic getVariable "execution";
-    
+    _customDelay = abs(ceil(_customDelay / 5));
     private _ownerIDList = [];
     private _unitList = [];
     {
@@ -154,20 +156,15 @@ if (_activated) then {
         (_unitList select _id) pushBack _x;
     } forEach _units;
     
-    BC_LOGDEBUG_1("moduleInit: _ownerIDList: %1",_ownerIDList);
-    BC_LOGDEBUG_1("moduleInit: _unitList: %1",_unitList);
-    
     {
         _ownerUnits = _unitList select _forEachIndex;
         
-        BC_LOGDEBUG_1("moduleInit: _ownerUnits: %1",_ownerUnits);
-        
-        private _args = [_logic, _ownerUnits, _locations, _isInclusive,_allowAir,_allowLandVeh,_conditions,_customDelay,_customMessage,_execution];
+        private _args = [_logic, _ownerUnits, _locations, _inclusive,_allowAir,_allowLandVeh,_conditions,_customDelay,_customMessage,_execution, 0];
         _args remoteExecCall [QFUNC(clientInit), _x];
     } forEach _ownerIDList;
     
     private _createMarkers = _logic getVariable "createMarkers";
-    if !(_createMarkers isEqualTo "None") then {[_locations] call FUNC(createMarkers);};
+    if !(_createMarkers isEqualTo "None") then {[_locations,_createMarkers] call FUNC(createMarkers);};
 };
 
 }, _this] call CBA_fnc_directCall;
