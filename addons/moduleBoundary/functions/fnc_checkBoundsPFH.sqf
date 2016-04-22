@@ -14,7 +14,13 @@ if (isNil "_unitList") then {
 };
 private _deadUnits = [];
 {
-    [_logic,_x,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage,_execution] call FUNC(checkUnitBounds);
+    if (local _x) then {
+        [_logic,_x,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage,_execution] call FUNC(checkUnitBounds);
+    } else {
+        // TODO: Write a function to transfer ownership of script to unit's new locality
+        // [_logic, _x, _positions, _isInclusive, _allowAirVeh, _allowLandVeh, _customVariables, _customDelay, _customMessage, _execution] call FUNC();
+        // _unitList = _unitList - _x;
+    };
 } forEach _unitList;
 
 if (count _deadUnits > 0) then {

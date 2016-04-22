@@ -9,17 +9,17 @@ private["_checkOutEarly", "_value", "_playerInBounds"];
 
 // Check to see if player is on correct side
 if (!((side group player) in _sides) && !(_sides isEqualTo [])) exitWith {
-    5005 cutText ["","PLAIN",0,true];
+    QGVAR(textLayer) cutText ["","PLAIN",0,true];
     if (_warnCount > 0) then {[_name,0] call FUNC(modifyWarnCount);};
 }; 
 
 // Check player type and see if it's not counted
 if ((vehicle player) isKindOf "LandVehicle" && _allowLandVeh) exitWith {
-    5005 cutText ["","PLAIN",0,true];
+    QGVAR(textLayer) cutText ["","PLAIN",0,true];
     if (_warnCount > 0) then {[_name,0] call FUNC(modifyWarnCount);};
 };
 if ((vehicle player) isKindOf "Air" && _allowAirVeh) exitWith {
-    5005 cutText ["","PLAIN",0,true];
+    QGVAR(textLayer) cutText ["","PLAIN",0,true];
     if (_warnCount > 0) then {[_name,0] call FUNC(modifyWarnCount);};
 };
 
@@ -38,7 +38,7 @@ if (count  _customVariables > 0) then {
     } forEach _customVariables;
 };
 if (_checkOutEarly) exitWith {
-    5005 cutText ["","PLAIN",0,true];
+    QGVAR(textLayer) cutText ["","PLAIN",0,true];
     if (_warnCount > 0) then {[_name,0] call FUNC(modifyWarnCount);};
 };
 
@@ -49,26 +49,25 @@ if !(alive player) exitWith{};
 _playerInBounds = (getPos player) inPolygon _positions;
 // Modify for isInclusive
 if !(_isInclusive) then {
-    // If player is supposed to be outside of the trigger, invert the BOOL result of BIS_fnc_inTrigger
+    // If player is supposed to be outside of the trigger, invert value
     _playerInBounds = !_playerInBounds;
 };
 if (_playerInBounds) exitWith {
-    5005 cutText ["","PLAIN",0,true];
+    QGVAR(textLayer) cutText ["","PLAIN",0,true];
     if (_warnCount > 0) then {[_name,0] call FUNC(modifyWarnCount);};
 };
     
 // Player is not where he's supposed to be
 if !(_playerInBounds) then {
-    // TODO: Change cutText layer number to layer name. Arma 3 v1.57
-    5005 cutText [_customMessage,"PLAIN",0,true];
-    5005 cutFadeOut 200;
+    QGVAR(textLayer) cutText [_customMessage,"PLAIN",0,true];
+    QGVAR(textLayer) cutFadeOut 200;
     INC(_warnCount);
     [_name,_warnCount] call FUNC(modifyWarnCount);
     
     // Player has been warned enough times, kill them
     if (_warnCount > _customDelay) then {
         player setDamage 1;
-        5005 cutText ["","PLAIN",0,true];
+        QGVAR(textLayer) cutText ["","PLAIN",0,true];
         BC_LOGDEBUG_2("multiPosCheck: Player was killed by boundary with settings:: %1 -- %2",_name,_this);
     };
 };

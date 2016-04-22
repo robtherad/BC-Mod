@@ -18,8 +18,8 @@ if (IS_BOOL(GVAR(disableBoundaries))) then {
     // If mission maker sets 'bc_areaBoundary_disableBoundaries' to true then exit the PFH.
     if (GVAR(disableBoundaries)) then {
         // Remove cutText in case the module gets disabled while somebody is out of bounds
-        5005 cutText ["","PLAIN",0,true];
-        5005 cutFadeOut 1;
+        QGVAR(textLayer) cutText ["","PLAIN",0,true];
+        QGVAR(textLayer) cutFadeOut 1;
         [_handle] call CBA_fnc_removePerFrameHandler;
     };
 } else {

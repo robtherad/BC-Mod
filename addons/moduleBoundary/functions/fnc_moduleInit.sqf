@@ -142,10 +142,12 @@ if (_activated) then {
     private _inclusive = _logic getVariable "isInclusive";
     private _allowAir = _logic getVariable "allowAir";
     private _allowLandVeh = _logic getVariable "allowLandVeh";
+    
     private _customDelay = _logic getVariable "delay";
+    _customDelay = abs(ceil(_customDelay / 5));
+    
     private _customMessage = _logic getVariable "message";
     private _execution = _logic getVariable "execution";
-    _customDelay = abs(ceil(_customDelay / 5));
     private _ownerIDList = [];
     private _unitList = [];
     {
