@@ -39,7 +39,7 @@ if (_checkOutEarly) exitWith {
 };
 
 // Make sure _unit is alive, could have died from other boundary in the same loop through.
-if !(alive _unit) exitWith{_deadUnits pushBack [_unit,_forEachIndex];};
+if !(alive _unit) exitWith {_deadUnits pushBack [_unit,_forEachIndex];};
 
 private _playerInBounds = false;
 if (count _positions > 1) then {

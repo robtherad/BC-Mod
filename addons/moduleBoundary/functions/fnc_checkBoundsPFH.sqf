@@ -7,10 +7,11 @@ Description:
 params ["_args", "_handle"];
 _args params ["_logic","_units","_positions","_isInclusive","_allowAirVeh","_allowLandVeh","_customVariables","_customDelay","_customMessage","_execution"];
 
-private _unitList = missionNamespace getVariable [QGVAR(unitList),nil];
+private _unitList = _logic getVariable [QGVAR(unitList),nil];
+private _unitListCount = count _unitList;
 if (isNil "_unitList") then {
     _unitList = _units;
-    missionNamespace setVariable [QGVAR(unitList),_unitList];
+    _logic setVariable [QGVAR(unitList),_unitList];
 };
 private _deadUnits = [];
 {
@@ -18,12 +19,12 @@ private _deadUnits = [];
         [_logic,_x,_positions,_isInclusive,_allowAirVeh,_allowLandVeh,_customVariables,_customDelay,_customMessage,_execution] call FUNC(checkUnitBounds);
     } else {
         // TODO: Write a function to transfer ownership of script to unit's new locality
-        // [_logic, _x, _positions, _isInclusive, _allowAirVeh, _allowLandVeh, _customVariables, _customDelay, _customMessage, _execution] call FUNC();
+        // [_logic, _x, _positions, _isInclusive, _allowAirVeh, _allowLandVeh, _customVariables, _customDelay, _customMessage, _execution] call FUNC(changeOwner);
         // _unitList = _unitList - _x;
     };
 } forEach _unitList;
 
-if (count _deadUnits > 0) then {
+if ( !(_unitListCount isEqualTo (count _unitList)) || {count _deadUnits > 0} ) then {
     _unitList = (_unitList - _deadUnits);
-    missionNamespace setVariable [QGVAR(unitList),_unitList];
+    _logic setVariable [QGVAR(unitList),_unitList];
 };

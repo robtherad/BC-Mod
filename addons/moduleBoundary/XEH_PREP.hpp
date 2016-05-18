@@ -4,3 +4,5 @@ PREP(createMarkers);
 PREP(checkUnitBounds);
 PREP(checkBoundsPFH);
 PREP(searchConnections);
+PREP(changeOwner);
+PREP(addUnit);

@@ -93,8 +93,5 @@ class CfgVehicles {
                 };
             };
         };
-        class ModuleDescription: ModuleDescription {
-            description = "Tracks time since ";
-        };
     };
 };
