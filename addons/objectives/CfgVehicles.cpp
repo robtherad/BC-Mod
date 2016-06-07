@@ -12,8 +12,8 @@ class CfgVehicles {
     class GVAR(timeLimit): Module_F {
         scope = 2; // Editor visibility; 2 will show it in the menu, 1 will hide it.
         displayName = "Mission Timelimit"; // Name displayed in the menu
-        icon = "\y\bc\addons\objectives\ui\icon.paa"; // Map icon. Delete this entry to use the default icon
         category = "Multiplayer";
+        icon = "\y\bc\addons\objectives\ui\icon.paa"; // Map icon. Delete this entry to use the default icon
         function = QFUNC(time_module); // Name of function triggered once conditions are met
         functionPriority = 1; // Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
         isGlobal = 0; // 0 for server only execution, 1 for global execution, 2 for persistent global execution
@@ -132,7 +132,7 @@ class CfgVehicles {
             class escape {
                 displayName = "Escape Type";
                 description = "Should the synced units be trying to get into or out of the synced trigger's area?";
-                typeName = "NUMBER"
+                typeName = "NUMBER";
                 class values {
                     class escapeFrom {name = "To Area"; value = 1; default = 1;};
                     class escapeTo {name = "From Area"; value = 2;};

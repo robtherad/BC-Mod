@@ -12,8 +12,8 @@ class CfgVehicles {
     class GVAR(boundary): Module_F {
         scope = 2; // Editor visibility; 2 will show it in the menu, 1 will hide it.
         displayName = "Player Mission Boundary"; // Name displayed in the menu
-        icon = "\y\bc\addons\objectives\ui\icon.paa"; // Map icon. Delete this entry to use the default icon
         category = "Multiplayer";
+        icon = "\y\bc\addons\objectives\ui\icon.paa"; // Map icon. Delete this entry to use the default icon
         function = QFUNC(moduleInit); // Name of function triggered once conditions are met
         functionPriority = 1; // Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
         isGlobal = 0; // 0 for server only execution, 1 for global execution, 2 for persistent global execution
@@ -28,7 +28,7 @@ class CfgVehicles {
                 class values {
                     class Everyone {name = "All units"; value = -1; default = 1;};
                     class Objects {name = "Synchronized units only"; value = 0;};
-                    class ObjectsAndGroups {name = "Groups of synchronized units"; value = 1;}
+                    class ObjectsAndGroups {name = "Groups of synchronized units"; value = 1;};
                     class Side {name = "Every unit on the units side"; value = 2;};
                 };
             };
@@ -94,7 +94,7 @@ class CfgVehicles {
             };
         };
         class ModuleDescription: ModuleDescription {
-            description = "Tracks time since ";
+            description = "";
         };
     };
 };
