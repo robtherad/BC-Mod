@@ -19,7 +19,11 @@ class CfgVehicles {
         isGlobal = 0; // 0 for server only execution, 1 for global execution, 2 for persistent global execution
         isTriggerActivated = 0; // 1 for module waiting until all synced triggers are activated
         isDisposable = 0; // 1 if modules is to be disabled once it's activated (i.e., repeated trigger activation won't work)
-
+        canSetArea = 1;
+        class AttributeValues
+        {
+            size3[] = {50,50,-1};
+        };
         class Arguments: ArgumentsBaseUnits {
             class TMFUnits {
                 description = "Units that should be limited by this module's boundary.";

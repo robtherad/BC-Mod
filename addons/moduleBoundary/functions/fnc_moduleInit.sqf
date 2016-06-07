@@ -17,6 +17,7 @@ if (!isServer) exitWith {};
 private _triggerList = [];
 private _logicList = [];
 private _usingTrigger = true;
+private _moduleSize = _logic getVariable ["objectArea",nil];
 {
     if (_x isKindOf "EmptyDetector") then {
         _triggerList pushBack _x;
@@ -26,6 +27,14 @@ private _usingTrigger = true;
         };
     };
 } forEach (synchronizedObjects _logic);
+
+// No triggers or area logics found, create a trigger using module size
+if ( ((count _triggerList + count _logicList) isEqualTo 0) && !isNil "_moduleSize" ) then {
+    private _trigger = createTrigger ["EmptyDetector", (getPos _logic), true];
+    _trigger setTriggerArea _moduleSize;
+    _triggerList pushBack _trigger;
+};
+
 if !((count _triggerList + count _logicList) isEqualTo 1) exitWith {BC_LOGERROR("moduleInit_module: Less than or more than 1 synced trigger or logic - Exiting.");};
 
 // Follow the chain of Area logics to try to complete the moduleInit
@@ -88,7 +97,6 @@ if (_activated) then {
     
     // Evaluate Conditions to make sure it's correct
     private _conditions = _logic getVariable ["condition",[]];
-    
     if !(count _conditions isEqualTo 0) then {
         _conditions = _conditions splitString ",";
         // Check conditions input
@@ -139,15 +147,16 @@ if (_activated) then {
         _conditions = _newConditions;
     };
     
+    // Unpack module variables
     private _inclusive = _logic getVariable "isInclusive";
     private _allowAir = _logic getVariable "allowAir";
     private _allowLandVeh = _logic getVariable "allowLandVeh";
-    
     private _customDelay = _logic getVariable "delay";
     _customDelay = abs(ceil(_customDelay / 5));
-    
     private _customMessage = _logic getVariable "message";
     private _execution = _logic getVariable "execution";
+    
+    // Generate a list of playerIDs to remoteExec the clientInit onto
     private _ownerIDList = [];
     private _unitList = [];
     {
@@ -165,6 +174,7 @@ if (_activated) then {
         _args remoteExecCall [QFUNC(clientInit), _x];
     } forEach _ownerIDList;
     
+    // Create markers to show boundary
     private _createMarkers = _logic getVariable "createMarkers";
     if !(_createMarkers isEqualTo "None") then {[_locations,_createMarkers] call FUNC(createMarkers);};
 };
