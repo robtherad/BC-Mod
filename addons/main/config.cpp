@@ -567,7 +567,8 @@ class CfgPatches {
             "cba_xeh_a3",
             "cba_jr"
         };
-        author[] = {"Bravo Company"};
+        author = MOD_TEAM;
+        authors[] = {"Bravo Company"};
         authorUrl = "http://bravoco.us";
         VERSION_CONFIG;
     };

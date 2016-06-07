@@ -6,7 +6,8 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"bc_common"};
-        author[] = {"robtherad"};
+        author = MOD_TEAM;
+        authors[] = {"robtherad"};
         authorUrl = "http://bravoco.us";
         VERSION_CONFIG;
     };
