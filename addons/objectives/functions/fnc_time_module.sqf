@@ -17,6 +17,8 @@ params [
 
 if (!isServer) exitWith {};
 
+// TODO: Add option for accuracy and custom condition checking
+
 if (_activated && {!GVAR(time_limitActive)}) then {
     GVAR(time_limitActive) = true;
     [FUNC(time_waitForStart), 0.1, [_logic]] call CBA_fnc_addPerFrameHandler;

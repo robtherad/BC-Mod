@@ -21,6 +21,12 @@ class CfgVehicles {
         isDisposable = 0; // 1 if modules is to be disabled once it's activated (i.e., repeated trigger activation won't work)
 
         class Arguments: ArgumentsBaseUnits {
+            class condition {
+                displayName = "Conditions"; // Argument label
+                description = "Variables that must be true before the mission timer begins to count down."; // Tooltip description
+                typeName = "STRING"; // Value type, can be "NUMBER", "STRING" or "BOOL"
+                defaultValue = "";
+            };
             class duration {
                 displayName = "Mission Duration (seconds)"; // Argument label
                 description = "The time in seconds that the mission will last."; // Tooltip description
@@ -32,6 +38,12 @@ class CfgVehicles {
                 description = "Code to call once the mission duration has been reached. Code runs only on the server. Passed parameters: [_missionDuration]";
                 typeName = "STRING";
                 defaultValue = "";
+            };
+            class accuracy {
+                displayName = "Time Accuracy";
+                description = "How often the script should check to see if the time limit has been reached. Lower values will have an effect on performance. Enter 0 to have the script check on each frame."
+                typeName = "NUMBER";
+                defaultValue = "5";
             };
         };
         class ModuleDescription: ModuleDescription {
